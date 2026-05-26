@@ -1,0 +1,56 @@
+.upgrade-flight-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.upgrade-flight-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 30px 25px;
+    min-width: 280px;
+    max-width: 350px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    transition: box-shadow 0.2s ease;
+}
+
+.upgrade-flight-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+
+.upgrade-flight-card h3 {
+    color: #243751;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e8e8e8;
+}
+
+.flight-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.flight-details p {
+    color: #555;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.flight-details strong {
+    color: #243751;
+}
+
+.upgrade-flight-card .upgrade-btn {
+    text-decoration: none;
+    display: block;
+}

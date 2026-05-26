@@ -1,0 +1,227 @@
+body {
+    background-color: #f4f6fb;
+    background-image: url("../img/front2.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.konto-page {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    min-height: calc(100vh - 120px);
+}
+
+.konto-container {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1.5px solid rgba(34, 39, 69, 0.35);
+    border-radius: 18px;
+    padding: 40px;
+    width: 100%;
+    max-width: 1000px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.konto-title {
+    font-size: 32px;
+    color: #243751;
+    margin: 0 0 10px 0;
+}
+
+.konto-subtitle {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(34, 39, 69, 0.1);
+}
+
+.no-reservations {
+    text-align: center;
+    padding: 40px;
+}
+
+.no-reservations p {
+    font-size: 18px;
+    color: #243751;
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 12px 24px;
+    background: linear-gradient(180deg, #ff2b2b, #c00000);
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(192, 0, 0, 0.35);
+    transition: all 0.25s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(192, 0, 0, 0.45);
+}
+
+.reservations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.reservation-card {
+    background: #ffffff;
+    border: 1px solid rgba(36, 55, 81, 0.15);
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reservation-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-card.past-flight {
+    opacity: 0.65;
+    background: #f9f9f9;
+}
+
+.res-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #243751;
+}
+
+.res-price {
+    color: #c00000;
+}
+
+.res-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.route h3 {
+    margin: 0 0 5px 0;
+    font-size: 22px;
+    color: #243751;
+}
+
+.route p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.datetime .date {
+    font-weight: bold;
+    font-size: 18px;
+    margin: 0 0 5px 0;
+    color: #243751;
+}
+
+.datetime .time {
+    margin: 0;
+    font-size: 16px;
+    color: #444;
+}
+
+.countdown span {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.status-upcoming {
+    background: rgba(46, 204, 113, 0.15);
+    color: #27ae60;
+}
+
+.status-urgent {
+    background: rgba(255, 165, 0, 0.15);
+    color: #d35400;
+}
+
+.status-past {
+    background: rgba(0, 0, 0, 0.1);
+    color: #555;
+}
+
+.res-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed #ddd;
+}
+
+.inline-form {
+    margin: 0;
+}
+
+.btn-action {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-upgrade {
+    background: #243751;
+    color: #fff;
+}
+
+.btn-upgrade:hover {
+    background: #1c2b40;
+}
+
+.btn-cancel {
+    background: transparent;
+    color: #c00000;
+    border: 1px solid #c00000;
+}
+
+.btn-cancel:hover {
+    background: rgba(192, 0, 0, 0.05);
+}
+
+.btn-checkin {
+    background: #1f9d55;
+    color: #ffffff;
+}
+
+.btn-checkin:hover {
+    background: #137333;
+}
+
+@media (max-width: 768px) {
+    .res-body {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .res-actions {
+        flex-direction: column;
+    }
+    
+    .btn-action {
+        width: 100%;
+    }
+}
+

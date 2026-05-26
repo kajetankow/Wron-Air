@@ -1,0 +1,432 @@
+.upgrade-section {
+    padding: 40px 20px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.upgrade-title {
+    font-size: 2rem;
+    color: #243751;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+.upgrade-subtitle {
+    text-align: center;
+    color: #555;
+    font-size: 1rem;
+    margin-bottom: 35px;
+}
+
+.upgrade-subtitle strong {
+    color: #243751;
+}
+
+.upgrade-passengers-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.upgrade-passenger-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    min-width: 280px;
+    max-width: 350px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s ease;
+}
+
+.upgrade-passenger-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+
+.upgrade-passenger-header {
+    flex: 1;
+    margin-bottom: 20px;
+}
+
+.upgrade-passenger-header h3 {
+    color: #243751;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e8e8e8;
+}
+
+.passenger-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.passenger-detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+}
+
+.detail-label {
+    color: #888;
+}
+
+.detail-value {
+    color: #243751;
+    font-weight: bold;
+}
+
+.upgrade-passenger-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.upgrade-action-btn {
+    display: block;
+    padding: 12px 15px;
+    text-align: center;
+    background-color: #243751;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.upgrade-action-btn:hover {
+    background-color: #1a2a45;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.upgrade-action-btn--seat {
+    background-color: #C50914;
+}
+
+.upgrade-action-btn--seat:hover {
+    background-color: #a00;
+}
+
+.upgrade-options-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    align-items: stretch;
+    margin-bottom: 30px;
+}
+
+.upgrade-choice-card {
+    flex: 1;
+    min-width: 250px;
+    max-width: 320px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: none;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s ease;
+}
+
+.upgrade-choice-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+
+.upgrade-choice-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    display: block;
+    background-color: #f9f9f9;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 12px 12px 0 0;
+}
+
+.upgrade-choice-info {
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.upgrade-choice-info h3 {
+    font-size: 1.1rem;
+    color: #243751;
+    font-weight: bold;
+    margin: 0;
+}
+
+.upgrade-choice-info .kinds {
+    font-size: 1.1rem;
+    color: #243751;
+    font-weight: bold;
+    margin: 0;
+}
+
+.upgrade-btn {
+    padding: 12px;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #C50914;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-top: auto;
+}
+
+.upgrade-btn:hover:not(:disabled) {
+    background-color: #a00;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.upgrade-btn:disabled {
+    background-color: #243751;
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.6;
+}
+
+.upgrade-btn--owned {
+    background-color: #4a90d9 !important;
+    opacity: 1 !important;
+    color: #ffffff !important;
+}
+
+.upgrade-btn--disabled {
+    background-color: #a9a9a9 !important;
+    opacity: 0.6 !important;
+}
+
+.class-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin: 0 auto 25px;
+    max-width: 800px;
+}
+
+.class-btn {
+    flex: 1;
+    min-width: 180px;
+    padding: 15px 20px;
+    border: 2px solid #243751;
+    border-radius: 10px;
+    background: #fff;
+    color: #243751;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.class-btn span {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: normal;
+    margin-top: 4px;
+    color: #555;
+}
+
+.class-btn:hover:not(:disabled) {
+    background-color: #243751;
+    color: #fff;
+}
+
+.class-btn:hover:not(:disabled) span {
+    color: #ccc;
+}
+
+.class-btn--current {
+    background-color: #e8edf2;
+    cursor: not-allowed;
+    border-color: #aaa;
+    color: #888;
+}
+
+.class-btn--disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.class-btn--selected {
+    background-color: #243751;
+    color: #fff;
+}
+
+.class-btn--selected span {
+    color: #ccc;
+}
+
+.seat-instruction {
+    text-align: center;
+    color: #555;
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.upgrade-seat-summary {
+    text-align: center;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    max-width: 400px;
+    margin: 30px auto 20px;
+}
+
+.upgrade-seat-summary p {
+    font-size: 1.05rem;
+    color: #243751;
+    margin-bottom: 10px;
+}
+
+.upgrade-seat-summary strong {
+    color: #C50914;
+}
+
+.upgrade-back {
+    text-align: center;
+    margin: 20px 0 10px;
+}
+
+.upgrade-back-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #243751;
+    border: 2px solid #243751;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.upgrade-back-btn:hover {
+    background-color: #243751;
+    color: #fff;
+}
+
+.background-wrapper {
+    margin-top: 20px;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.class-label {
+    text-align: center;
+    font-weight: bold;
+    color: #243751;
+    margin: 20px 0 10px;
+    font-size: 1.1rem;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 6px;
+}
+
+.spacer {
+    width: 30px;
+}
+
+.seat-button {
+    width: 45px !important;
+    height: 45px !important;
+    font-size: 0.9rem !important;
+    margin: 3px !important;
+    border: 1px solid #243751;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #555;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.seat-button:disabled {
+    background-color: #f0f0f0;
+    color: #ccc;
+    border-color: #ddd;
+    cursor: not-allowed;
+}
+
+.current-seat {
+    background-color: #4a90d9 !important;
+    color: #fff !important;
+    border-color: #4a90d9 !important;
+    opacity: 1 !important;
+}
+
+.seat-button.selected {
+    background-color: #243751 !important;
+    color: #fff !important;
+    border-color: #243751 !important;
+}
+
+@media (max-width: 768px) {
+    .upgrade-passengers-grid,
+    .upgrade-options-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .upgrade-passenger-card,
+    .upgrade-choice-card {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .class-selector {
+        flex-direction: column;
+    }
+
+    .class-btn {
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .upgrade-title {
+        font-size: 1.5rem;
+    }
+    
+    .seat-button {
+        width: 35px !important;
+        height: 35px !important;
+        font-size: 0.8rem !important;
+        margin: 2px !important;
+    }
+    
+    .spacer {
+        width: 15px;
+    }
+}

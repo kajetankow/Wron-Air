@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="shortcut icon" href="img/logo_16.ico">
+  <link rel="shortcut icon" href="img/logo_32.ico">
+  <title>WronAir | FAQ</title>
+  <link rel="stylesheet" href="style_faq.css" />
+  <link rel="stylesheet" href="style_headfoot.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="jquery.easing.1.3.js"></script>
+</head>
+<body>
+  <header class="header-with-logo">
+    <!-- Kontener na logo -->
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="img/logociemne.jpg" alt="Logo WronAir" />
+      </a>
+    </div>
+    
+    <!-- Przycisk hamburger -->
+    <button class="menu-toggle" id="menuToggle">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+    
+    <!-- Górny pasek -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <a href="#" class="login-link">Logowanie i rejestracja</a>
+                <div class="language-switch">
+                    <button class="lang-btn" id="langButton">
+                    <img src="img/Flag_of_Poland.svg" alt="PL" class="flag" />
+                    PL
+                </button>
+                <ul class="language-dropdown" id="langDropdown">
+                    <li class="current-language">
+                        <a href="#">
+                            <img src="img/Flag_of_Poland.svg" alt="PL" class="flag" />
+                            PL
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="img/Flag_of_the_United_States.svg.png" alt="ENG" class="flag" />
+                            ENG
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Pasek menu (desktop) -->
+    <nav class="main-menu" id="mainNav">
+      <ul class="nav-links">
+        <li><a href="index.html">Strona Główna</a></li>
+        <li><a href="odprawa.html">Odpraw się</a></li>
+        <li><a href="upgrade.html">Upgrade</a></li>
+        <li><a href="uslugi.html">Usługi na Pokładzie</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="o_nas.html">O Nas</a></li>
+      </ul>
+    </nav>
+    
+    <!-- Menu mobilne -->
+    <nav class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="#">Logowanie i rejestracja</a></li>
+        <li><a href="index.html">Strona Główna</a></li>
+        <li><a href="odprawa.html">Odpraw się</a></li>
+        <li><a href="upgrade.html">Upgrade</a></li>
+        <li><a href="uslugi.html">Usługi na Pokładzie</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="o_nas.html">O Nas</a></li>
+        <li>
+          <div class="language-switch-mobile">
+            <button class="lang-btn" id="langButtonMobile">
+              <img src="img/Flag_of_Poland.svg" alt="PL" class="flag" />
+              PL
+            </button>
+            <ul class="language-dropdown" id="langDropdownMobile">
+              <li class="current-language">
+                <a href="#">
+                  <img src="img/Flag_of_Poland.svg" alt="PL" class="flag" />
+                  PL
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="img/Flag_of_the_United_States.svg.png" alt="ENG" class="flag" />
+                  ENG
+                        </a>
+                    </li>
+                    </ul>
+                </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- FAQ -->
+    <div id="faq-container">
+        <h1>FAQ</h1>
+        <div id="box">
+          <div id="panels">
+            <!-- Pytanie 1 -->
+            <h2>
+                Jak mogę zarezerwować bilet na lot?
+              <img src="img/plus2.png" alt="plus">
+            </h2>
+            <div>
+              <p>
+                Bilety można zarezerwować online na naszej stronie internetowej, 
+                przez aplikację mobilną Wronair, lub telefonicznie, 
+                kontaktując się z naszym biurem obsługi klienta.
+              </p>
+            </div>
+            <!-- Pytanie 2 -->
+            <h2>
+                Czy mogę zmienić datę lotu po dokonaniu rezerwacji?
+              <img src="img/plus2.png" alt="plus">
+            </h2>
+            <div>
+              <p>
+                Tak, zmiana daty lotu jest możliwa, 
+                ale może wiązać się z dodatkowymi opłatami w zależności od taryfy biletu i
+                dostępności miejsc.
+              </p>
+            </div>
+            <!-- Pytanie 3 -->
+            <h2>
+                Jakie dokumenty są wymagane do odprawy?
+              <img src="img/plus2.png" alt="plus">
+            </h2>
+            <div>
+              <p>
+                Vivamus nibh ut quam. Nam sed augue justo iaculis nec,
+                eros. Sed diam justo, hendrerit libero. In ornare bibendum
+                leo eu eros.
+              </p>
+            </div>
+            <!-- Pytanie 4 -->
+            <h2>
+                Jakie są zasady dotyczące bagażu podręcznego?
+              <img src="img/plus2.png" alt="plus">
+            </h2>
+            <div>
+              <p>
+                Każdy pasażer może zabrać jedną sztukę bagażu 
+                podręcznego o maksymalnych wymiarach 55x40x20 cm 
+                i wadze do 10 kg.
+              </p>
+            </div>
+            <!-- Pytanie 5 -->
+            <h2>
+                Czy mogę wykupić dodatkowy bagaż?
+              <img src="img/plus2.png" alt="plus">
+            </h2>
+            <div>
+              <p>
+                Tak, dodatkowy bagaż można wykupić podczas rezerwacji biletu lub później, 
+                przez naszą stronę internetową. 
+                Niższe opłaty obowiązują przy zakupie online.
+              </p>
+            </div>
+            <!-- Pytanie 6 -->
+            <h2>
+                Jak mogę odprawić się na lot?
+              <img src="img/plus2.png" alt="plus">
+            </h2>
+            <div>
+              <p>
+                Odprawa jest możliwa online na naszej stronie internetowej lub w aplikacji mobilnej, 
+                a także na lotnisku przy stanowiskach Wronair.
+              </p>
+            </div>
+            <!-- Pytanie 7 -->
+            <h2>
+                Jak długo przed odlotem powinienem być na lotnisku?
+              <img src="img/plus2.png" alt="plus">
+            </h2>
+            <div>
+              <p>
+                Zalecamy przybycie na lotnisko co najmniej 2 godziny przed planowanym odlotem.
+              </p>
+            </div>
+            <!-- Pytanie 8 -->
+            <h2>
+                Co zrobić, jeśli mój lot jest opóźniony?
+              <img src="img/plus2.png" alt="plus">
+            </h2>
+            <div>
+              <p>
+                W przypadku opóźnień informujemy pasażerów na bieżąco przez e-mail, SMS lub aplikację mobilną. 
+                Można także śledzić status lotu na naszej stronie.
+              </p>
+            </div>
+            <!-- Pytanie 9 -->
+            <h2>
+                Czy mogę podróżować z dziećmi?
+              <img src="img/plus2.png" alt="plus">
+            </h2>
+            <div>
+              <p>
+                Tak, oferujemy zniżki dla dzieci i niemowląt. 
+                Istnieje również 
+                możliwość zamówienia fotelika 
+                dziecięcego oraz posiłku dla dzieci na pokładzie.
+              </p>
+            </div>
+            <!-- Pytanie 10 -->
+            <h2>
+                Czy można przewozić zwierzęta na pokładzie?
+              <img src="img/plus2.png" alt="plus">
+            </h2>
+            <div>
+              <p>
+                Tak, akceptujemy małe zwierzęta podróżujące w kabinie w specjalnych transporterach. 
+                Większe zwierzęta mogą być przewożone w luku bagażowym.
+              </p>
+            </div>
+            <!-- Pytanie 11 -->
+            <h2>
+                Jakie są zasady przewozu sprzętu sportowego?
+              <img src="img/plus2.png" alt="plus">
+            </h2>
+            <div>
+              <p>
+                Sprzęt sportowy, taki jak narty czy rowery, można przewozić za dodatkową opłatą. 
+                Prosimy zgłosić chęć przewozu sprzętu podczas rezerwacji.
+              </p>
+            </div>
+            <!-- Pytanie 12 -->
+            <h2>
+                Co zrobić, jeśli zgubię bagaż?
+              <img src="img/plus2.png" alt="plus">
+            </h2>
+            <div>
+              <p>
+                W przypadku zagubionego bagażu należy niezwłocznie zgłosić 
+                ten fakt przy stanowisku obsługi bagażu na lotnisku. 
+                Zajmiemy się jego odnalezieniem i dostarczeniem.
+              </p>
+            </div>
+            <!-- Pytanie 13 -->
+            <h2>
+                Czy oferujecie posiłki na pokładzie?
+              <img src="img/plus2.png" alt="plus">
+            </h2>
+            <div>
+              <p>
+                Tak, posiłki są dostępne na pokładzie. W klasie biznesowej są one wliczone w cenę, 
+                natomiast pasażerowie klasy ekonomicznej mogą zakupić przekąski i napoje.
+              </p>
+            </div>
+            <!-- Pytanie 14 -->
+            <h2>
+                Czy mogę skorzystać z Wi-Fi podczas lotu?
+              <img src="img/plus2.png" alt="plus">
+            </h2>
+            <div>
+              <p>
+                Tak, Wi-Fi jest dostępne na większości naszych lotów. 
+                Ceny za dostęp do internetu zależą od wybranej taryfy.
+              </p>
+            </div>
+            <!-- Pytanie 15 -->
+            <h2>
+                Jak mogę skontaktować się z obsługą klienta?
+              <img src="img/plus2.png" alt="plus">
+            </h2>
+            <div>
+              <p>
+                Można skontaktować się z nami telefonicznie, przez czat na stronie internetowej,
+                 e-mail lub za pośrednictwem mediów społecznościowych.
+              </p>
+            </div>
+            <!-- Pytanie 16 -->
+            <h2>
+                Czy oferujecie zniżki dla grup?
+              <img src="img/plus2.png" alt="plus">
+            </h2>
+            <div>
+              <p>
+                Tak, oferujemy zniżki dla grup liczących co najmniej 10 osób. 
+                Prosimy o kontakt z działem obsługi grup.
+              </p>
+            </div>
+            <!-- Pytanie 17 -->
+            <h2>
+                Czy mogę kupić bilet jako prezent dla kogoś innego?
+              <img src="img/plus2.png" alt="plus">
+            </h2>
+            <div>
+              <p>
+                Oczywiście. Można podać dane osoby, która będzie podróżować, 
+                podczas rezerwacji biletu.
+              </p>
+            </div>
+            <!-- Pytanie 18 -->
+            <h2>
+                Czy istnieje program lojalnościowy Wronair?
+              <img src="img/plus2.png" alt="plus">
+            </h2>
+            <div>
+              <p>
+                Tak, nasz program lojalnościowy "Skrzydła Wronair" pozwala zbierać punkty za loty 
+                i wymieniać je na zniżki oraz nagrody.
+              </p>
+            </div>
+            <!-- Pytanie 19 -->
+            <h2>
+                Co zrobić, jeśli chcę anulować rezerwację?
+              <img src="img/plus2.png" alt="plus">
+            </h2>
+            <div>
+              <p>
+                Anulowanie rezerwacji jest możliwe, jednak warunki zwrotu kosztów zależą od taryfy biletu. Szczegóły można znaleźć w regulaminie taryfy.
+              </p>
+            </div>
+            <!-- Pytanie 20 -->
+            <h2>
+                Czy mogę zarezerwować miejsce przy oknie?
+              <img src="img/plus2.png" alt="plus">
+            </h2>
+            <div>
+              <p>
+                Tak, miejsca można wybierać podczas rezerwacji lub odprawy online. 
+                Za wybór niektórych miejsc może być wymagana dodatkowa opłata.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    <!-- Zawartość stopki -->
+    <footer>
+    <div class="footer-container search-bar-row">
+      <div class="footer-column">
+        <form class="search-bar">
+          <input type="text" placeholder="Wprowadź szukany termin" />
+          <button type="submit">
+            <img src="img/search.png" alt="Szukaj" />
+          </button>
+        </form>
+      </div>
+      <div class="footer-column"></div>
+      <div class="footer-column"></div>
+    </div>
+    <div class="footer-container">
+      <div class="footer-column">
+        <div class="footer-links">
+          <a href="odprawa.html">Odpraw się</a><br /><br />
+          <a href="upgrade.html">Upgrade</a><br /><br />
+          <a href="uslugi.html">Usługi na pokładzie</a><br /><br />
+          <a href="faq.html">FAQ</a>
+        </div>
+        <p class="payment-title">Opcje płatności</p>
+        <div class="payment-options">
+          <a href="#"><img src="img/masterC.png" alt="Mastercard" /></a>
+          <a href="#"><img src="img/visa.png" alt="Visa" /></a>
+          <a href="#"><img src="img/ap.png" alt="Apple Pay" /></a>
+          <a href="#"><img src="img/paypal.png" alt="Paypal" /></a>
+          <a href="#"><img src="img/blik.png" alt="BLIK" /></a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <div class="footer-links">
+          <a href="o_nas.html">O nas</a><br /><br />
+          <a href="#">Bagaż</a><br /><br />
+          <a href="#">Informacje o odprawie</a><br /><br />
+          <a href="#">Pomoc</a><br /><br />
+          <a href="#">Posiłki i napoje</a><br /><br />
+          <a href="kontakt.html">Kontakt</a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <p class="social-title">Śledź nas</p>
+        <div class="social-media">
+          <a href="#"><img src="img/ig.png" alt="Instagram" /> @WronAir</a><br />
+          <a href="#"><img src="img/twt.png" alt="Twitter" /> @WronAir</a><br />
+          <a href="#"><img src="img/ln.png" alt="LinkedIn" /> @WronAir</a><br />
+          <a href="#"><img src="img/facebook.png" alt="Facebook" /> @WronAir</a><br />
+          <a href="#"><img src="img/yt.png" alt="YouTube" /> @WronAir</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; WronAir.com 2024. Wszelkie prawa zastrzeżone.</p>
+    </div>
+  </footer>
+
+  <div class="footer-logo">
+    <img src="img/logojasne.jpg" alt="Logo WronAir">
+  </div>
+
+  <!-- Skrypt do obsługi przycisków (hamburger, wybór języka) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const menuToggle = document.getElementById("menuToggle");
+      const mobileMenu = document.getElementById("mobileMenu");
+      menuToggle.addEventListener("click", function() {
+        mobileMenu.classList.toggle("open");
+      });
+  
+      const langButton = document.getElementById("langButton");
+      const langDropdown = document.getElementById("langDropdown");
+      langButton.addEventListener("click", function() {
+        langDropdown.classList.toggle("show");
+      });
+  
+      const langButtonMobile = document.getElementById("langButtonMobile");
+      const langDropdownMobile = document.getElementById("langDropdownMobile");
+      langButtonMobile.addEventListener("click", function() {
+        langDropdownMobile.classList.toggle("show");
+      });
+    });
+ 
+    $(document).ready(function () {
+        // Ukryj wszystkie panele na starcie
+        $("#panels > div").hide();
+
+        // Obsługa kliknięcia na ikonach
+        $("#panels h2").on('click', function () {
+        const icon = $(this).find("img");
+        const panel = $(this).next();
+
+        // Zwiń wszystkie inne panele
+        $("#panels > div").not(panel).slideUp('slow');
+        $("#panels h2 img").not(icon).attr('src', 'img/plus2.png');
+
+        // Sprawdź stan panelu
+        if (panel.is(':visible')) {
+            panel.slideUp('slow');
+            icon.attr('src', 'img/plus2.png'); // Zmień ikonę na plus
+        } else {
+            panel.slideDown('slow', 'easeOutCubic');
+            icon.attr('src', 'img/minus.png'); // Zmień ikonę na minus
+        }
+        });
+
+    });
+  </script>
+</body>
+</html>

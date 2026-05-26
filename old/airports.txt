@@ -1,0 +1,222 @@
+Warszawa [WAW]
+Kraków [KRK]
+Gdańsk [GDN]
+Wrocław [WRO]
+Poznań [POZ]
+Katowice [KTW]
+Rzeszów [RZE]
+Szczecin [SZZ]
+Bydgoszcz [BZG]
+Lublin [LUZ]
+Łódź [LCJ]
+
+Berlin [BER]
+Hamburg [HAM]
+Frankfurt [FRA]
+Monachium [MUC]
+Düsseldorf [DUS]
+Kolonia/Bonn [CGN]
+Stuttgart [STR]
+Hanower [HAJ]
+Norymberga [NUE]
+Lipsk [LEJ]
+
+Wiedeń [VIE]
+Salzburg [SZG]
+Innsbruck [INN]
+Graz [GRZ]
+
+Praga [PRG]
+Brno [BRQ]
+
+Bratysława [BTS]
+Koszyce [KSC]
+
+Budapeszt [BUD]
+Debreczyn [DEB]
+
+Wilno [VNO]
+Kowno [KUN]
+Palanga [PLQ]
+
+Ryga [RIX]
+
+Tallin [TLL]
+
+Helsinki [HEL]
+Turku [TKU]
+Rovaniemi [RVN]
+
+Sztokholm [ARN]
+Göteborg [GOT]
+Malmö [MMX]
+
+Oslo [OSL]
+Bergen [BGO]
+Stavanger [SVG]
+Trondheim [TRD]
+
+Kopenhaga [CPH]
+Billund [BLL]
+
+Reykjavík [KEF]
+
+Amsterdam [AMS]
+Rotterdam [RTM]
+Eindhoven [EIN]
+
+Bruksela [BRU]
+Charleroi [CRL]
+
+Luksemburg [LUX]
+
+Paryż [CDG]
+Paryż Orly [ORY]
+Lyon [LYS]
+Marsylia [MRS]
+Nicea [NCE]
+Tuluza [TLS]
+Bordeaux [BOD]
+Nantes [NTE]
+
+Londyn Heathrow [LHR]
+Londyn Gatwick [LGW]
+Londyn Stansted [STN]
+Londyn Luton [LTN]
+Manchester [MAN]
+Birmingham [BHX]
+Edynburg [EDI]
+Glasgow [GLA]
+Bristol [BRS]
+Liverpool [LPL]
+Belfast [BFS]
+Dublin [DUB]
+Cork [ORK]
+Shannon [SNN]
+
+Madryt [MAD]
+Barcelona [BCN]
+Walencja [VLC]
+Sewilla [SVQ]
+Malaga [AGP]
+Alicante [ALC]
+Palma de Mallorca [PMI]
+Ibiza [IBZ]
+Bilbao [BIO]
+Gran Canaria [LPA]
+Teneryfa [TFS]
+
+Lizbona [LIS]
+Porto [OPO]
+Faro [FAO]
+Madera [FNC]
+
+Rzym Fiumicino [FCO]
+Mediolan Malpensa [MXP]
+Mediolan Bergamo [BGY]
+Wenecja [VCE]
+Neapol [NAP]
+Bolonia [BLQ]
+Piza [PSA]
+Florencja [FLR]
+Turyn [TRN]
+Bari [BRI]
+Katania [CTA]
+Palermo [PMO]
+
+Ateny [ATH]
+Saloniki [SKG]
+Heraklion [HER]
+Rodos [RHO]
+Korfu [CFU]
+
+Zagrzeb [ZAG]
+Split [SPU]
+Dubrownik [DBV]
+Pula [PUY]
+Zadar [ZAD]
+
+Lublana [LJU]
+
+Belgrad [BEG]
+
+Sarajewo [SJJ]
+Banja Luka [BNX]
+
+Podgorica [TGD]
+Tivat [TIV]
+
+Skopje [SKP]
+Ohrid [OHD]
+
+Tirana [TIA]
+
+Bukareszt [OTP]
+Kluż-Napoka [CLJ]
+Timișoara [TSR]
+Jassy [IAS]
+
+Sofia [SOF]
+Warna [VAR]
+Burgas [BOJ]
+
+Kiszyniów [RMO]
+
+Kijów Boryspol [KBP]
+Lwów [LWO]
+Odessa [ODS]
+
+Mińsk [MSQ]
+
+Zurych [ZRH]
+Genewa [GVA]
+Bazylea [BSL]
+
+Stambuł [IST]
+Antalya [AYT]
+Izmir [ADB]
+Ankara [ESB]
+Dalaman [DLM]
+Bodrum [BJV]
+
+Tbilisi [TBS]
+Kutaisi [KUT]
+Batumi [BUS]
+
+Erywań [EVN]
+
+Baku [GYD]
+
+Malta [MLA]
+
+Nikozja/Larnaka [LCA]
+Pafos [PFO]
+
+Tel Awiw [TLV]
+
+Dubaj [DXB]
+Abu Zabi [AUH]
+Doha [DOH]
+
+Delhi [DEL]
+Mumbaj [BOM]
+Bengaluru [BLR]
+
+Pekin [PEK]
+Szanghaj Pudong [PVG]
+Hongkong [HKG]
+Wuhan [WUH]
+Guangzhou [CAN]
+Shenzhen [SZX]
+Chengdu [TFU]
+
+Seul Incheon [ICN]
+
+Tokio Narita [NRT]
+Tokio Haneda [HND]
+Osaka Kansai [KIX]
+
+Nowy Jork JFK [JFK]
+Nowy Jork Newark [EWR]
+Los Angeles [LAX]
+Miami [MIA]

@@ -1,0 +1,252 @@
+ /* --------------------------------------------------
+  FLOTA
+  -------------------------------------------------- */
+    main.content h1{
+         margin-bottom: 20px;
+    }
+    
+    main.content h1{
+        text-align: left;
+    }
+  
+    main.content h1 {
+        font-size: 50px;
+    }
+  
+    main.content h2 {
+        font-size: 35px;
+    }
+  
+  
+    main.content p {
+        text-align: justify;
+        margin-bottom: 20px;
+        font-size: 20px;
+    }
+    
+    main.content {
+        padding-left: 120px;
+        padding-right: 120px;
+    }
+     
+    .line-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px 0;
+        margin-top: 40px;
+    }
+       
+    .line-right {
+      flex-grow: 3; 
+      height: 6px;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+      background-color: #243751;
+    
+      margin-left: 10px; 
+    }
+    
+    .text-linia {
+      color: #243751;
+      font-weight: bold;
+      font-family: 'Calibri', sans-serif; 
+      font-weight: bold; 
+      font-size: 35px;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; 
+        max-width: 90%; 
+        margin: 0 auto; 
+        background-color: #ffffff;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .image-and-info {
+        display: flex;
+        flex-direction: row;
+        gap: 7%;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .plane-image {
+        max-width: 80%; 
+        height: auto; 
+    }
+    
+    .info {
+        text-align: left;
+        flex: 1;
+        margin-left: 0; 
+    }
+    
+    .info h1 {
+        margin-bottom: 20px;
+        font-size: 30px !important;
+        text-align: center !important;
+    }
+    
+    .columns {
+        display: flex;
+        flex-direction: row;
+        gap: 20%;
+        justify-content: center;
+    }
+    
+    .columns ul {
+        width: auto;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .columns ul li {
+        white-space: nowrap; 
+        font-size: 17px;
+        margin-bottom: 10px;
+    }
+    
+    .image-wrapper {
+        position: relative; 
+        display: inline-block; 
+        max-width: 100%; 
+    }
+    
+    .airplane-container {
+        position: relative; 
+        display: flex;
+        justify-content: center; 
+        align-items: center; 
+        max-width: 100%; 
+      }
+      
+    /* Obraz samolotu */
+    .plane-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease-in-out; 
+    }
+    
+    
+    
+    /* Przycisk */
+    .map-button {
+      position: absolute; 
+      top: 70%; 
+      left: 50%; 
+      transform: translate(-50%, 100%); 
+      padding: 10px 20px;
+      font-size: 16px;
+      color: #243751;
+      background-color: transparent; 
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 10; 
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+/* ---------------------------------------
+MEDIA QUERIES - WYGLĄD TABLET
+--------------------------------------- */
+
+@media (max-width: 1200px) and (min-width: 761px){
+ 
+    .image-and-info {
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    .plane-image {
+        width: 80%; 
+        margin-bottom: 20px; 
+    }
+
+    .info {
+        text-align: center; 
+        width: 100%; 
+        margin: 0; 
+    }
+    .map-button {
+       
+        top: 45%; 
+        font-size: 16px;
+        
+      }
+    .fleet p {
+        font-size: 17px !important;
+      }
+  }
+  
+  /* ---------------------------------------
+  MEDIA QUERIES - WYGLĄD MOBILE
+  --------------------------------------- */
+  @media (max-width: 760px) {
+    main.content {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+        
+    main.content h1 {
+        font-size: 30px; 
+        margin-bottom: 20px;
+    }
+
+    main.content p {
+        font-size: 17px; 
+       
+    }
+    
+    main.content .cta a {
+        padding: 16px 30px;  
+        font-size: 22px; 
+    }
+    .image-and-info {
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    .plane-image {
+        max-width: 100%;
+        width: 100% !important; 
+        margin-bottom: 28px; 
+    }
+
+    .info {
+        text-align: center; 
+        width: 100%; 
+        margin: 0; 
+        margin-top: 10px;
+    }
+    .line-container {
+        margin: 10px 0;
+    
+      }
+    .text-linia {
+        font-size: 20px;
+    }
+    .map-button {
+       
+        top: 50%; 
+        font-size: 15px;
+        
+      }
+    .columns ul li {
+      white-space: nowrap; 
+      font-size: 15px;
+      margin-bottom: 5px;
+    }
+    .airplane-container {
+        margin-top: 10%;
+        max-width: 100% !important;
+    }
+  }
+  

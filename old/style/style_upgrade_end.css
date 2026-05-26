@@ -1,0 +1,273 @@
+/* --------------------------------------------------
+  UPGRADE END - LIQUID GLASS
+-------------------------------------------------- */
+
+:root {
+    --ue-blue: #243751;
+    --ue-red: #C50914;
+
+    --ue-glass-bg: rgba(255, 255, 255, 0.58);
+    --ue-glass-bg-strong: rgba(255, 255, 255, 0.76);
+    --ue-glass-border: rgba(255, 255, 255, 0.66);
+    --ue-shadow: 0 18px 45px rgba(36, 55, 81, 0.16);
+    --ue-shadow-hover: 0 24px 60px rgba(36, 55, 81, 0.24);
+}
+
+.upgrade-end-container {
+    width: 90%;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin: 24px auto 50px;
+    padding: 34px 24px;
+
+    background: var(--ue-glass-bg);
+    border: 1px solid var(--ue-glass-border);
+    border-radius: 30px;
+
+    backdrop-filter: blur(18px) saturate(145%);
+    -webkit-backdrop-filter: blur(18px) saturate(145%);
+
+    box-shadow: var(--ue-shadow);
+    box-sizing: border-box;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease;
+}
+
+.upgrade-end-container:hover {
+    transform: translateY(-4px);
+    background: var(--ue-glass-bg-strong);
+    box-shadow: var(--ue-shadow-hover);
+}
+
+.text-linia {
+    font-family: 'Calibri', sans-serif;
+    font-weight: bold;
+    font-size: 40px;
+    color: var(--ue-blue);
+    text-align: center;
+    margin-top: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.text-linia::before,
+.text-linia::after {
+    content: "";
+    flex: 0 0 26%;
+    height: 10px;
+
+    background: linear-gradient(
+        90deg,
+        rgba(36, 55, 81, 0.95),
+        rgba(36, 55, 81, 0.62)
+    );
+
+    margin: 0 10px;
+    box-shadow: 0 8px 20px rgba(36, 55, 81, 0.18);
+}
+
+.text-linia::before {
+    border-top-left-radius: 999px;
+    border-bottom-left-radius: 999px;
+    margin-right: 20px;
+}
+
+.text-linia::after {
+    border-top-right-radius: 999px;
+    border-bottom-right-radius: 999px;
+    margin-left: 20px;
+}
+
+.upgrade-end-container h1 {
+    font-family: 'Calibri', sans-serif;
+    font-weight: bold;
+    font-size: 40px;
+    color: var(--ue-blue);
+    text-align: center;
+    margin-top: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.upgrade-end-container h2 {
+    font-family: 'Calibri', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color: var(--ue-blue);
+    text-align: center;
+    margin-top: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.upgrade-end-container .end {
+    margin-bottom: 80px;
+}
+
+.upgrade-end-container p {
+    font-family: 'Calibri', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color: var(--ue-blue);
+    text-align: center;
+    margin-top: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.upgrade-end-container .small-end {
+    margin-bottom: 20px;
+}
+
+.upgrade-end-container .confirm-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 28px;
+
+    background: rgba(197, 9, 20, 0.92);
+    color: #ffffff;
+
+    font-family: Calibri, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 18px;
+
+    cursor: pointer;
+    position: relative;
+    z-index: 5;
+
+    box-shadow: 0 12px 28px rgba(197, 9, 20, 0.28);
+
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        background-color 0.22s ease;
+}
+
+.upgrade-end-container .confirm-button:hover {
+    transform: translateY(-4px);
+    background: rgba(152, 0, 10, 0.96);
+    box-shadow: 0 18px 38px rgba(197, 9, 20, 0.34);
+}
+
+/* Opcjonalnie: jeśli w środku masz status / info jako osobne elementy */
+#order-status,
+#upgrade-info {
+    color: var(--ue-blue);
+    font-weight: bold;
+}
+
+/* ---------------------------------------
+  MEDIA QUERIES - WYGLĄD TABLET
+--------------------------------------- */
+
+@media (max-width: 1200px) and (min-width: 761px) {
+    .upgrade-end-container {
+        width: 92%;
+        padding: 28px 20px;
+        border-radius: 26px;
+    }
+
+    .text-linia {
+        font-size: 24px;
+    }
+
+    .text-linia::before,
+    .text-linia::after {
+        max-height: 8px;
+    }
+
+    #order-status {
+        font-size: 20px;
+    }
+
+    #order-status,
+    #upgrade-info,
+    .end {
+        font-size: 17px;
+    }
+
+    .end {
+        margin-bottom: 20px !important;
+    }
+
+    .upgrade-end-container p {
+        font-size: 15px;
+    }
+}
+
+/* ---------------------------------------
+  MEDIA QUERIES - WYGLĄD MOBILE
+--------------------------------------- */
+
+@media (max-width: 760px) {
+    .upgrade-end-container {
+        width: 92%;
+        margin-bottom: 40px;
+        padding: 24px 16px;
+        border-radius: 22px;
+    }
+
+    .text-linia {
+        font-size: 20px;
+    }
+
+    .text-linia::before,
+    .text-linia::after {
+        content: "";
+        flex: 0 0 10%;
+        height: 8px;
+        background-color: var(--ue-blue);
+        margin: 0 10px;
+    }
+
+    .text-linia::before {
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        margin-right: 10px;
+    }
+
+    .text-linia::after {
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        margin-left: 20px;
+    }
+
+    #order-status {
+        font-size: 17px;
+    }
+
+    #upgrade-info {
+        font-size: 17px;
+    }
+
+    .end {
+        font-size: 15px !important;
+        margin-bottom: 20px !important;
+    }
+
+    p {
+        font-size: 12px !important;
+    }
+}

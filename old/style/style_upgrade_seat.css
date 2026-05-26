@@ -1,0 +1,629 @@
+/* ---------------------------------------
+   UPGRADE - OGÓLNY UKŁAD
+--------------------------------------- */
+
+.upgrade-section {
+    padding: 40px 20px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.upgrade-title {
+    font-size: 2rem;
+    color: #243751;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+.upgrade-subtitle {
+    text-align: center;
+    color: #555555;
+    font-size: 1rem;
+    margin-bottom: 35px;
+}
+
+.upgrade-subtitle strong {
+    color: #243751;
+}
+
+
+/* ---------------------------------------
+   KARTY PASAŻERÓW / WYBÓR UPGRADE
+--------------------------------------- */
+
+.upgrade-passengers-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.upgrade-passenger-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    min-width: 280px;
+    max-width: 350px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s ease;
+}
+
+.upgrade-passenger-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+
+.upgrade-passenger-header {
+    flex: 1;
+    margin-bottom: 20px;
+}
+
+.upgrade-passenger-header h3 {
+    color: #243751;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e8e8e8;
+}
+
+.passenger-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.passenger-detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+}
+
+.detail-label {
+    color: #888888;
+}
+
+.detail-value {
+    color: #243751;
+    font-weight: bold;
+}
+
+.upgrade-passenger-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.upgrade-action-btn {
+    display: block;
+    padding: 12px 15px;
+    text-align: center;
+    background-color: #243751;
+    color: #ffffff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.upgrade-action-btn:hover {
+    background-color: #1a2a45;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.upgrade-action-btn--seat {
+    background-color: #C50914;
+}
+
+.upgrade-action-btn--seat:hover {
+    background-color: #a00000;
+}
+
+.upgrade-options-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    align-items: stretch;
+    margin-bottom: 30px;
+}
+
+.upgrade-choice-card {
+    flex: 1;
+    min-width: 250px;
+    max-width: 320px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: none;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s ease;
+}
+
+.upgrade-choice-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+
+.upgrade-choice-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    display: block;
+    background-color: #f9f9f9;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 12px 12px 0 0;
+}
+
+.upgrade-choice-info {
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.upgrade-choice-info h3 {
+    font-size: 1.1rem;
+    color: #243751;
+    font-weight: bold;
+    margin: 0;
+}
+
+.upgrade-choice-info .kinds {
+    font-size: 1.1rem;
+    color: #243751;
+    font-weight: bold;
+    margin: 0;
+}
+
+
+/* ---------------------------------------
+   GŁÓWNE PRZYCISKI
+--------------------------------------- */
+
+.upgrade-btn {
+    padding: 12px;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #C50914;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-top: auto;
+}
+
+.upgrade-btn:hover:not(:disabled) {
+    background-color: #a00000;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.upgrade-btn:disabled {
+    background-color: #243751;
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.6;
+}
+
+.upgrade-btn--owned {
+    background-color: #4a90d9 !important;
+    opacity: 1 !important;
+    color: #ffffff !important;
+}
+
+.upgrade-btn--disabled {
+    background-color: #a9a9a9 !important;
+    opacity: 0.6 !important;
+}
+
+
+/* ---------------------------------------
+   WYBÓR KLASY
+--------------------------------------- */
+
+.class-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin: 0 auto 25px;
+    max-width: 800px;
+}
+
+.class-btn {
+    flex: 1;
+    min-width: 180px;
+    padding: 15px 20px;
+    border: 2px solid #243751;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #243751;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.class-btn span {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: normal;
+    margin-top: 4px;
+    color: #555555;
+}
+
+.class-btn:hover:not(:disabled) {
+    background-color: #243751;
+    color: #ffffff;
+}
+
+.class-btn:hover:not(:disabled) span {
+    color: #dddddd;
+}
+
+/* Obecna klasa biletu — aktywna, nie zablokowana */
+.class-btn--current {
+    background-color: #e8f5ed;
+    cursor: pointer;
+    border-color: #1f9d55;
+    color: #1f9d55;
+}
+
+.class-btn--current span {
+    color: #1f9d55;
+}
+
+/* Aktualnie wybrana klasa */
+.class-btn--selected {
+    background-color: #243751;
+    color: #ffffff;
+    border-color: #243751;
+}
+
+.class-btn--selected span {
+    color: #dddddd;
+}
+
+/* Klasa niedostępna, jeśli gdzieś jej użyjesz */
+.class-btn--disabled,
+.class-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    background-color: #dddddd;
+    color: #777777;
+    border-color: #999999;
+}
+
+.class-btn--disabled span,
+.class-btn:disabled span {
+    color: #777777;
+}
+
+.seat-instruction {
+    text-align: center;
+    color: #555555;
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+
+/* ---------------------------------------
+   MAPA MIEJSC
+--------------------------------------- */
+
+.background-wrapper {
+    margin-top: 20px;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.class-label {
+    text-align: center;
+    font-weight: bold;
+    color: #243751;
+    margin: 20px 0 10px;
+    font-size: 1.1rem;
+}
+
+.class-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.business-class,
+.premium-class,
+.economy-class {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.spacer {
+    width: 30px;
+}
+
+
+/* ---------------------------------------
+   PRZYCISKI MIEJSC
+--------------------------------------- */
+
+.seat-button {
+    width: 45px !important;
+    height: 45px !important;
+    font-size: 0.9rem !important;
+    margin: 3px !important;
+    border: 1px solid #243751;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #243751;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    font-weight: bold;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+/* Wolne miejsce po najechaniu */
+.seat-button:not(.occupied):not(.selected):not(.current-seat):not(.unavailable-class):not(:disabled):hover {
+    background-color: #dbe4ee;
+    color: #243751;
+    border-color: #243751;
+    transform: translateY(-1px);
+}
+
+/* Obecne miejsce pasażera — zielone */
+.seat-button.current-seat {
+    background-color: #1f9d55 !important;
+    color: #ffffff !important;
+    border-color: #137333 !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
+}
+
+/* Nowo wybrane miejsce — granatowe */
+.seat-button.selected {
+    background-color: #243751 !important;
+    color: #ffffff !important;
+    border-color: #243751 !important;
+    opacity: 1 !important;
+}
+
+/* Gdy aktualne miejsce byłoby jednocześnie selected, zostaje zielone */
+.seat-button.current-seat.selected {
+    background-color: #1f9d55 !important;
+    color: #ffffff !important;
+    border-color: #137333 !important;
+}
+
+/* Miejsce zajęte z flight_occupied_seats — czerwone */
+.seat-button.occupied {
+    background-color: #C50914 !important;
+    color: #ffffff !important;
+    border-color: #8b0000 !important;
+    cursor: not-allowed !important;
+    opacity: 1 !important;
+}
+
+/* Miejsca z innej klasy albo chwilowo niedostępne */
+.seat-button.unavailable-class {
+    background-color: #eeeeee !important;
+    color: #bbbbbb !important;
+    border-color: #dddddd !important;
+    cursor: not-allowed !important;
+    opacity: 0.75 !important;
+}
+
+/* Disabled ogólnie dla miejsc */
+.seat-button:disabled {
+    cursor: not-allowed;
+}
+
+/* Ważne: occupied ma mieć pierwszeństwo nad disabled */
+.seat-button.occupied:disabled {
+    background-color: #C50914 !important;
+    color: #ffffff !important;
+    border-color: #8b0000 !important;
+    opacity: 1 !important;
+}
+
+/* Ważne: current-seat ma mieć pierwszeństwo nad disabled */
+.seat-button.current-seat:disabled {
+    background-color: #1f9d55 !important;
+    color: #ffffff !important;
+    border-color: #137333 !important;
+    opacity: 1 !important;
+}
+
+
+/* ---------------------------------------
+   PODSUMOWANIE WYBORU MIEJSCA
+--------------------------------------- */
+
+.upgrade-seat-summary {
+    text-align: center;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    max-width: 400px;
+    margin: 30px auto 20px;
+}
+
+.upgrade-seat-summary p {
+    font-size: 1.05rem;
+    color: #243751;
+    margin-bottom: 10px;
+}
+
+.upgrade-seat-summary strong {
+    color: #C50914;
+}
+
+
+/* ---------------------------------------
+   POWRÓT
+--------------------------------------- */
+
+.upgrade-back {
+    text-align: center;
+    margin: 20px 0 10px;
+}
+
+.upgrade-back-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #243751;
+    border: 2px solid #243751;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.upgrade-back-btn:hover {
+    background-color: #243751;
+    color: #ffffff;
+}
+
+
+/* ---------------------------------------
+   LEGENDA, JEŚLI DODASZ JĄ W HTML
+--------------------------------------- */
+
+.seat-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+    margin: 25px auto;
+    color: #243751;
+    font-size: 15px;
+}
+
+.seat-legend div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-box {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border: 2px solid #243751;
+    border-radius: 4px;
+}
+
+.legend-box.current {
+    background-color: #1f9d55;
+    border-color: #137333;
+}
+
+.legend-box.selected {
+    background-color: #243751;
+    border-color: #243751;
+}
+
+.legend-box.occupied {
+    background-color: #C50914;
+    border-color: #8b0000;
+}
+
+.legend-box.locked {
+    background-color: #eeeeee;
+    border-color: #dddddd;
+}
+
+
+/* ---------------------------------------
+   RESPONSYWNOŚĆ
+--------------------------------------- */
+
+@media (max-width: 768px) {
+    .upgrade-section {
+        padding: 30px 15px;
+    }
+
+    .upgrade-passengers-grid,
+    .upgrade-options-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .upgrade-passenger-card,
+    .upgrade-choice-card {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .class-selector {
+        flex-direction: column;
+    }
+
+    .class-btn {
+        min-width: 100%;
+    }
+
+    .upgrade-seat-summary {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .upgrade-title {
+        font-size: 1.5rem;
+    }
+
+    .upgrade-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .seat-instruction {
+        font-size: 0.9rem;
+    }
+
+    .seat-button {
+        width: 35px !important;
+        height: 35px !important;
+        font-size: 0.8rem !important;
+        margin: 2px !important;
+    }
+
+    .spacer {
+        width: 15px;
+    }
+
+    .class-label {
+        font-size: 1rem;
+    }
+}

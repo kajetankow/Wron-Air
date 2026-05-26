@@ -1,0 +1,96 @@
+/* ---------------------------------------
+  SEKCJA internet
+--------------------------------------- */
+.upgrade-section {
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.upgrade-title {
+    font-size: 30px;
+    color: #243751;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 0; 
+}
+
+.upgrade-layout {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    gap: 25px;
+    min-height: 400px;
+}
+
+.main-description {
+    font-size: 1.2rem;
+    color: #243751;
+    padding: 5px;
+}
+
+.upgrade-options {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px;
+    justify-content: center; 
+    align-items: stretch; 
+}
+
+.option {
+    flex: 1;
+    max-width: 300px; 
+    min-height: 350px; 
+    background-color: #ffffff;
+    border: 2px solid #243751;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-between; 
+}
+
+.option h1 {
+  color:#243751;
+    border-bottom: 2px solid #243751; 
+    margin-bottom: 10px; 
+    padding-bottom: 20px; 
+}
+
+.option h1:last-child {
+    border-bottom: none; 
+}
+
+
+
+/* Media queries dla responsywności */
+@media (max-width: 768px) {
+    .upgrade-options {
+        gap: 15px; 
+    }
+
+    .option {
+        max-width: 100%; 
+        min-height: auto; 
+    }
+}
+
+@media (max-width: 500px) {
+    .upgrade-options {
+        flex-direction: column; 
+        gap: 10px; 
+    }
+
+    .option {
+        max-width: 100%; 
+        min-height: auto; 
+    }
+
+    .upgrade-title {
+        font-size: 24px; 
+    }
+
+    .main-description {
+        font-size: 1rem; 
+    }
+}

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="WronAir, linie lotnicze, tanie loty, podróże, wakacje, samolot, bilety lotnicze, loty do USA, odprawa, check in" />
+  <link rel="shortcut icon" href="img/logo_16.ico">
+  <link rel="shortcut icon" href="img/logo_32.ico">
+  <title>WronAir | Odprawa</title>
+  <link rel="stylesheet" href="style_odprawa.css" />
+  <link rel="stylesheet" href="style_headfoot.css" />
+</head>
+<body>
+  <header class="header-with-logo">
+    <!-- Kontener na logo -->
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="img/logociemne.jpg" alt="Logo WronAir" />
+      </a>
+    </div>
+    
+    <!-- Przycisk hamburger -->
+    <button class="menu-toggle" id="menuToggle">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+    
+    <!-- Górny pasek -->
+    <div class="top-bar">
+      <div class="top-bar-content">
+        <a href="#" class="login-link">Logowanie i rejestracja</a>
+        <div class="language-switch">
+          <button class="lang-btn" id="langButton">
+            <img src="img/Flag_of_Poland.svg" alt="PL" class="flag" />
+            PL
+          </button>
+          <ul class="language-dropdown" id="langDropdown">
+            <li class="current-language">
+              <a href="#">
+                <img src="img/Flag_of_Poland.svg" alt="PL" class="flag" />
+                PL
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="img/Flag_of_the_United_States.svg.png" alt="ENG" class="flag" />
+                ENG
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Pasek menu (desktop) -->
+    <nav class="main-menu" id="mainNav">
+      <ul class="nav-links">
+        <li><a href="index.html">Strona Główna</a></li>
+        <li><a href="odprawa.html">Odpraw się</a></li>
+        <li><a href="upgrade.html">Upgrade</a></li>
+        <li><a href="uslugi.html">Usługi na Pokładzie</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="o_nas.html">O Nas</a></li>
+      </ul>
+    </nav>
+    
+    <!-- Menu mobilne -->
+    <nav class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="#">Logowanie i rejestracja</a></li>
+        <li><a href="index.html">Strona Główna</a></li>
+        <li><a href="odprawa.html">Odpraw się</a></li>
+        <li><a href="upgrade.html">Upgrade</a></li>
+        <li><a href="uslugi.html">Usługi na Pokładzie</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="o_nas.html">O Nas</a></li>
+        <li>
+          <div class="language-switch-mobile">
+            <button class="lang-btn" id="langButtonMobile">
+              <img src="img/Flag_of_Poland.svg" alt="PL" class="flag" />
+              PL
+            </button>
+            <ul class="language-dropdown" id="langDropdownMobile">
+              <li class="current-language">
+                <a href="#">
+                  <img src="img/Flag_of_Poland.svg" alt="PL" class="flag" />
+                  PL
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="img/Flag_of_the_United_States.svg.png" alt="ENG" class="flag" />
+                  ENG
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <!-- O Nas -->
+  <main class="content">
+        
+    <div class="line-container">
+        <div class="text-linia">ODPRAWA ONLINE</div>
+        <div class="line-right"></div>
+    </div>
+    <div class="parent-container">
+        <div class="container">
+            <input type="text" id="reservationNumber" placeholder="Numer rezerwacji">
+            <input type="text" id="lastName" placeholder="Nazwisko">
+            <button id="checkInButton" disabled>ODPRAW SIĘ</button>
+        </div>
+        <p class="description">
+            Odprawa online jest dostępna dopiero na 24 godziny przed planowanym wylotem. Pamiętaj, że odprawa jest jednorazowa, dlatego przed jej zakończeniem upewnij się, 
+            że wszystkie wprowadzone dane, takie jak imię, nazwisko, dokumenty podróży oraz dane kontaktowe, są poprawne. Podczas odprawy możesz dokonać wyboru miejsca w samolocie lub zmienić 
+            już przydzielone miejsce, w zależności od dostępności i zasad linii lotniczej. Po zakończeniu procesu otrzymasz kartę pokładową w formie elektronicznej na e-mail lub do aplikacji mobilnej, 
+            którą możesz również wydrukować – karta ta jest niezbędna do wejścia na pokład.
+        </p>
+    </div>
+    
+  </main>
+
+  <footer>
+    <!-- Zawartość stopki -->
+    <div class="footer-container search-bar-row">
+      <div class="footer-column">
+        <form class="search-bar">
+          <input type="text" placeholder="Wprowadź szukany termin" />
+          <button type="submit">
+            <img src="img/search.png" alt="Szukaj" />
+          </button>
+        </form>
+      </div>
+      <div class="footer-column"></div>
+      <div class="footer-column"></div>
+    </div>
+    <div class="footer-container">
+      <div class="footer-column">
+        <div class="footer-links">
+          <a href="#">Odpraw się</a><br /><br />
+          <a href="#">Upgrade</a><br /><br />
+          <a href="#">Usługi na pokładzie</a><br /><br />
+          <a href="faq.html">FAQ</a>
+        </div>
+        <p class="payment-title">Opcje płatności</p>
+        <div class="payment-options">
+          <a href="#"><img src="img/masterC.png" alt="Mastercard" /></a>
+          <a href="#"><img src="img/visa.png" alt="Visa" /></a>
+          <a href="#"><img src="img/ap.png" alt="Apple Pay" /></a>
+          <a href="#"><img src="img/paypal.png" alt="Paypal" /></a>
+          <a href="#"><img src="img/blik.png" alt="BLIK" /></a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <div class="footer-links">
+          <a href="o_nas.html">O nas</a><br /><br />
+          <a href="#">Bagaż</a><br /><br />
+          <a href="#">Informacje o odprawie</a><br /><br />
+          <a href="#">Pomoc</a><br /><br />
+          <a href="#">Posiłki i napoje</a><br /><br />
+          <a href="kontakt.html">Kontakt</a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <p class="social-title">Śledź nas</p>
+        <div class="social-media">
+          <a href="#"><img src="img/ig.png" alt="Instagram" /> @WronAir</a><br />
+          <a href="#"><img src="img/twt.png" alt="Twitter" /> @WronAir</a><br />
+          <a href="#"><img src="img/ln.png" alt="LinkedIn" /> @WronAir</a><br />
+          <a href="#"><img src="img/facebook.png" alt="Facebook" /> @WronAir</a><br />
+          <a href="#"><img src="img/yt.png" alt="YouTube" /> @WronAir</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; WronAir.com 2024. Wszelkie prawa zastrzeżone.</p>
+    </div>
+  </footer>
+
+  <div class="footer-logo">
+    <img src="img/logojasne.jpg" alt="Logo WronAir">
+  </div>
+
+  <!-- Skrypt do obsługi przycisków (hamburger, wybór języka) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const menuToggle = document.getElementById("menuToggle");
+      const mobileMenu = document.getElementById("mobileMenu");
+      menuToggle.addEventListener("click", function() {
+        mobileMenu.classList.toggle("open");
+      });
+  
+      const langButton = document.getElementById("langButton");
+      const langDropdown = document.getElementById("langDropdown");
+      langButton.addEventListener("click", function() {
+        langDropdown.classList.toggle("show");
+      });
+  
+      const langButtonMobile = document.getElementById("langButtonMobile");
+      const langDropdownMobile = document.getElementById("langDropdownMobile");
+      langButtonMobile.addEventListener("click", function() {
+        langDropdownMobile.classList.toggle("show");
+      });
+    });
+    const reservationNumberInput = document.getElementById('reservationNumber');
+        const lastNameInput = document.getElementById('lastName');
+        const checkInButton = document.getElementById('checkInButton');
+
+        // Funkcja sprawdzająca, czy oba pola są wypełnione
+        function validateInputs() {
+            const reservationNumber = reservationNumberInput.value.trim();
+            const lastName = lastNameInput.value.trim();
+            checkInButton.disabled = !(reservationNumber && lastName);
+        }
+
+        reservationNumberInput.addEventListener('input', validateInputs);
+        lastNameInput.addEventListener('input', validateInputs);
+
+        checkInButton.addEventListener('click', () => {
+            const reservationNumber = encodeURIComponent(reservationNumberInput.value.trim());
+            const lastName = encodeURIComponent(lastNameInput.value.trim());
+            // Przeniesienie użytkownika na nową stronę z danymi w URL
+            window.location.href = `weryfikacja.html?reservationNumber=${reservationNumber}&lastName=${lastName}`;
+        });
+  </script>
+</body>
+</html>

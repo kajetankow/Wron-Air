@@ -1,0 +1,323 @@
+/* ---------------------------------------
+   UPGRADE - WYBÓR MIEJSCA
+--------------------------------------- */
+
+.upgrade-seat-section {
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.upgrade-seat-title {
+    font-size: 30px;
+    color: #243751;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+
+.upgrade-alert {
+    max-width: 800px;
+    margin: 0 auto 20px auto;
+    padding: 14px 18px;
+    background-color: #ffe1e1;
+    color: #8b0000;
+    border: 2px solid #c00;
+    font-weight: bold;
+    text-align: center;
+}
+
+.upgrade-alert-icon {
+    margin-right: 8px;
+}
+
+.upgrade-seat-info {
+    max-width: 700px;
+    margin: 0 auto 25px auto;
+    padding: 18px 22px;
+    background-color: #f5f5f5;
+    border: 2px solid #243751;
+    color: #243751;
+    text-align: center;
+}
+
+.upgrade-seat-info p {
+    margin: 6px 0;
+    font-size: 17px;
+}
+
+.seat-map-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+    justify-content: center;
+}
+
+.seat-class-section {
+    width: 100%;
+    max-width: 900px;
+    background-color: #f5f5f5;
+    border: 2px solid #243751;
+    padding: 20px;
+}
+
+.seat-class-section h2 {
+    color: #243751;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 18px;
+    font-size: 24px;
+}
+
+.active-class {
+    border: 3px solid #243751;
+    background-color: #ffffff;
+}
+
+.locked-class-section {
+    opacity: 0.55;
+}
+
+.class-badge {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 4px 10px;
+    font-size: 13px;
+    color: #ffffff;
+    background-color: #243751;
+    border-radius: 20px;
+    vertical-align: middle;
+}
+
+.class-badge.locked {
+    background-color: #777;
+}
+
+.seat-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Jeden rząd miejsc */
+.seat-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Numer rzędu */
+.seat-row-number {
+    width: 28px;
+    color: #243751;
+    font-weight: bold;
+    text-align: right;
+    margin-right: 8px;
+}
+
+/* Podstawowy wygląd miejsca */
+.seat {
+    width: 52px;
+    height: 42px;
+    background-color: #ffffff;
+    color: #243751;
+    border: 2px solid #243751;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.seat:hover:not(:disabled) {
+    background-color: #243751;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* Obecne miejsce użytkownika - zielone */
+.seat.current-seat {
+    background-color: #1f9d55;
+    color: #ffffff;
+    border: 2px solid #137333;
+}
+
+/* Nowo wybrane miejsce - czerwone, żeby było wyraźnie inne */
+.seat.selected-seat {
+    background-color: #c00;
+    color: #ffffff;
+    border: 2px solid #8b0000;
+}
+
+/* Jeżeli klikniesz obecne miejsce, ma dalej zostać zielone */
+.seat.current-seat.selected-seat {
+    background-color: #1f9d55;
+    color: #ffffff;
+    border: 2px solid #137333;
+}
+
+/* Miejsce zajęte przez kogoś innego */
+.seat.occupied-seat,
+button.occupied-seat:disabled {
+    background-color: #999;
+    color: #555;
+    cursor: not-allowed;
+    border: 2px solid #666;
+    opacity: 0.85;
+}
+
+/* Miejsce z innej klasy */
+.seat.locked-seat,
+button.locked-seat:disabled {
+    background-color: #d8d8d8;
+    color: #777;
+    cursor: not-allowed;
+    border: 2px solid #999;
+    opacity: 0.6;
+}
+
+/* Nadpisanie globalnego button[disabled], żeby nie psuł miejsc */
+.seat:disabled {
+    cursor: not-allowed;
+}
+
+/* Legenda */
+.seat-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+    margin: 25px auto;
+    color: #243751;
+    font-size: 15px;
+}
+
+.seat-legend div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-box {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border: 2px solid #243751;
+}
+
+.legend-box.current {
+    background-color: #1f9d55;
+    border-color: #137333;
+}
+
+.legend-box.selected {
+    background-color: #c00;
+    border-color: #8b0000;
+}
+
+.legend-box.occupied {
+    background-color: #999;
+    border-color: #666;
+}
+
+.legend-box.locked {
+    background-color: #d8d8d8;
+    border-color: #999;
+}
+
+/* Podsumowanie */
+.upgrade-seat-summary {
+    max-width: 700px;
+    margin: 25px auto 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 2px solid #243751;
+    text-align: center;
+    color: #243751;
+}
+
+.upgrade-seat-summary p {
+    margin: 8px 0;
+    font-size: 17px;
+}
+
+.upgrade-seat-submit {
+    margin-top: 15px;
+    padding: 12px 28px;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #c00;
+    cursor: pointer;
+    width: 60%;
+    max-width: 300px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    border: 2px solid #243751;
+}
+
+.upgrade-seat-submit:hover {
+    background-color: #a00;
+}
+
+/* ---------------------------------------
+   MEDIA QUERIES - WYGLĄD MOBILE
+--------------------------------------- */
+
+@media (max-width: 760px) {
+    .upgrade-seat-section {
+        padding: 15px;
+    }
+
+    .seat-class-section {
+        padding: 15px 8px;
+    }
+
+    .seat {
+        width: 42px;
+        height: 36px;
+        font-size: 12px;
+    }
+
+    .seat-row {
+        gap: 5px;
+    }
+
+    .seat-row-number {
+        width: 22px;
+        margin-right: 4px;
+        font-size: 13px;
+    }
+
+    .upgrade-seat-submit {
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    .seat {
+        width: 36px;
+        height: 32px;
+        font-size: 11px;
+    }
+
+    .seat-row {
+        gap: 3px;
+    }
+
+    .seat-row-number {
+        width: 18px;
+        font-size: 12px;
+    }
+
+    .seat-legend {
+        flex-direction: column;
+        align-items: flex-start;
+        max-width: 260px;
+    }
+
+    .upgrade-seat-info,
+    .upgrade-seat-summary {
+        padding: 15px;
+    }
+}

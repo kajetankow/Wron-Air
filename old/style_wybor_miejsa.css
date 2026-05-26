@@ -1,0 +1,272 @@
+body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  
+  }
+  
+  /* --------------------------------------------------
+  MIEJSCA
+  -------------------------------------------------- */
+  .background-wrapper {
+    position: relative;       
+    width: 100vw;             
+    max-width: 100%;          
+    overflow: hidden;         
+    margin: 0 auto;           
+    z-index: 0;               
+  }
+  .background-container {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 1300px;
+    background-image: url("img/seat_map.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: -1; 
+  }
+
+  .content-wrapper {
+      z-index: 1;
+      position: relative; 
+      width: 100%; 
+      min-height: 1320px; 
+      display: flex; 
+      flex-direction: column;
+      align-items: center; 
+      padding-top: 100px;
+  }
+
+
+  .class-section.first-class {
+      display: flex;
+      flex-direction: column;
+      gap: 15px; 
+      margin-top: 80px; 
+  }
+
+  .row {
+      display: flex;
+      justify-content: center; 
+      gap: 10px; 
+  }
+  .economy-class .row {
+      gap: 3px !important;
+      margin-bottom: 5px;
+  }
+
+  .row button {
+      padding: 8px 10px; 
+      font-size: 14px; 
+      border: 1px solid #000; 
+      background-color: #f0f0f0; 
+      border-radius: 5px; 
+      cursor: pointer; 
+  }
+
+  .class-section.economy-class {
+      margin-top: 100px;
+  }
+  .economy-row .spacer {
+      width: 4px; 
+      height: auto;
+  }
+
+  .economy-class .row button {
+      width: 15px; 
+      height: 20px; 
+      font-size: 8px; 
+      padding: 0px;
+      border-radius: 3px; 
+    
+  }
+  .economy-class {
+      margin-top: 130px; 
+  }
+  .row-break {
+      height: 60px; 
+      width: 100%; 
+  }
+  .row button.occupied {
+      background-color: red;
+      cursor: not-allowed;
+    }
+
+  .row button.selected {
+    background-color: green;
+  }
+
+  .row button:not(.occupied):not(.selected):hover {
+    background-color: lightgray;
+  }
+  
+  main.content h1{
+  margin-bottom: 20px;
+  }
+  
+  main.content h1{
+      text-align: left;
+  }
+
+  main.content h1 {
+      font-size: 50px;
+  }
+
+  main.content h2 {
+      font-size: 35px;
+  }
+  
+
+  main.content p {
+      text-align: justify;
+      margin-bottom: 20px;
+      font-size: 20px;
+  }
+  
+
+  main.content {
+      padding-left: 120px;
+      padding-right: 120px;
+    }
+     
+  .line-container {
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    margin-top: 40px;
+  }
+  
+  .line-right {
+    flex-grow: 3; 
+    height: 6px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    background-color: #243751;
+  
+    margin-left: 10px; 
+  }
+  
+  .text-linia {
+    color: #243751;
+    font-weight: bold;
+    font-family: 'Calibri', sans-serif; 
+    font-weight: bold; 
+    font-size: 35px;
+  }
+
+  #legend {
+    font-size: 23px !important;
+    position: absolute; 
+    top: 300px; 
+    right: 12%;
+  }
+  #legend li {
+    list-style: none;
+  }
+  h3 {
+    font-size: 23px;
+  }
+
+  .info-section {
+    text-align: right; 
+    padding: 20px;
+    
+  }
+  
+  .info-section p {
+    font-size: 18px; 
+    color: #243751;
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  .confirm-button {
+    display: inline-block; 
+    background-color: #d32f2f; 
+    color: #fff; 
+    font-size: 20px; 
+    padding: 10px 20px; 
+    border: none; 
+    border: 2px solid #243751;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .confirm-button:hover {
+    background-color: #b71c1c; 
+  }
+    
+ 
+
+/* ---------------------------------------
+MEDIA QUERIES - WYGLĄD TABLET
+--------------------------------------- */
+
+@media (max-width: 1200px) and (min-width: 761px){
+    .class-section.first-class {
+    
+        margin-top: 80px; 
+    }
+    #legend {
+      font-size: 20px !important;
+      position: absolute; 
+      top: 400px; 
+      right: 4%;
+    }
+
+}
+  /* ---------------------------------------
+  MEDIA QUERIES - WYGLĄD MOBILE
+  --------------------------------------- */
+  @media (max-width: 760px) {
+    main.content {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+       
+    main.content h1 {
+        font-size: 20px; 
+        margin-bottom: 20px;
+    }
+    
+    main.content h3 {
+        font-size: 20px; 
+      
+    }
+    .line-container {
+        margin: 10px 0;
+    
+    }
+    .text-linia {
+        font-size: 20px;
+    }
+    .background-container {
+        top: 180px; 
+    }
+    .class-section.first-class {
+        display: flex;
+        flex-direction: column;
+        gap: 15px; 
+        margin-top: 265px; 
+    }
+    #legend {
+        font-size: 14px !important;
+        position: absolute; 
+        top: 400px; 
+        right: 4%;
+      }
+      
+    .content-wrapper {
+   
+    min-height: 1500px; 
+   
+    }
+  }
+

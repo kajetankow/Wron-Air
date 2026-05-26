@@ -1,0 +1,598 @@
+/* ---------------------------------------
+   UPGRADE - OGÓLNY UKŁAD
+--------------------------------------- */
+
+.upgrade-section {
+    max-width: 1250px;
+    width: 96%;
+    margin: 0 auto;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.upgrade-title {
+    font-size: 34px;
+    color: #243751;
+    text-align: center;
+    margin: 0 0 10px;
+    font-weight: bold;
+}
+
+.upgrade-subtitle {
+    text-align: center;
+    color: rgba(36, 55, 81, 0.82);
+    font-size: 17px;
+    margin: 0 0 35px;
+    line-height: 1.45;
+}
+
+.upgrade-subtitle strong {
+    color: #243751;
+}
+
+
+/* ---------------------------------------
+   KARTY PASAŻERÓW / WYBÓR UPGRADE
+--------------------------------------- */
+
+.upgrade-passengers-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.upgrade-passenger-card {
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.66);
+    backdrop-filter: blur(18px) saturate(145%);
+    -webkit-backdrop-filter: blur(18px) saturate(145%);
+    border-radius: 22px;
+    box-shadow: 0 14px 34px rgba(36, 55, 81, 0.14);
+    padding: 25px;
+    min-width: 280px;
+    max-width: 350px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        background-color 0.22s ease;
+}
+
+.upgrade-passenger-card:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.86);
+    box-shadow: 0 20px 46px rgba(36, 55, 81, 0.20);
+}
+
+.upgrade-passenger-header {
+    flex: 1;
+    margin-bottom: 20px;
+}
+
+.upgrade-passenger-header h3 {
+    color: #243751;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 0 15px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(36, 55, 81, 0.14);
+}
+
+.passenger-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.passenger-detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    gap: 12px;
+}
+
+.detail-label {
+    color: rgba(36, 55, 81, 0.62);
+}
+
+.detail-value {
+    color: #243751;
+    font-weight: bold;
+    text-align: right;
+}
+
+.upgrade-passenger-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.upgrade-action-btn {
+    display: block;
+    padding: 12px 15px;
+    text-align: center;
+    background: rgba(36, 55, 81, 0.92);
+    color: #ffffff;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow: 0 12px 28px rgba(36, 55, 81, 0.18);
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        background-color 0.22s ease;
+}
+
+.upgrade-action-btn:hover {
+    transform: translateY(-3px);
+    background: rgba(26, 42, 69, 0.98);
+    box-shadow: 0 18px 38px rgba(36, 55, 81, 0.26);
+}
+
+.upgrade-action-btn--seat {
+    background: rgba(197, 48, 48, 0.92);
+}
+
+.upgrade-action-btn--seat:hover {
+    background: rgba(114, 18, 18, 0.96);
+    box-shadow: 0 18px 38px rgba(197, 48, 48, 0.32);
+}
+
+
+/* ---------------------------------------
+   KARTY WYBORU OPCJI
+--------------------------------------- */
+
+.upgrade-options-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    align-items: stretch;
+    margin-bottom: 30px;
+}
+
+.upgrade-choice-card {
+    flex: 1;
+    min-width: 250px;
+    max-width: 320px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.66);
+    backdrop-filter: blur(18px) saturate(145%);
+    -webkit-backdrop-filter: blur(18px) saturate(145%);
+    border-radius: 22px;
+    box-shadow: 0 14px 34px rgba(36, 55, 81, 0.14);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        background-color 0.22s ease;
+}
+
+.upgrade-choice-card:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.86);
+    box-shadow: 0 20px 46px rgba(36, 55, 81, 0.20);
+}
+
+.upgrade-choice-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    display: block;
+    background-color: rgba(249, 249, 249, 0.82);
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 22px 22px 0 0;
+}
+
+.upgrade-choice-info {
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.upgrade-choice-info h3 {
+    font-size: 18px;
+    color: #243751;
+    font-weight: bold;
+    margin: 0;
+}
+
+.upgrade-choice-info .kinds {
+    font-size: 18px;
+    color: #243751;
+    font-weight: bold;
+    margin: 0;
+}
+
+
+/* ---------------------------------------
+   GŁÓWNE PRZYCISKI
+--------------------------------------- */
+
+.upgrade-btn {
+    padding: 12px 16px;
+    font-size: 16px;
+    color: #ffffff;
+    background: rgba(197, 48, 48, 0.92);
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 15px;
+    box-shadow: 0 12px 28px rgba(197, 48, 48, 0.25);
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        background-color 0.22s ease;
+    margin-top: auto;
+    box-sizing: border-box;
+}
+
+.upgrade-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    background: rgba(114, 18, 18, 0.96);
+    box-shadow: 0 18px 38px rgba(197, 48, 48, 0.32);
+}
+
+.upgrade-btn:disabled {
+    background: rgba(36, 55, 81, 0.75);
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.65;
+}
+
+.upgrade-btn--owned {
+    background: rgba(74, 144, 217, 0.92) !important;
+    opacity: 1 !important;
+    color: #ffffff !important;
+}
+
+.upgrade-btn--disabled {
+    background: rgba(169, 169, 169, 0.88) !important;
+    opacity: 0.6 !important;
+}
+
+
+/* ---------------------------------------
+   WYBÓR KLASY
+--------------------------------------- */
+
+.class-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin: 0 auto 25px;
+    max-width: 900px;
+}
+
+.class-btn {
+    flex: 1;
+    min-width: 180px;
+    padding: 15px 20px;
+    border: 2px solid rgba(36, 55, 81, 0.86);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.72);
+    color: #243751;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 10px 24px rgba(36, 55, 81, 0.10);
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        background-color 0.22s ease,
+        color 0.22s ease,
+        border-color 0.22s ease;
+}
+
+.class-btn span {
+    display: block;
+    font-size: 14px;
+    font-weight: normal;
+    margin-top: 4px;
+    color: rgba(36, 55, 81, 0.68);
+}
+
+.class-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    background: rgba(36, 55, 81, 0.92);
+    color: #ffffff;
+    box-shadow: 0 16px 32px rgba(36, 55, 81, 0.22);
+}
+
+.class-btn:hover:not(:disabled) span {
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.class-btn--current {
+    background: rgba(232, 245, 237, 0.9);
+    cursor: pointer;
+    border-color: #1f9d55;
+    color: #1f9d55;
+}
+
+.class-btn--current span {
+    color: #1f9d55;
+}
+
+.class-btn--selected {
+    background: rgba(36, 55, 81, 0.96);
+    color: #ffffff;
+    border-color: #243751;
+}
+
+.class-btn--selected span {
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.class-btn--disabled,
+.class-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    background: rgba(221, 221, 221, 0.82);
+    color: #777777;
+    border-color: #999999;
+    box-shadow: none;
+}
+
+.class-btn--disabled span,
+.class-btn:disabled span {
+    color: #777777;
+}
+
+.seat-instruction {
+    text-align: center;
+    color: rgba(36, 55, 81, 0.78);
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+
+
+.seat-button.current-seat {
+    background: rgba(31, 157, 85, 0.94) !important;
+    color: #ffffff !important;
+    border-color: #137333 !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
+    box-shadow: 0 10px 22px rgba(31, 157, 85, 0.28) !important;
+}
+
+.seat-button.current-seat:disabled {
+    background: rgba(31, 157, 85, 0.94) !important;
+    color: #ffffff !important;
+    border-color: #137333 !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
+}
+
+.seat-button.selected {
+    background: rgba(36, 55, 81, 0.96) !important;
+    color: #ffffff !important;
+    border-color: #243751 !important;
+    opacity: 1 !important;
+    box-shadow: 0 10px 22px rgba(36, 55, 81, 0.28) !important;
+}
+
+.seat-button.current-seat.selected {
+    background: rgba(31, 157, 85, 0.94) !important;
+    color: #ffffff !important;
+    border-color: #137333 !important;
+}
+
+.seat-button.occupied {
+    background: rgba(197, 48, 48, 0.92) !important;
+    color: #ffffff !important;
+    border-color: #8b0000 !important;
+    cursor: not-allowed !important;
+    opacity: 1 !important;
+    box-shadow: 0 8px 18px rgba(197, 48, 48, 0.24) !important;
+}
+
+.seat-button.occupied:disabled {
+    background: rgba(197, 48, 48, 0.92) !important;
+    color: #ffffff !important;
+    border-color: #8b0000 !important;
+    opacity: 1 !important;
+}
+
+.seat-button.unavailable-class {
+    background: rgba(190, 196, 205, 0.42) !important;
+    color: rgba(36, 55, 81, 0.34) !important;
+    border-color: rgba(36, 55, 81, 0.12) !important;
+    cursor: not-allowed !important;
+    opacity: 0.75 !important;
+    box-shadow: none !important;
+}
+
+
+/* ---------------------------------------
+   PODSUMOWANIE WYBORU MIEJSCA
+--------------------------------------- */
+
+.upgrade-seat-summary {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.66);
+    backdrop-filter: blur(18px) saturate(145%);
+    -webkit-backdrop-filter: blur(18px) saturate(145%);
+    border-radius: 22px;
+    box-shadow: 0 14px 34px rgba(36, 55, 81, 0.14);
+    padding: 25px;
+    max-width: 430px;
+    margin: 30px auto 20px;
+    box-sizing: border-box;
+}
+
+.upgrade-seat-summary p {
+    font-size: 17px;
+    color: #243751;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.upgrade-seat-summary strong {
+    color: #C53030;
+}
+
+
+/* ---------------------------------------
+   POWRÓT
+--------------------------------------- */
+
+.upgrade-back {
+    text-align: center;
+    margin: 20px 0 10px;
+}
+
+.upgrade-back-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    color: #243751;
+    border: 2px solid #243751;
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        background-color 0.22s ease,
+        color 0.22s ease;
+}
+
+.upgrade-back-btn:hover {
+    transform: translateY(-3px);
+    background: rgba(36, 55, 81, 0.96);
+    color: #ffffff;
+    box-shadow: 0 14px 28px rgba(36, 55, 81, 0.18);
+}
+
+
+/* ---------------------------------------
+   LEGENDA OPCJONALNA
+--------------------------------------- */
+
+.seat-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+    margin: 25px auto;
+    color: #243751;
+    font-size: 15px;
+}
+
+.seat-legend div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-box {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border: 2px solid #243751;
+    border-radius: 4px;
+}
+
+.legend-box.current {
+    background-color: #1f9d55;
+    border-color: #137333;
+}
+
+.legend-box.selected {
+    background-color: #243751;
+    border-color: #243751;
+}
+
+.legend-box.occupied {
+    background-color: #C53030;
+    border-color: #8b0000;
+}
+
+.legend-box.locked {
+    background-color: #eeeeee;
+    border-color: #dddddd;
+}
+
+
+/* ---------------------------------------
+   RESPONSYWNOŚĆ
+   Bez ruszania mapy foteli.
+--------------------------------------- */
+
+@media (max-width: 768px) {
+    .upgrade-section {
+        width: 100%;
+        max-width: 100%;
+        padding: 30px 15px;
+    }
+
+    .upgrade-passengers-grid,
+    .upgrade-options-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .upgrade-passenger-card,
+    .upgrade-choice-card {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .class-selector {
+        flex-direction: column;
+        max-width: 100%;
+    }
+
+    .class-btn {
+        min-width: 100%;
+        width: 100%;
+    }
+
+    .upgrade-seat-summary {
+        max-width: 100%;
+    }
+
+    .upgrade-back-btn {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 480px) {
+    .upgrade-title {
+        font-size: 24px;
+    }
+
+    .upgrade-subtitle {
+        font-size: 15px;
+    }
+
+    .seat-instruction {
+        font-size: 15px;
+    }
+}
+

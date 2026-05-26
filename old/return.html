@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>WronAir | Powrót</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="img/logo_16.ico">
+  <link rel="shortcut icon" href="img/logo_32.ico">
+  <link rel="stylesheet" href="style_departure.css" />
+  <link rel="stylesheet" href="style_headfoot.css" />
+</head>
+<body>
+  <header class="header-with-logo">
+    <!-- Kontener na logo -->
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="img/logociemne.jpg" alt="Logo WronAir" />
+      </a>
+    </div>
+    
+    <!-- Przycisk hamburger -->
+    <button class="menu-toggle" id="menuToggle">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+    
+    <!-- Górny pasek -->
+    <div class="top-bar">
+      <div class="top-bar-content">
+        <a href="#" class="login-link">Logowanie i rejestracja</a>
+        <div class="language-switch">
+          <button class="lang-btn" id="langButton">
+            <img src="img/Flag_of_Poland.svg" alt="PL" class="flag" />
+            PL
+          </button>
+          <ul class="language-dropdown" id="langDropdown">
+            <li class="current-language">
+              <a href="#">
+                <img src="img/Flag_of_Poland.svg" alt="PL" class="flag" />
+                PL
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="img/Flag_of_the_United_States.svg.png" alt="ENG" class="flag" />
+                ENG
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+      
+      
+    <!-- Pasek menu (desktop) -->
+    <nav class="main-menu" id="mainNav">
+      <ul class="nav-links">
+        <li><a href="index.html">Strona Główna</a></li>
+        <li><a href="odprawa.html">Odpraw się</a></li>
+        <li><a href="upgrade.html">Upgrade</a></li>
+        <li><a href="uslugi.html">Usługi na Pokładzie</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="o_nas.html">O Nas</a></li>
+      </ul>
+    </nav>
+    
+    <!-- Menu mobilne -->
+    <nav class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="#">Logowanie i rejestracja</a></li>
+        <li><a href="index.html">Strona Główna</a></li>
+        <li><a href="odprawa.html">Odpraw się</a></li>
+        <li><a href="upgrade.html">Upgrade</a></li>
+        <li><a href="uslugi.html">Usługi na Pokładzie</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="o_nas.html">O Nas</a></li>
+        <li>
+          <div class="language-switch-mobile">
+            <button class="lang-btn" id="langButtonMobile">
+              <img src="img/Flag_of_Poland.svg" alt="PL" class="flag" />
+              PL
+            </button>
+            <ul class="language-dropdown" id="langDropdownMobile">
+              <li class="current-language">
+                <a href="#">
+                  <img src="img/Flag_of_Poland.svg" alt="PL" class="flag" />
+                  PL
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="img/Flag_of_the_United_States.svg.png" alt="ENG" class="flag" />
+                  ENG
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Element Return -->
+  <main class="content">
+    <h1>Wybierz godzinę powrotu w dniu: <span id="arrival_date-display"></span></h1>
+    <h2><span class="spaces"></span><span id="to-display3"></span> ------------ <span><img src="img/samolot.png" alt="Plane Icon" class="icon"></span> ------------ <span id = "from-display3"></span></h2>
+    <section class="departure-container">
+        <div class="flight-options">
+            <!-- Flight Option 1 -->
+            <div class="flight-info">
+                <h2><strong><span id="to-display"></span><span class="space"></span><span id ="from-display"></strong></h2>
+                <p class="hour">8h 20min</p>
+                <h2>
+                  <span class="departure-time" data-time="12:35">17:20</span>
+                  -------------------- 
+                  <span><img src="img/clock.png" alt="Clock Icon" class="icon"></span>
+                  -------------------- 
+                  <span class="arrival-time" data-time="16:10">07:40</span>
+                </h2>
+                <h4>UTC -5<span class="space"></span>UTC +1</h4>
+                <p>BEZPOŚREDNI</p>
+                <div class="additional-info">
+                    <p>WR36</p>
+                    <p>Obsługiwane przez WronAir</p>
+                    <p><a href="#" class="details-link">Sprawdź szczegóły</a></p>
+                </div>
+            </div>
+            <div class="flight-prices">
+                <div class="price-box">
+                    <h1>ECONOMY</h1>
+                    <h2>Od</h2>
+                    <p class="price">1 183.45 PLN*</p>
+                    <p class="exception">*Cena za 1 pasażera</p>
+                    <p>*Bez bagażu rejestrowanego</p>
+                    <button>Wybierz</button>
+                </div>
+                <div class="price-box">
+                    <h1>PREMIUM ECONOMY</h1>
+                    <h2>Od</h2>
+                    <p class="price">2 765.89 PLN*</p>
+                    <p class="exception">*Cena za 1 pasażera</p>
+                    <button>Wybierz</button>
+                </div>
+                <div class="price-box">
+                    <h1>BUSINESS</h1>
+                    <h2>Od</h2>
+                    <p class="price">6 432.70 PLN*</p>
+                    <p class="exception">*Cena za 1 pasażera</p>
+                    <button>Wybierz</button>
+                </div>
+            </div>
+        </div>
+        <div class="flight-options">
+          <!-- Flight Option 2 -->
+          <div class="flight-info">
+            <h2><strong><span id="to-display1"></span><span class="space"></span><span id ="from-display1"></strong></h2>
+              <p class="hour">9h 15min</p>
+              <h2>
+                <span class="departure-time" data-time="12:35">21:45</span>
+                -------------------- 
+                <span><img src="img/clock.png" alt="Clock Icon" class="icon"></span>
+                -------------------- 
+                <span class="arrival-time" data-time="16:10">13:20</span>
+              </h2>
+              <h4>UTC -5<span class="space"></span>UTC +1</h4>
+              <p>1 PRZESIADKA </br> FRANKFURT [FRA]</p>
+              <div class="additional-info">
+                  <p>LH4412 + WR2655</p>
+                  <p>Obsługiwane przez WronAir i Lufthansa</p>
+                  <p><a href="#" class="details-link">Sprawdź szczegóły</a></p>
+              </div>
+          </div>
+          <div class="flight-prices">
+            <div class="price-box">
+                <h1>ECONOMY</h1>
+                <h2>Od</h2>
+                <p class="price">1 497.30 PLN*</p>
+                <p class="exception">*Cena za 1 pasażera</p>
+                <p>*Bez bagażu rejestrowanego</p>
+                <button>Wybierz</button>
+            </div>
+            <div class="price-box">
+                <h1>PREMIUM ECONOMY</h1>
+                <h2>Od</h2>
+                <p class="price">3 112.85 PLN*</p>
+                <p class="exception">*Cena za 1 pasażera</p>
+                <button>Wybierz</button>
+            </div>
+            <div class="price-box">
+                <h1>BUSINESS</h1>
+                <h2>Od</h2>
+                <p class="price">7 258.50*</p>
+                <p class="exception">*Cena za 1 pasażera</p>
+                <button>Wybierz</button>
+            </div>
+        </div>
+      </div>
+      <div class="flight-options">
+        <!-- Flight Option 3 -->
+        <div class="flight-info">
+          <h2><strong><span id="to-display2"></span><span class="space"></span><span id ="from-display2"></strong></h2>
+            <p class="hour">8h 35min</p>
+            <h2>
+              <span class="departure-time" data-time="12:35">23:45</span>
+              -------------------- 
+              <span><img src="img/clock.png" alt="Clock Icon" class="icon"></span>
+              -------------------- 
+              <span class="arrival-time" data-time="16:10">14:05</span>
+            </h2>
+            <h4>UTC -5<span class="space"></span>UTC +1</h4>
+            <p>BEZPOŚREDNI</p>
+            <div class="additional-info">
+                <p>WR37</p>
+                <p>Obsługiwane przez WronAir</p>
+                <p><a href="#" class="details-link">Sprawdź szczegóły</a></p>
+            </div>
+        </div>
+        <div class="flight-prices">
+          <div class="price-box">
+              <h1>ECONOMY</h1>
+              <h2>Od</h2>
+              <p class="price">2 045.75 PLN*</p>
+              <p class="exception">*Cena za 1 pasażera</p>
+              <p>*Bez bagażu rejestrowanego</p>
+              <button>Wybierz</button>
+          </div>
+          <div class="price-box">
+              <h1>PREMIUM ECONOMY</h1>
+              <h2>Od</h2>
+              <p class="price">4 389.40 PLN*</p>
+              <p class="exception">*Cena za 1 pasażera</p>
+              <button>Wybierz</button>
+          </div>
+          <div class="price-box">
+              <h1>BUSINESS</h1>
+              <h2>Od</h2>
+              <p class="price">9 872.64 PLN*</p>
+              <p class="exception">*Cena za 1 pasażera</p>
+              <button>Wybierz</button>
+          </div>
+      </div>
+    </div>
+    <div class="price-container">
+      <h2>Cena całkowita: <span class="price-value">0.00 PLN</span></h2>
+      <a id="nextPageLink" class="return-button" href="#">Wprowadź dane pasażerów</a>
+    </div>
+    </section>
+  </main>
+
+  <footer>
+    <!-- Zawartość stopki -->
+    <div class="footer-container search-bar-row">
+      <div class="footer-column">
+        <form class="search-bar">
+          <input type="text" placeholder="Wprowadź szukany termin" />
+          <button type="submit">
+            <img src="img/search.png" alt="Szukaj" />
+          </button>
+        </form>
+      </div>
+      <div class="footer-column"></div>
+      <div class="footer-column"></div>
+    </div>
+    <div class="footer-container">
+      <div class="footer-column">
+        <div class="footer-links">
+          <a href="odprawa.html">Odpraw się</a><br /><br />
+          <a href="upgrade.html">Upgrade</a><br /><br />
+          <a href="uslugi.html">Usługi na pokładzie</a><br /><br />
+          <a href="faq.html">FAQ</a>
+        </div>
+        <p class="payment-title">Opcje płatności</p>
+        <div class="payment-options">
+          <a href="#"><img src="img/masterC.png" alt="Mastercard" /></a>
+          <a href="#"><img src="img/visa.png" alt="Visa" /></a>
+          <a href="#"><img src="img/ap.png" alt="Apple Pay" /></a>
+          <a href="#"><img src="img/paypal.png" alt="Paypal" /></a>
+          <a href="#"><img src="img/blik.png" alt="BLIK" /></a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <div class="footer-links">
+          <a href="o_nas.html">O nas</a><br /><br />
+          <a href="#">Bagaż</a><br /><br />
+          <a href="#">Informacje o odprawie</a><br /><br />
+          <a href="#">Pomoc</a><br /><br />
+          <a href="#">Posiłki i napoje</a><br /><br />
+          <a href="kontakt.html">Kontakt</a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <p class="social-title">Śledź nas</p>
+        <div class="social-media">
+          <a href="#"><img src="img/ig.png" alt="Instagram" /> @WronAir</a><br />
+          <a href="#"><img src="img/twt.png" alt="Twitter" /> @WronAir</a><br />
+          <a href="#"><img src="img/ln.png" alt="LinkedIn" /> @WronAir</a><br />
+          <a href="#"><img src="img/facebook.png" alt="Facebook" /> @WronAir</a><br />
+          <a href="#"><img src="img/yt.png" alt="YouTube" /> @WronAir</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; WronAir.com 2024. Wszelkie prawa zastrzeżone.</p>
+    </div>
+  </footer>
+
+  <div class="footer-logo">
+    <img src="img/logojasne.jpg" alt="Logo WronAir">
+  </div>
+
+  <!-- Skrypt do obsługi przycisków (hamburger, wybór języka) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const menuToggle = document.getElementById("menuToggle");
+      const mobileMenu = document.getElementById("mobileMenu");
+      menuToggle.addEventListener("click", function() {
+        mobileMenu.classList.toggle("open");
+      });
+  
+      const langButton = document.getElementById("langButton");
+      const langDropdown = document.getElementById("langDropdown");
+      langButton.addEventListener("click", function() {
+        langDropdown.classList.toggle("show");
+      });
+  
+      const langButtonMobile = document.getElementById("langButtonMobile");
+      const langDropdownMobile = document.getElementById("langDropdownMobile");
+      langButtonMobile.addEventListener("click", function() {
+        langDropdownMobile.classList.toggle("show");
+      });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const params = new URLSearchParams(window.location.search);
+    const tripType = params.get("trip_type") || "round-trip";
+    const from = params.get("from") || "Nieznane";
+    const to = params.get("to") || "Nieznane";
+    const passengers = params.get("passengers") || "1";
+    const departureDate = params.get("departure_date") || "Brak daty";
+    const returnDate = params.get("return_date") || "Brak daty";
+    const duration = params.get("duration") || "Brak czasu";
+    const departure_time = params.get("departure_time") || "Brak czasu";
+    const arrival_time = params.get("arrival_time") || "Brak czasu";
+    const flight_code = params.get("flight_code") || "Brak kodu";
+    const price = params.get("price") || "0.00";
+    const ticket_type = params.get("ticket_type") || "Nieznany";
+
+    // Wyświetlanie parametrów 
+    document.getElementById("from-display").textContent = from;
+    document.getElementById("to-display").textContent = to;
+    document.getElementById("from-display1").textContent = from;
+    document.getElementById("to-display1").textContent = to;
+    document.getElementById("from-display2").textContent = from;
+    document.getElementById("to-display2").textContent = to;
+    document.getElementById("from-display3").textContent = from.slice(0, -6);
+    document.getElementById("to-display3").textContent = to.slice(0, -6);
+    document.getElementById("arrival_date-display").textContent = returnDate;
+
+    const nextPageLink = document.getElementById("nextPageLink");
+    const priceValueElement = document.querySelector(".price-value");
+    let selectedOption = null; 
+
+    priceValueElement.textContent = `${price} PLN`;
+
+    nextPageLink.classList.add("disabled");
+    nextPageLink.style.pointerEvents = "none";
+    nextPageLink.style.opacity = "0.5";
+
+    const flightOptions = document.querySelectorAll(".flight-options");
+    flightOptions.forEach((option) => {
+      const priceBoxes = option.querySelectorAll(".price-box");
+
+      priceBoxes.forEach((priceBox) => {
+        const selectButton = priceBox.querySelector("button");
+        selectButton.addEventListener("click", function () {
+          //Jeśli już jest wybrana opcja, usuń zaznaczenie
+          if (selectedOption) {
+            selectedOption.classList.remove("selected");
+          }
+
+          //Ustaw nową wybraną opcję
+          selectedOption = priceBox;
+          priceBox.classList.add("selected");
+
+          //Aktywuj przycisk „Wprowadź dane pasażerów”
+          nextPageLink.classList.remove("disabled");
+          nextPageLink.style.pointerEvents = "auto";
+          nextPageLink.style.opacity = "1";
+
+          //Pobierz dane z wybranej opcji
+          const duration_return = option.querySelector(".hour")?.textContent.trim() || "";
+          //const departureTime_return = option.querySelector(".departure-time")?.getAttribute("data-time") || "";
+          //const arrivalTime_return = option.querySelector(".arrival-time")?.getAttribute("data-time") || "";
+          const departureTime_return = option.querySelector(".departure-time")?.textContent.trim() || "Brak czasu";
+          const arrivalTime_return = option.querySelector(".arrival-time")?.textContent.trim() || "Brak czasu";
+          const flightCode_return = option.querySelector(".additional-info p")?.textContent.trim() || "";
+          const priceText_return = priceBox.querySelector(".price").textContent.trim();
+          const ticketType_return = priceBox.querySelector("h1").textContent.trim();
+
+         
+          const actualPrice = parseFloat(price);
+          const numericPrice = parseFloat(priceText_return.replace(/[^\d,.-]/g, "").replace(",", "."));
+          const passengersInt = parseInt(passengers) || 1;
+          const totalPrice = (actualPrice + (numericPrice * passengersInt)).toFixed(2);
+
+          // Wyświetl cenę 
+          priceValueElement.textContent = `${totalPrice} PLN`;
+
+          // Ustaw URL dla przycisku „Wprowadź dane pasażerów”
+          nextPageLink.href = `wprowadz-dane.html?trip_type=${tripType}&from=${encodeURIComponent(
+            from
+          )}&to=${encodeURIComponent(to)}&passengers=${passengers}&departure_date=${departureDate}&return_date=${returnDate}&duration=${encodeURIComponent(
+            duration
+          )}&departure_time=${encodeURIComponent(
+            departure_time
+          )}&arrival_time=${encodeURIComponent(arrival_time)}&flight_code=${encodeURIComponent(
+            flight_code
+          )}&price=${encodeURIComponent(totalPrice)}&price_departure=${encodeURIComponent(price)}&ticket_type=${encodeURIComponent(
+            ticket_type
+          )}&duration_return=${encodeURIComponent(duration_return)}&departure_time_return=${encodeURIComponent(
+            departureTime_return
+          )}&arrival_time_return=${encodeURIComponent(
+            arrivalTime_return
+          )}&flight_code_return=${encodeURIComponent(
+            flightCode_return
+          )}&ticket_type_return=${encodeURIComponent(ticketType_return)}`;
+          console.log("Generated URL:", nextPageLink.href); 
+        });
+      });
+    });
+
+    
+    nextPageLink.addEventListener("click", function (event) {
+      if (nextPageLink.classList.contains("disabled")) {
+        event.preventDefault();
+      } else {
+        console.log("Redirecting to:", nextPageLink.href); 
+      }
+    });
+  });
+  
+  
+ 
+  const buttons = document.querySelectorAll('.price-box button');
+
+  
+  function resetButtonColors() {
+      buttons.forEach(button => {
+          button.style.backgroundColor = ''; 
+      });
+  }
+
+  buttons.forEach(button => {
+      button.addEventListener('click', function () {
+          resetButtonColors(); 
+          this.style.backgroundColor = '#053364'; 
+      });
+  });
+  console.log("Departure Time:", departure_time);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,221 @@
+/* ---------------------------------------
+   UPGRADE
+--------------------------------------- */
+.upgrade-section {
+    padding: 40px 20px;
+    margin: 0 auto;
+    max-width: 1400px;
+}
+
+.upgrade-title {
+    font-size: 2rem;
+    color: #243751;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 0;
+}
+
+.upgrade-layout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+/* ---------------------------------------
+   FORMULARZ
+--------------------------------------- */
+.upgrade-content {
+    flex: 1;
+    min-width: 280px;
+    max-width: 420px;
+}
+
+.upgrade-form {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 30px 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    text-align: center;
+}
+
+.upgrade-form h1 {
+    font-size: 1.3rem;
+    color: #243751;
+    margin: 0;
+}
+
+.upgrade-form h2 {
+    font-size: 1rem;
+    color: #243751;
+    font-weight: normal;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.upgrade-form input {
+    padding: 10px 14px;
+    font-size: 1rem;
+    width: 80%;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    font-family: Calibri, sans-serif;
+    transition: border-color 0.2s ease;
+}
+
+.upgrade-form input:focus {
+    border-color: #243751;
+}
+
+.upgrade-form button {
+    padding: 12px 30px;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #C50914;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    width: 80%;
+}
+
+.upgrade-form button:hover {
+    background-color: #a00;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* ---------------------------------------
+   KAFELKI
+--------------------------------------- */
+.upgrade-options {
+    display: flex;
+    flex: 2;
+    gap: 30px;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+.upgrade-card {
+    flex: 1;
+    min-width: 280px;
+    max-width: 400px;           /* było 350px */
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: none;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s ease;
+}
+
+.upgrade-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+
+.upgrade-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: contain;        /* zamiast cover - pokazuje całe zdjęcie */
+    display: block;
+    border-radius: 12px 12px 0 0;
+    background-color: #ffffff;  /* delikatne tło żeby nie było białej pustki */
+    padding: 15px;              /* trochę przestrzeni wokół zdjęcia */
+    box-sizing: border-box;
+}
+
+.upgrade-card-info {
+    padding: 15px 20px 20px;
+    text-align: center;
+}
+
+.upgrade-card-info h3 {
+    font-size: 1.2rem;
+    color: #243751;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.upgrade-card-info .kinds {
+    font-size: 1rem;
+    color: #555;
+    margin: 0;
+}
+
+/* ---------------------------------------
+   MEDIA QUERIES
+--------------------------------------- */
+@media (max-width: 1024px) {
+    .upgrade-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .upgrade-content {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .upgrade-options {
+        width: 100%;
+        flex-direction: row;
+    }
+}
+
+@media (max-width: 768px) {
+    .upgrade-options {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .upgrade-card {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .upgrade-form input,
+    .upgrade-form button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .upgrade-form h1 {
+        font-size: 1.1rem;
+    }
+
+    .upgrade-form h2 {
+        font-size: 0.9rem;
+    }
+}
+
+.upgrade-alert {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 600px;
+    margin: 0 auto 25px;
+    padding: 14px 20px;
+    background-color: #fff0f0;
+    border-left: 4px solid #C50914;
+    border-radius: 8px;
+    color: #C50914;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(197, 9, 20, 0.1);
+}
+
+.upgrade-alert-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}

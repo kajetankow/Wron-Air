@@ -1,0 +1,87 @@
+/* --------------------------------------------------
+FAQ 
+-------------------------------------------------- */
+
+#faq-container {
+    background-color: #ffffff; 
+    padding: 20px 0; 
+}
+
+#faq-container h1 {
+    font-size: 40px; 
+    font-weight: bold; 
+    color: #243751; 
+    text-align: center; 
+    margin-bottom: 20px; 
+    margin-top: 20px; 
+}
+
+/* Styl dla #box */
+#box {
+    max-width: 1200px; 
+    margin: 0 auto; 
+    background-color: #ffffff; 
+    padding: 20px; 
+    border: none; 
+    box-shadow: none;
+}
+
+h2 {
+    margin: 0;
+    padding: 15px 20px;
+    background-color: #ffffff;
+    color: #243751;
+    border: 2px solid #243751;
+    cursor: default;
+    font-weight: bold;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h2 img {
+    margin-left: 10px;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+#panels div {
+    display: none;
+    background-color: #ffffff;
+    padding: 10px 15px;
+    border: 2px solid #243751;
+    border-top: none;
+    color: #243751;
+}
+
+#panels p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* ---------------------------------------
+MEDIA QUERIES - WYGLĄD MOBILE
+--------------------------------------- */
+@media (max-width: 768px) {
+  #box {
+      max-width: 100%; 
+  }
+
+  h2 {
+      font-size: 1rem; 
+      padding: 10px 15px; 
+  }
+
+  h2 img {
+      width: 32px;
+      height: 32px; 
+  }
+
+  #panels div {
+      font-size: 0.9rem;
+  }
+}
+

@@ -1,0 +1,367 @@
+/* --------------------------------------------------
+  Potwierdź dane - liquid glass, bez zmiany układu
+-------------------------------------------------- */
+
+:root {
+    --pd-blue: #243751;
+    --pd-red: #C50914;
+    --pd-red-dark: #98000a;
+
+    --pd-glass-bg: rgba(255, 255, 255, 0.58);
+    --pd-glass-bg-strong: rgba(255, 255, 255, 0.76);
+    --pd-glass-border: rgba(255, 255, 255, 0.66);
+    --pd-shadow: 0 18px 45px rgba(36, 55, 81, 0.16);
+    --pd-shadow-hover: 0 24px 60px rgba(36, 55, 81, 0.22);
+}
+
+.container {
+    max-width: 70%;
+    margin: 20px auto;
+    padding: 24px;
+
+    background: var(--pd-glass-bg);
+    border: 1px solid var(--pd-glass-border);
+    border-radius: 28px;
+
+    backdrop-filter: blur(18px) saturate(145%);
+    -webkit-backdrop-filter: blur(18px) saturate(145%);
+
+    box-shadow: var(--pd-shadow);
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: var(--pd-blue);
+    font-weight: bold;
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+.section-title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--pd-blue);
+}
+
+/* tabela bez rozwalania układu */
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 20px;
+    margin-right: 165px;
+    color: var(--pd-blue);
+}
+
+.info-table th,
+.info-table td {
+    padding: 4px 40px;
+    text-align: left;
+}
+
+.info-table th {
+    width: 30%;
+    font-weight: bold;
+}
+
+/* ramka planu podróży - granatowa, tylko zaokrąglona i glass */
+.plan {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border: 3px solid var(--pd-blue);
+    border-radius: 24px;
+
+    padding: 15px;
+    margin-bottom: 20px;
+    font-weight: bold;
+
+    background: rgba(255, 255, 255, 0.42);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+
+    box-shadow: 0 12px 32px rgba(36, 55, 81, 0.14);
+
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        background-color 0.22s ease;
+}
+
+.plan:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.62);
+    box-shadow: var(--pd-shadow-hover);
+}
+
+/* zostawiamy Twój układ */
+.plan-details {
+    display: flex;
+    flex-wrap: wrap;
+    width: 75%;
+    gap: 20px;
+}
+
+.plan-details div {
+    width: 30%;
+    font-size: 20px;
+    color: var(--pd-blue);
+}
+
+/* cena bez dedykowanej otoczki */
+.price {
+    width: 20%;
+    text-align: right;
+    font-size: 26px;
+    font-weight: bold;
+    color: var(--pd-blue);
+
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* panel ceny całkowitej - układ jak był, tylko zaokrąglony glass */
+.total-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: rgba(36, 55, 81, 0.88);
+    color: #fff;
+
+    padding: 15px 20px;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+
+    backdrop-filter: blur(18px) saturate(145%);
+    -webkit-backdrop-filter: blur(18px) saturate(145%);
+
+    box-shadow: 0 18px 45px rgba(36, 55, 81, 0.22);
+}
+
+.total-section .total {
+    margin: 0;
+}
+
+/* przycisk potwierdzenia */
+.total-section .confirm-button {
+    background-color: rgba(197, 9, 20, 0.92);
+    color: #fff;
+
+    text-decoration: none;
+    padding: 10px 20px;
+
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.52);
+    border-radius: 16px;
+
+    cursor: pointer;
+
+    box-shadow: 0 12px 28px rgba(197, 9, 20, 0.26);
+
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        background-color 0.22s ease,
+        opacity 0.22s ease;
+}
+
+.total-section .confirm-button:hover {
+    transform: translateY(-3px);
+    background-color: rgba(152, 0, 10, 0.96);
+    box-shadow: 0 18px 38px rgba(197, 9, 20, 0.34);
+    opacity: 0.95;
+}
+
+/* edycja */
+.edytuj {
+    font-size: 20px;
+    text-align: center;
+    display: block;
+    width: fit-content;
+
+    margin: 20px auto;
+    padding: 9px 20px;
+
+    text-decoration: none;
+    color: var(--pd-blue);
+    font-weight: bold;
+
+    border-radius: 999px;
+    border: 1px solid rgba(36, 55, 81, 0.25);
+
+    background: rgba(255, 255, 255, 0.52);
+    backdrop-filter: blur(14px) saturate(145%);
+    -webkit-backdrop-filter: blur(14px) saturate(145%);
+
+    box-shadow: 0 10px 24px rgba(36, 55, 81, 0.12);
+
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        background-color 0.22s ease;
+}
+
+.edytuj:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.78);
+    box-shadow: 0 16px 34px rgba(36, 55, 81, 0.18);
+}
+
+/* ---------------------------------------
+MEDIA QUERIES - WYGLĄD TABLET
+--------------------------------------- */
+
+@media (max-width: 1200px) and (min-width: 761px) {
+    .container input,
+    .container button {
+        flex: none;
+        text-align: center;
+        height: 50px;
+        font-size: 15px;
+        padding: 10px;
+        border: 2px solid var(--pd-blue);
+        width: 24%;
+    }
+
+    h1 {
+        font-size: 22px !important;
+    }
+
+    .section-title {
+        font-size: 22px;
+    }
+
+    .info-table {
+        margin: 0 auto;
+        text-align: left;
+        font-size: 17px;
+        width: 90%;
+    }
+
+    .plan-details div {
+        font-size: 15px;
+        margin-bottom: 5px;
+        width: 25%;
+    }
+
+    .price {
+        width: 30%;
+        margin-top: 10px;
+        font-size: 17px;
+        color: var(--pd-blue);
+    }
+
+    .container {
+        min-width: 90% !important;
+    }
+}
+
+/* ---------------------------------------
+MEDIA QUERIES - WYGLĄD MOBILE
+--------------------------------------- */
+
+@media (max-width: 760px) {
+    .container {
+        min-width: 90% !important;
+        border-radius: 22px;
+    }
+
+    .section > div {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .plan {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        border-radius: 22px;
+    }
+
+    .plan-details {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .price {
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+        font-size: 20px;
+        color: var(--pd-blue);
+
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+    }
+
+    h1 {
+        font-size: 17px !important;
+    }
+
+    .section-title {
+        font-size: 24px;
+    }
+
+    .info-table {
+        margin: 0 auto;
+        text-align: left;
+        width: 90%;
+        font-size: 17px;
+    }
+
+    .info-table th {
+        padding: 10px;
+    }
+
+    .plan-details div {
+        font-size: 12px;
+        margin-bottom: 5px;
+        width: 25%;
+    }
+
+    .total-section {
+        background-color: rgba(36, 55, 81, 0.88);
+        color: #fff;
+        padding: 15px 20px;
+        font-size: 15px;
+        font-weight: bold;
+        margin-top: 20px;
+        border-radius: 22px;
+    }
+
+    .total-section .total {
+        margin: 0;
+    }
+
+    .total-section .confirm-button {
+        padding: 10px 8px;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 14px;
+    }
+}

@@ -1,0 +1,346 @@
+/* --------------------------------------------------
+  ODPRAWA - LIQUID GLASS
+-------------------------------------------------- */
+
+:root {
+    --odp-blue: #243751;
+    --odp-red: #C50914;
+    --odp-red-dark: #8b060f;
+
+    --odp-glass-bg: rgba(255, 255, 255, 0.58);
+    --odp-glass-bg-strong: rgba(255, 255, 255, 0.76);
+    --odp-glass-border: rgba(255, 255, 255, 0.66);
+
+    --odp-shadow: 0 18px 45px rgba(36, 55, 81, 0.16);
+    --odp-shadow-hover: 0 24px 60px rgba(36, 55, 81, 0.24);
+}
+
+/* --------------------------------------------------
+  GŁÓWNA TREŚĆ
+-------------------------------------------------- */
+
+main.content {
+    padding-left: 120px;
+    padding-right: 120px;
+}
+
+main.content h1 {
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 50px;
+    color: var(--odp-blue);
+}
+
+main.content h2 {
+    font-size: 35px;
+    color: var(--odp-blue);
+}
+
+main.content p {
+    text-align: justify;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: rgba(36, 55, 81, 0.88);
+}
+
+/* --------------------------------------------------
+  LINIA Z TYTUŁEM
+-------------------------------------------------- */
+
+.line-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px 0 20px;
+}
+
+.line-right {
+    flex-grow: 3;
+    height: 10px;
+    border-top-left-radius: 999px;
+    border-bottom-left-radius: 999px;
+    background: linear-gradient(
+        90deg,
+        rgba(36, 55, 81, 0.95),
+        rgba(36, 55, 81, 0.58)
+    );
+    margin-left: 10px;
+    box-shadow: 0 8px 20px rgba(36, 55, 81, 0.18);
+}
+
+.text-linia {
+    color: var(--odp-blue);
+    font-family: Calibri, sans-serif;
+    font-weight: bold;
+    font-size: 44px;
+}
+
+/* --------------------------------------------------
+  GŁÓWNY PANEL ODPRAWY
+-------------------------------------------------- */
+
+.parent-container {
+    position: relative;
+    width: 100%;
+    min-height: 500px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 28px 20px;
+    margin-bottom: 30px;
+
+    background: var(--odp-glass-bg);
+    border: 1px solid var(--odp-glass-border);
+    border-radius: 30px;
+
+    backdrop-filter: blur(18px) saturate(145%);
+    -webkit-backdrop-filter: blur(18px) saturate(145%);
+
+    box-shadow: var(--odp-shadow);
+    box-sizing: border-box;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease;
+}
+
+.parent-container:hover {
+    transform: translateY(-4px);
+    background: var(--odp-glass-bg-strong);
+    box-shadow: var(--odp-shadow-hover);
+}
+
+
+/* --------------------------------------------------
+  FORMULARZ
+-------------------------------------------------- */
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    gap: 10%;
+    row-gap: 20px;
+
+    padding: 40px;
+    width: 90%;
+    max-width: 90%;
+
+    margin-top: 3%;
+    margin-bottom: 4%;
+
+    background: transparent;
+    border: none;
+    border-radius: 0;
+
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+
+    box-shadow: none;
+    box-sizing: border-box;
+}
+
+.container input,
+.container button {
+    flex: none;
+
+    width: 24%;
+    height: 70px;
+
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+
+    padding: 10px;
+    box-sizing: border-box;
+
+    border: 2px solid var(--odp-blue);
+    border-radius: 16px;
+
+    color: var(--odp-blue);
+    background: rgba(255, 255, 255, 0.94);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        0 10px 24px rgba(36, 55, 81, 0.16);
+
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        background-color 0.22s ease,
+        border-color 0.22s ease;
+}
+
+.container input::placeholder {
+    color: rgba(36, 55, 81, 0.75);
+    opacity: 1;
+}
+
+.container input:hover,
+.container input:focus {
+    outline: none;
+    transform: translateY(-3px);
+    background: #ffffff;
+    border-color: var(--odp-blue);
+    box-shadow:
+        0 0 0 4px rgba(36, 55, 81, 0.12),
+        0 14px 30px rgba(36, 55, 81, 0.22);
+}
+/* --------------------------------------------------
+  PRZYCISK
+-------------------------------------------------- */
+.container button {
+    font-size: 16px;
+    background: var(--odp-red);
+    color: #ffffff;
+
+    border: 2px solid var(--odp-blue);
+    cursor: pointer;
+
+    box-shadow: 0 12px 28px rgba(197, 9, 20, 0.28);
+}
+
+.container button:hover {
+    transform: translateY(-4px);
+    background: #a00000;
+    box-shadow: 0 18px 38px rgba(197, 9, 20, 0.34);
+}
+
+
+
+
+/* --------------------------------------------------
+  OPIS
+-------------------------------------------------- */
+.description {
+    margin-top: 20px;
+    padding: 20px;
+
+    width: 90%;
+
+    font-size: 20px;
+    text-align: justify;
+    color: rgba(36, 55, 81, 0.92);
+
+    background: transparent;
+    border: none;
+    border-radius: 0;
+
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+
+    box-shadow: none;
+    box-sizing: border-box;
+}
+/* --------------------------------------------------
+  TABLET
+-------------------------------------------------- */
+
+@media (max-width: 1200px) and (min-width: 761px) {
+    main.content {
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+
+    .container {
+        width: 90%;
+        padding: 28px;
+        gap: 18px;
+    }
+
+    .container input,
+    .container button {
+        width: 100%;
+        height: 50px;
+        font-size: 15px;
+        padding: 10px;
+        border: 2px solid var(--odp-blue);
+    }
+
+    .text-linia {
+        font-size: 32px;
+    }
+
+    .line-right {
+        height: 8px;
+    }
+}
+
+/* --------------------------------------------------
+  MOBILE
+-------------------------------------------------- */
+
+@media (max-width: 760px) {
+    main.content {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    main.content h1 {
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+
+    main.content p {
+        font-size: 17px;
+    }
+
+    .line-container {
+        margin: 10px 0;
+    }
+
+    .text-linia {
+        font-size: 20px;
+    }
+
+    .line-right {
+        height: 6px;
+    }
+
+    .parent-container {
+        padding: 18px 10px;
+        border-radius: 22px;
+    }
+
+    .container {
+        width: 90%;
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .container input,
+    .container button {
+        width: 100%;
+        height: 50px;
+        font-size: 15px;
+        border-radius: 14px;
+    }
+
+    .description {
+        width: 90%;
+        padding: 18px;
+        font-size: 15px !important;
+        border-radius: 18px;
+    }
+
+    .map-button {
+        top: 50%;
+        font-size: 15px;
+    }
+
+    .columns ul li {
+        white-space: nowrap;
+        font-size: 15px;
+        margin-bottom: 5px;
+    }
+
+    .airplane-container {
+        margin-top: 10%;
+        max-width: 100% !important;
+    }
+}

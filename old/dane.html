@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="img/logo_16.ico">
+  <link rel="shortcut icon" href="img/logo_32.ico">
+  <title>WronAir | Podsumowanie</title>
+  <link rel="stylesheet" href="style_potwierdz_dane.css" />
+  <link rel="stylesheet" href="style_headfoot.css" />
+</head>
+<body>
+  <header class="header-with-logo">
+    <!-- Kontener na logo -->
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="img/logociemne.jpg" alt="Logo WronAir" />
+      </a>
+    </div>
+    
+    <!-- Przycisk hamburger -->
+    <button class="menu-toggle" id="menuToggle">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+    
+    <!-- Górny pasek -->
+    <div class="top-bar">
+      <div class="top-bar-content">
+        <a href="#" class="login-link">Logowanie i rejestracja</a>
+        <div class="language-switch">
+          <button class="lang-btn" id="langButton">
+            <img src="img/Flag_of_Poland.svg" alt="PL" class="flag" />
+            PL
+          </button>
+          <ul class="language-dropdown" id="langDropdown">
+            <li class="current-language">
+              <a href="#">
+                <img src="img/Flag_of_Poland.svg" alt="PL" class="flag" />
+                PL
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="img/Flag_of_the_United_States.svg.png" alt="ENG" class="flag" />
+                ENG
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Pasek menu (desktop) -->
+    <nav class="main-menu" id="mainNav">
+      <ul class="nav-links">
+        <li><a href="index.html">Strona Główna</a></li>
+        <li><a href="odprwa.html">Odpraw się</a></li>
+        <li><a href="upgrade.html">Upgrade</a></li>
+        <li><a href="uslugi.html">Usługi na Pokładzie</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="o_nas.html">O Nas</a></li>
+      </ul>
+    </nav>
+    
+    <!-- Menu mobilne -->
+    <nav class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="#">Logowanie i rejestracja</a></li>
+        <li><a href="index.html">Strona Główna</a></li>
+        <li><a href="odprawa.html">Odpraw się</a></li>
+        <li><a href="upgrade.html">Upgrade</a></li>
+        <li><a href="uslugi.html">Usługi na Pokładzie</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="o_nas.html">O Nas</a></li>
+        <li>
+          <div class="language-switch-mobile">
+            <button class="lang-btn" id="langButtonMobile">
+              <img src="img/Flag_of_Poland.svg" alt="PL" class="flag" />
+              PL
+            </button>
+            <ul class="language-dropdown" id="langDropdownMobile">
+              <li class="current-language">
+                <a href="#">
+                  <img src="img/Flag_of_Poland.svg" alt="PL" class="flag" />
+                  PL
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="img/Flag_of_the_United_States.svg.png" alt="ENG" class="flag" />
+                  ENG
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <!-- O Nas -->
+  <main class="content">
+        
+    <div class="container">
+        <h1>TWOJA REZERWACJA nr <span id="reservationNumberSpan"></span></h1>
+
+        <div class="section">
+            <div style="display: flex; justify-content: space-between;">
+                <div>
+                    <div class="section-title">Pasażer 1</div>
+                    <table class="info-table">
+                        <tr>
+                            <th>Imię</th>
+                            <td>Jan</td>
+                        </tr>
+                        <tr>
+                            <th>Drugie imię</th>
+                            <td>Piotr</td>
+                        </tr>
+                        <tr>
+                            <th>Nazwisko</th>
+                            <td><span id="lastNameSpan"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Data urodzenia</th>
+                            <td>18.12.1984</td>
+                        </tr>
+                        <tr>
+                            <th>Płeć</th>
+                            <td>M</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div>
+                    <div class="section-title">Dane kontaktowe</div>
+                    <table class="info-table">
+                        <tr>
+                            <th>E-mail</th>
+                            <td>jan.piotr84@xyz.com</td>
+                        </tr>
+                        <tr>
+                            <th>Telefon</th>
+                            <td>+48 753 654 123</td>
+                        </tr>
+                        <tr>
+                            <th>Kraj</th>
+                            <td>POLSKA</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">PLAN PODRÓŻY</div>
+            <h3>WYLOT</h3>
+            <div class="plan">
+                <div class="plan-details">
+                    <div>Wylot: </div>
+                    <div>Cel:</div>
+                    <div>Podróż:</div>
+
+                    <div>Warszawa [WAW]</div>
+                    <div>Nowy Jork [JFK]</div>
+                    <div>NUMER LOTU: WR47</div>
+
+                    <div>DATA: 01.02.2025</div>
+                    <div>DATA: 01.02.2025</div>
+                    <div>CZAS LOTU: 9 h 35 min</div>
+
+                    <div>GODZINA: 19:15</div>
+                    <div>GODZINA: 22:50</div>
+                    <div>KLASA: EKONOMICZNA</div>
+
+                    <div>TERMINAL: 1</div>
+                    <div>TERMINAL: 5</div>
+                    <div>MIEJSCE: BRAK</div>
+
+                    <div>GATE: TBD</div>
+                    <div>GATE: G27</div>
+                    <div>POSIŁEK: 1 Pełny posiłek, przekąski</div>
+
+                    <div>SAMOLOT: A330-300</div>
+                    <div></div>
+                    <div>BAGAŻ REJESTROWANY: 0 sztuk</div>
+                </div>
+                <div class="price">CENA: 2 319.87 PLN</div>
+            </div>
+            
+            <h3 id="return_title">POWRÓT (odprawa na lot powrotny dostępna będzie 24h przed datą lotu powrotnego)</h3>
+            <div class="plan">
+                <div class="plan-details">
+                    <div>Wylot: </div>
+                    <div>Cel:</div>
+                    <div>Podróż:</div>
+
+                    <div>Nowy Jork [JFK]</div>
+                    <div>Warszawa [WAW]</div>
+                    <div>NUMER LOTU: WR36</div>
+
+                    <div>DATA: 12.02.2025</div>
+                    <div>DATA: 13.02.2025</div>
+                    <div>CZAS LOTU: 8 h 20 min</div>
+
+                    <div>GODZINA: 17:20</div>
+                    <div>GODZINA: 07:40</div>
+                    <div>KLASA: EKONOMICZNA</div>
+
+                    <div>TERMINAL: 5</div>
+                    <div>TERMINAL: 1</div>
+                    <div>MIEJSCE: BRAK</div>
+
+                    <div>GATE: TBD</div>
+                    <div>GATE: TBD</div>
+                    <div>POSIŁEK: 1 Pełny posiłek, przekąski</div>
+
+                    <div>SAMOLOT: B787-9</div>
+                    <div></div>
+                    <div>BAGAŻ REJESTROWANY: 0 sztuk</div>
+                </div>
+                <div class="price">CENA: 1 677.89 PLN</div>
+            </div>
+        </div>
+        <a href="#" class = "edytuj">Edytuj Dane</a>
+        <div class="total-section">
+            <div class="total">Cena całkowita: 3 997.76 PLN (z VAT)</div>
+            <a href="#" class="confirm-button">POTWIERDŹ DANE*</a>
+        </div>
+        <p>*Naciskając przycisk, zaświadczasz, że wprowadzone dane są prawdziwe i zgadzają się z danymi w paszporci, oraz że jesteś świadom konsekwencji podawania fałszywych danych.</p>
+
+    
+  </main>
+
+  <footer>
+    <!-- Zawartość stopki -->
+    <div class="footer-container search-bar-row">
+      <div class="footer-column">
+        <form class="search-bar">
+          <input type="text" placeholder="Wprowadź szukany termin" />
+          <button type="submit">
+            <img src="img/search.png" alt="Szukaj" />
+          </button>
+        </form>
+      </div>
+      <div class="footer-column"></div>
+      <div class="footer-column"></div>
+    </div>
+    <div class="footer-container">
+      <div class="footer-column">
+        <div class="footer-links">
+          <a href="odprawa.html">Odpraw się</a><br /><br />
+          <a href="upgrade.html">Upgrade</a><br /><br />
+          <a href="uslugi.html">Usługi na pokładzie</a><br /><br />
+          <a href="faq.html">FAQ</a>
+        </div>
+        <p class="payment-title">Opcje płatności</p>
+        <div class="payment-options">
+          <a href="#"><img src="img/masterC.png" alt="Mastercard" /></a>
+          <a href="#"><img src="img/visa.png" alt="Visa" /></a>
+          <a href="#"><img src="img/ap.png" alt="Apple Pay" /></a>
+          <a href="#"><img src="img/paypal.png" alt="Paypal" /></a>
+          <a href="#"><img src="img/blik.png" alt="BLIK" /></a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <div class="footer-links">
+          <a href="o_nas.html">O nas</a><br /><br />
+          <a href="faq.html">Bagaż</a><br /><br />
+          <a href="faq.html">Informacje o odprawie</a><br /><br />
+          <a href="faq.html">Pomoc</a><br /><br />
+          <a href="faq.html">Posiłki i napoje</a><br /><br />
+          <a href="kontakt.html">Kontakt</a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <p class="social-title">Śledź nas</p>
+        <div class="social-media">
+          <a href="#"><img src="img/ig.png" alt="Instagram" /> @WronAir</a><br />
+          <a href="#"><img src="img/twt.png" alt="Twitter" /> @WronAir</a><br />
+          <a href="#"><img src="img/ln.png" alt="LinkedIn" /> @WronAir</a><br />
+          <a href="#"><img src="img/facebook.png" alt="Facebook" /> @WronAir</a><br />
+          <a href="#"><img src="img/yt.png" alt="YouTube" /> @WronAir</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; WronAir.com 2024. Wszelkie prawa zastrzeżone.</p>
+    </div>
+  </footer>
+
+  <div class="footer-logo">
+    <img src="img/logojasne.jpg" alt="Logo WronAir">
+  </div>
+
+  <!-- Skrypt do obsługi przycisków (hamburger, wybór języka) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+  const menuToggle = document.getElementById("menuToggle");
+  const mobileMenu = document.getElementById("mobileMenu");
+  menuToggle.addEventListener("click", function () {
+    mobileMenu.classList.toggle("open");
+  });
+
+  const langButton = document.getElementById("langButton");
+  const langDropdown = document.getElementById("langDropdown");
+  langButton.addEventListener("click", function () {
+    langDropdown.classList.toggle("show");
+  });
+
+  const langButtonMobile = document.getElementById("langButtonMobile");
+  const langDropdownMobile = document.getElementById("langDropdownMobile");
+  langButtonMobile.addEventListener("click", function () {
+    langDropdownMobile.classList.toggle("show");
+  });
+
+  //pobranie parametrow
+  function getQueryParams() {
+    const params = new URLSearchParams(window.location.search);
+    return Object.fromEntries(params.entries());
+  }
+
+  //wypelnienie danych 
+  function populateData() {
+    const params = getQueryParams();
+
+    //Generowanie 12-cyfrowego numeru rezerwacji
+    const orderNum = Math.floor(Math.random() * 1e12).toString().padStart(12, "0");
+    const reservationNumberSpan = document.getElementById("reservationNumberSpan");
+    if (reservationNumberSpan) {
+      reservationNumberSpan.textContent = orderNum; 
+    }
+    //ustawiamy dane
+    const lastNameSpan = document.getElementById("lastNameSpan");
+    if (lastNameSpan) {
+      lastNameSpan.textContent = params.lastName1 || "Brak nazwiska";
+    }
+
+    
+    const passengerCount = Math.min(Number(params.passengers || 0), 4); // do 4 pasażerów max
+
+    const passengerOneTable = document.querySelector(".section .section-title + .info-table");
+    if (passengerOneTable && passengerCount >= 1) {
+      const firstName = params.firstName1 || "Jan";
+      const middleName = params.middleName1 || "Piotr";
+      const lastName = params.lastName1 || "Nowak";
+      const birthDate = params.birthDate1 || "18.12.1984";
+      const gender = params.gender1 === "male" ? "M" : (params.gender1 === "female" ? "F" : "M");
+
+      
+      passengerOneTable.innerHTML = `
+        <tr>
+          <th>Imię</th>
+          <td>${firstName}</td>
+        </tr>
+        <tr>
+          <th>Drugie imię</th>
+          <td>${middleName}</td>
+        </tr>
+        <tr>
+          <th>Nazwisko</th>
+          <td>${lastName}</td>
+        </tr>
+        <tr>
+          <th>Data urodzenia</th>
+          <td>${birthDate}</td>
+        </tr>
+        <tr>
+          <th>Płeć</th>
+          <td>${gender}</td>
+        </tr>
+      `;
+    }
+
+   
+    const firstSection = document.querySelectorAll(".section")[0];
+    if (firstSection) {
+      // Jeżeli mamy więcej niż 1 pasażera...
+      for (let i = 2; i <= passengerCount; i++) {
+        const fName = params[`firstName${i}`] || "";
+        const mName = params[`middleName${i}`] || "";
+        const lName = params[`lastName${i}`] || "";
+        const bDate = params[`birthDate${i}`] || "";
+        const gen = params[`gender${i}`] === "male" ? "M" : "F";
+
+       
+        const passengerHtml = `
+          <div style="margin-top:1rem;">
+            <div class="section-title">Pasażer ${i}</div>
+            <table class="info-table">
+              <tr><th>Imię</th><td>${fName}</td></tr>
+              <tr><th>Drugie imię</th><td>${mName}</td></tr>
+              <tr><th>Nazwisko</th><td>${lName}</td></tr>
+              <tr><th>Data urodzenia</th><td>${bDate}</td></tr>
+              <tr><th>Płeć</th><td>${gen}</td></tr>
+            </table>
+          </div>
+        `;
+        // Wstawiamy nowego pasażera 
+        firstSection.insertAdjacentHTML("beforeend", passengerHtml);
+      }
+    }
+
+    //kontakt
+    const allSectionTitles = document.querySelectorAll(".section-title");
+    let contactTitleDiv = null;
+    for (const title of allSectionTitles) {
+      if (title.textContent.trim() === "Dane kontaktowe") {
+        contactTitleDiv = title;
+        break;
+      }
+    }
+    if (contactTitleDiv) {
+      const contactInfoTable = contactTitleDiv.nextElementSibling;
+      if (contactInfoTable && contactInfoTable.tagName === "TABLE") {
+        contactInfoTable.innerHTML = `
+          <tr><th>E-mail</th><td>${params.email || "Brak danych"}</td></tr>
+          <tr><th>Telefon</th><td>${params.phoneNumber || "Brak danych"}</td></tr>
+          <tr><th>Kraj</th><td>${params.countryCode || "Brak danych"}</td></tr>`;
+      }
+    }
+
+
+  const planSections = document.querySelectorAll(".plan");
+    if (planSections.length < 2) {
+      console.error("Nie znaleziono wystarczającej liczby sekcji <div class='plan'>.");
+      return;
+    }
+
+    // WYLOT 
+    planSections[0].innerHTML = `
+      <div class="plan-details">
+        <div>Wylot: </div>
+        <div>Cel:</div>
+        <div>Podróż:</div>
+
+        <div>${params.from || "Warszawa [WAW]"}</div>
+        <div>${params.to || "Nowy Jork [JFK]"}</div>
+        <div>NUMER LOTU: ${params.flight_code || "WR47"}</div>
+
+        <div>DATA: ${params.departure_date || "01.02.2025"}</div>
+        <div>DATA: ${params.departure_date || "01.02.2025"}</div>
+        <div>CZAS LOTU: ${params.duration || "9 h 35 min"}</div>
+
+        <div>GODZINA: ${params.departure_time || "19:15"}</div>
+        <div>GODZINA: ${params.arrival_time || "22:50"}</div>
+        <div>KLASA: ${params.ticket_type || "EKONOMICZNA"}</div>
+
+        <div>TERMINAL: 1</div>
+        <div>TERMINAL: 5</div>
+        <div>MIEJSCE: ${params.selectedSeats || "BRAK"}</div>
+
+        <div>GATE: TBD</div>
+        <div>GATE: G27</div>
+        <div>POSIŁEK: 1 Pełny posiłek, przekąski</div>
+
+        <div>SAMOLOT: A330-300</div>
+        <div></div>
+        <div>BAGAŻ REJESTROWANY: ${params.baggageCounts || "0 sztuk"}</div>
+      </div>
+      <div class="price">CENA: ${params.price_departure || "2 319.87"} PLN</div>
+    `;
+    const price_return = (parseFloat(params.price) - parseFloat(params.price_departure)).toFixed(2);
+    // POWRÓT 
+    if(params.trip_type === "round-trip") {
+    planSections[1].innerHTML = `
+      <div class="plan-details">
+        <div>Wylot: </div>
+        <div>Cel:</div>
+        <div>Podróż:</div>
+
+        <div>${params.from_return || params.to || "Nowy Jork [JFK]"}</div>
+        <div>${params.to_return || params.from || "Warszawa [WAW]"}</div>
+        <div>NUMER LOTU: ${params.flight_code_return || "WR36"}</div>
+
+        <div>DATA: ${params.return_date || "12.02.2025"}</div>
+        <div>DATA: ${params.return_date || "13.02.2025"}</div>
+        <div>CZAS LOTU: ${params.duration_return || "8 h 20 min"}</div>
+
+        <div>GODZINA: ${params.departure_time_return || "17:20"}</div>
+        <div>GODZINA: ${params.arrival_time_return || "07:40"}</div>
+        <div>KLASA: ${params.ticket_type_return || "BUSINESS"}</div>
+
+        <div>TERMINAL: 5</div>
+        <div>TERMINAL: 1</div>
+        <div>MIEJSCE: ${params.selectedSeats_return || "BRAK"}</div>
+
+        <div>GATE: TBD</div>
+        <div>GATE: TBD</div>
+        <div>POSIŁEK: 1 Pełny posiłek, przekąski</div>
+
+        <div>SAMOLOT: B787-9</div>
+        <div></div>
+        <div>BAGAŻ REJESTROWANY: ${params.baggageCounts_return || params.baggageCounts || "0 sztuk"}</div>
+      </div>
+      <div class="price">CENA: ${price_return || "NaN "} PLN</div>
+    `;
+    }
+    else{
+    // Ukryj lub usuń zawartość, gdy trip_type nie jest "round-trip"
+    planSections[1].innerHTML = ""; // Wyczyszczenie zawartości
+    planSections[1].style.display = "none";
+
+    document.getElementById("return_title").style.display = "none";
+    }
+    //price
+    const totalSection = document.querySelector(".total-section .total");
+    if (totalSection) {
+      totalSection.textContent = `Cena całkowita: ${params.finalPrice || "NaN"} PLN (z VAT)`;
+    }
+
+    //przycisk
+    const confirmButton = document.querySelector(".confirm-button");
+    if (confirmButton) {
+      confirmButton.href = `podziekowania.html?${new URLSearchParams(params).toString()}`;
+    }
+  }
+
+  populateData();
+});
+</script>
+
+</body>
+</html>

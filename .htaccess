@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase /WronAir/WronAir/
+
+RewriteRule ^$ home [R=302,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^([a-zA-Z0-9_-]+)$ index.php?view=$1 [L,QSA]
