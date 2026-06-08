@@ -1,6 +1,11 @@
 <?php
-require_once __DIR__ . '/config/db.php';
 if (!defined('APP_ACCESS')) exit('Brak dostępu');
+
+if (!isset($pdo)) {
+    require_once __DIR__ . '/config/db.php';
+    $pdo = getDb();
+}
+
 
 $search = $_SESSION['flight_search'] ?? null;
 $departureChoice = $_SESSION['departure_choice'] ?? null;
@@ -128,9 +133,6 @@ if (($search['trip_type'] ?? '') === 'round-trip' && $returnChoice) {
 $from = $search['from'] ?? '';
 $to = $search['to'] ?? '';
 ?>
-
-<link rel="stylesheet" href="style/style_potwierdz_dane.css" />
-<link rel="stylesheet" href="style/style_headfoot.css" />
 
 <main class="content">
     <div class="container">

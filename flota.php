@@ -1,9 +1,8 @@
 <?php
-if (!defined('APP_ACCESS')) exit('Brak dostępu');
+if (!defined('APP_ACCESS')) {
+    exit('Brak dostępu');
+}
 ?>
-
-<link rel="stylesheet" href="style/style_flota.css" />
-<link rel="stylesheet" href="style/style_headfoot.css" />
 <main class="content">
   <h1>Poznaj flotę WronAir</h1>
   <section class="fleet">

@@ -21,8 +21,10 @@ $reservationId = (int)$upgradeData['reservation_id'];
 $passengerId = (int)$upgradeData['passenger_id'];
 $flightDirection = $upgradeData['flight_direction'];
 
-require_once __DIR__ . '/config/db.php';
-$pdo = getDb();
+if (!isset($pdo)) {
+    require_once __DIR__ . '/config/db.php';
+    $pdo = getDb();
+}
 
 if ($orderCode === '' || $passengerId <= 0) {
     echo '<main><p>Brak wymaganych danych rezerwacji.</p></main>';

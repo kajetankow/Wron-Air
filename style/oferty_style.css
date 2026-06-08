@@ -50,7 +50,6 @@ body {
     transition: transform 0.4s ease;
 }
 
-/* KAFELEK - identyczny styl jak home.php */
 .tile {
     min-width: 280px;
     max-width: 280px;
@@ -83,7 +82,7 @@ body {
 
 .tile-info {
     padding: 12px 15px 15px;
-    text-align: center;  /* dodaj */
+    text-align: center;  
 }
 
 .tile-info h3 {
@@ -97,7 +96,7 @@ body {
     color: #243751;
     font-size: 1rem;
     font-weight: bold;
-    text-align: center;  /* upewnij się że też jest */
+    text-align: center;
 }
 
 /* Przyciski nawigacji */

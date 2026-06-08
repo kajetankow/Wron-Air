@@ -2,9 +2,6 @@
 if (!defined('APP_ACCESS')) exit('Brak dostępu');
 ?>
 
-<link rel="stylesheet" href="style/style_internet.css" />
-<link rel="stylesheet" href="style/style_headfoot.css" />
-
 <main>
     <section class="upgrade-section">
         <h1 class="upgrade-title">Internet</h1>

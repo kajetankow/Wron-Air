@@ -1,7 +1,12 @@
 <?php
-require_once __DIR__ . '/config/db.php';
-require_once __DIR__ . '/includes/flight_search.php';
 if (!defined('APP_ACCESS')) exit('Brak dostępu');
+
+if (!isset($pdo)) {
+    require_once __DIR__ . '/config/db.php';
+    $pdo = getDb();
+}
+
+require_once __DIR__ . '/includes/flight_search.php';
 
 $search = $_SESSION['flight_search'] ?? null;
 $departureChoice = $_SESSION['departure_choice'] ?? null;
@@ -42,9 +47,6 @@ $toDisplay = getAirportDisplayName($pdo, $toCode);
 
 $flights = findFlightOptions($pdo, $toCode, $fromCode, 4, 50);
 ?>
-
-<link rel="stylesheet" href="style/style_departure.css" />
-<link rel="stylesheet" href="style/style_headfoot.css" />
 
 <?php if (empty($flights)): ?>
     <main class="content">

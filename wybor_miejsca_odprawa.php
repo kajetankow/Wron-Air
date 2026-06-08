@@ -1,8 +1,10 @@
-<link rel="stylesheet" href="style/style_wybor_miejsca.css" />
-<link rel="stylesheet" href="style/style_headfoot.css" />
-
 <?php
-require_once __DIR__ . '/config/db.php';
+if (!defined('APP_ACCESS')) exit('Brak dostępu');
+
+if (!isset($pdo)) {
+    require_once __DIR__ . '/config/db.php';
+    $pdo = getDb();
+}
 
 $checkInData = $_SESSION['check_in_data'] ?? null;
 
@@ -10,8 +12,6 @@ if (!$checkInData) {
     echo '<main class="content"><h1>Brak danych odprawy.</h1></main>';
     return;
 }
-
-$pdo = getDb();
 
 $reservation = $checkInData['reservation'] ?? [];
 $passengers = $checkInData['passengers'] ?? [];

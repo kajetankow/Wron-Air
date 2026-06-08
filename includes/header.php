@@ -8,11 +8,20 @@ if (!defined('APP_ACCESS')) exit('Brak dostępu');
   <base href="/WronAir/WronAir/" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="keywords" content="WronAir, linie lotnicze, tanie loty, podróże, wakacje, samolot, bilety lotnicze, loty do USA" />
+
   <link rel="shortcut icon" href="img/logo_16.ico">
   <link rel="shortcut icon" href="img/logo_32.ico">
+
   <title><?= htmlspecialchars($pageTitle ?? 'WronAir') ?></title>
+
   <link rel="stylesheet" href="<?= htmlspecialchars($pageStyle ?? 'style/style.css') ?>" />
   <link rel="stylesheet" href="style/style_headfoot.css" />
+
+  <?php if (!empty($pageStyle2)): ?>
+    <link rel="stylesheet" href="<?= htmlspecialchars($pageStyle2) ?>" />
+  <?php endif; ?>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 <header class="header-with-logo">

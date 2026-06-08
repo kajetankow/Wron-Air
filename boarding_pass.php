@@ -1,7 +1,4 @@
-<link rel="stylesheet" href="style/style_boarding_pass.css" />
-<link rel="stylesheet" href="style/style_headfoot.css" />
 <?php
-require_once __DIR__ . '/config/db.php';
 if (!defined('APP_ACCESS')) exit('Brak dostępu');
 $checkInData = $_SESSION['check_in_data'] ?? null;
 
@@ -9,7 +6,10 @@ if (!$checkInData) {
     echo '<main class="content"><h1>Brak danych karty pokładowej.</h1></main>';
     return;
 }
-
+if (!isset($pdo)) {
+    require_once __DIR__ . '/config/db.php';
+    $pdo = getDb();
+}
 $pdo = getDb();
 
 $reservation = $checkInData['reservation'] ?? [];

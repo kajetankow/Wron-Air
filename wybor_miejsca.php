@@ -1,5 +1,10 @@
 <?php
-require_once __DIR__ . '/config/db.php';
+if (!defined('APP_ACCESS')) exit('Brak dostępu');
+
+if (!isset($pdo)) {
+    require_once __DIR__ . '/config/db.php';
+    $pdo = getDb();
+}
 
 $search = $_SESSION['flight_search'] ?? null;
 $departureChoice = $_SESSION['departure_choice'] ?? null;
@@ -9,8 +14,6 @@ if (!$search || !$departureChoice || !$passengerData) {
     echo '<main class="content"><h1>Brak danych rezerwacji.</h1></main>';
     return;
 }
-
-$pdo = getDb();
 
 $passengersCount = max(1, (int)($search['passengers'] ?? 1));
 $departureDate = $search['departure_date'] ?? date('Y-m-d');
@@ -135,9 +138,6 @@ for ($i = 0; $i < $passengersCount; $i++) {
     ];
 }
 ?>
-
-<link rel="stylesheet" href="style/style_wybor_miejsca.css" />
-<link rel="stylesheet" href="style/style_headfoot.css" />
 
 <main class="content">
     <div class="line-container">

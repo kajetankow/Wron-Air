@@ -1,5 +1,5 @@
 /* --------------------------------------------------
-  Potwierdź dane - liquid glass, bez zmiany układu
+  Potwierdź dane
 -------------------------------------------------- */
 
 :root {
@@ -48,7 +48,6 @@ h1 {
     color: var(--pd-blue);
 }
 
-/* tabela bez rozwalania układu */
 .info-table {
     width: 100%;
     border-collapse: collapse;
@@ -69,7 +68,6 @@ h1 {
     font-weight: bold;
 }
 
-/* ramka planu podróży - granatowa, tylko zaokrąglona i glass */
 .plan {
     display: flex;
     justify-content: space-between;
@@ -100,7 +98,6 @@ h1 {
     box-shadow: var(--pd-shadow-hover);
 }
 
-/* zostawiamy Twój układ */
 .plan-details {
     display: flex;
     flex-wrap: wrap;
@@ -114,7 +111,6 @@ h1 {
     color: var(--pd-blue);
 }
 
-/* cena bez dedykowanej otoczki */
 .price {
     width: 20%;
     text-align: right;
@@ -134,7 +130,6 @@ h1 {
     margin-top: 20px;
 }
 
-/* panel ceny całkowitej - układ jak był, tylko zaokrąglony glass */
 .total-section {
     display: flex;
     justify-content: space-between;

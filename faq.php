@@ -1,9 +1,8 @@
 <?php
-if (!defined('APP_ACCESS')) exit('Brak dostępu');
+if (!defined('APP_ACCESS')) {
+    exit('Brak dostępu');
+}
 ?>
-
-<link rel="stylesheet" href="style/style_faq.css" />
-<link rel="stylesheet" href="style/style_headfoot.css" />
 <!-- FAQ -->
 <div id="faq-container">
   <h1>FAQ</h1>

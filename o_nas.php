@@ -2,9 +2,6 @@
 if (!defined('APP_ACCESS')) exit('Brak dostępu');
 ?>
 
-<link rel="stylesheet" href="style/style_o_nas.css" />
-<link rel="stylesheet" href="style/style_headfoot.css" />
-
 <main class="content">
     <h1>O Nas</h1>
 

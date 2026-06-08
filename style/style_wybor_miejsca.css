@@ -1,5 +1,5 @@
 /* --------------------------------------------------
-   WYBÓR MIEJSCA - LIQUID GLASS / CLEAN VERSION
+   WYBÓR MIEJSCA
 -------------------------------------------------- */
 
 :root {
@@ -81,16 +81,14 @@
        ROZMIARY TŁA SAMOLOTU
        ----------------------------- */
 
-    /* A320 - mały samolot */
+    /* A320 */
     --short-aircraft-bg-width: 920px;
     --short-aircraft-bg-height: 2000px;
 
-    /* A330 - nie ruszamy, bo jest dopasowany */
+    /* A330 */
     --long-aircraft-bg-width: 900px;
     --long-aircraft-bg-height: 2200px;
 
-    /* Wysokość sekcji mapy.
-       Dla A320 musi być >= wysokości tła, bo tło jest position:absolute. */
     --short-map-wrapper-height: 2050px;
     --long-map-wrapper-height: 2200px;
 }
@@ -269,10 +267,6 @@ main.content p {
     min-height: var(--long-map-wrapper-height) !important;
 }
 
-/* Tło samolotu przesuwasz niezależnie przez:
-   --aircraft-bg-top
-   --aircraft-bg-shift-x
-*/
 .background-container {
     position: absolute;
     top: var(--aircraft-bg-top);
@@ -300,10 +294,6 @@ main.content p {
     height: var(--long-aircraft-bg-height);
 }
 
-/* Fotele przesuwasz niezależnie przez:
-   --seat-map-top-padding
-   --seat-map-shift-x
-*/
 .content-wrapper {
     position: relative;
     z-index: 1;
@@ -356,7 +346,7 @@ main.content p {
 }
 
 /* --------------------------------------------------
-   SEKCJE MIEJSC - BEZ TŁA
+   SEKCJE MIEJSC
 -------------------------------------------------- */
 
 .class-section,
@@ -395,7 +385,7 @@ main.content p {
 }
 
 /* --------------------------------------------------
-   RZĘDY - STAŁA SZEROKOŚĆ, WSPÓLNE KRAWĘDZIE
+   RZĘDY 
 -------------------------------------------------- */
 
 .row {
@@ -515,7 +505,7 @@ main.content p {
 }
 
 /* --------------------------------------------------
-   PRZYCISKI MIEJSC - PROSTOKĄTNE, CZYTELNE
+   PRZYCISKI MIEJSC 
 -------------------------------------------------- */
 
 .seat-button {
@@ -1119,7 +1109,7 @@ main.content p {
     }
 }
 /* ---------------------------------------
-   UPGRADE - CIAŚNIEJSZE RZĘDY FOTELI
+   UPGRADE
 --------------------------------------- */
 
 .upgrade-section {

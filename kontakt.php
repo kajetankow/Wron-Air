@@ -2,8 +2,6 @@
 if (!defined('APP_ACCESS')) exit('Brak dostępu');
 ?>
 
-<link rel="stylesheet" href="style/style_kontakt.css" />
-<link rel="stylesheet" href="style/style_headfoot.css" />
 <main>
     <div class="contact-all">
         <h1>Kontakt</h1>
@@ -19,7 +17,7 @@ if (!defined('APP_ACCESS')) exit('Brak dostępu');
                 </div>
                 <div class="contact-form">
                     <h2>Formularz zgłoszeniowy</h2>
-                    <form>
+                    <form action="#" method="post">
                         <div class="form-half">
                             <label for="name">Imię i nazwisko</label>
                             <input type="text" placeholder="Imię i nazwisko" id="name" name="name" required />

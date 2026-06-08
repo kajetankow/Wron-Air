@@ -108,7 +108,7 @@
 .upgrade-card {
     flex: 1;
     min-width: 280px;
-    max-width: 400px;           /* było 350px */
+    max-width: 400px;          
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -126,11 +126,11 @@
 .upgrade-card img {
     width: 100%;
     height: 260px;
-    object-fit: contain;        /* zamiast cover - pokazuje całe zdjęcie */
+    object-fit: contain;        
     display: block;
     border-radius: 12px 12px 0 0;
-    background-color: #ffffff;  /* delikatne tło żeby nie było białej pustki */
-    padding: 15px;              /* trochę przestrzeni wokół zdjęcia */
+    background-color: #ffffff;  
+    padding: 15px;             
     box-sizing: border-box;
 }
 

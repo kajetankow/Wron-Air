@@ -1,4 +1,6 @@
 <?php
+if (!defined('APP_ACCESS')) exit('Brak dostępu');
+
 $upgradeError = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['upgrade_submit'])) {
@@ -7,8 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['upgrade_submit'])) {
     if (strlen($orderCode) !== 10) {
         $upgradeError = 'Kod zamówienia musi mieć dokładnie 10 znaków.';
     } else {
-        require_once __DIR__ . '/config/db.php';
-        $pdo = getDb();
+        if (!isset($pdo)) {
+            require_once __DIR__ . '/config/db.php';
+            $pdo = getDb();
+        }
         $stmt = $pdo->prepare("SELECT id FROM reservations WHERE reservation_code = :code LIMIT 1");
         $stmt->execute([':code' => $orderCode]);
 

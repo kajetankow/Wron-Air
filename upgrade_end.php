@@ -31,8 +31,10 @@ $newClass = strtoupper(trim($upgradeData['new_class'] ?? ''));
 $newSeat = strtoupper(trim($upgradeData['new_seat'] ?? ''));
 $seatPrice = (float)($upgradeData['seat_price'] ?? 0);
 
-require_once __DIR__ . '/config/db.php';
-$pdo = getDb();
+if (!isset($pdo)) {
+    require_once __DIR__ . '/config/db.php';
+    $pdo = getDb();
+}
 
 function e($value): string
 {
@@ -133,32 +135,37 @@ try {
             throw new RuntimeException('Nie znaleziono lotu dla tej rezerwacji.');
         }
 
-        if ($oldSeat !== '' && $oldSeat !== $newSeat) {
+        if ($oldSeat !== $newSeat) {
+            if ($oldSeat !== '') {
+                $stmt = $pdo->prepare("
+                    DELETE FROM flight_occupied_seats
+                    WHERE flight_id = :flight_id
+                    AND flight_date = :flight_date
+                    AND seat_number = :seat_number
+                ");
+                $stmt->execute([
+                    ':flight_id' => $flightData['flight_id'],
+                    ':flight_date' => $flightData['flight_date'],
+                    ':seat_number' => $oldSeat
+                ]);
+            }
+
             $stmt = $pdo->prepare("
-                DELETE FROM flight_occupied_seats
-                WHERE flight_id = :flight_id
-                  AND flight_date = :flight_date
-                  AND seat_number = :seat_number
+                INSERT INTO flight_occupied_seats
+                    (flight_id, flight_date, seat_number)
+                VALUES
+                    (:flight_id, :flight_date, :seat_number)
             ");
             $stmt->execute([
                 ':flight_id' => $flightData['flight_id'],
                 ':flight_date' => $flightData['flight_date'],
-                ':seat_number' => $oldSeat
+                ':seat_number' => $newSeat
             ]);
-        }
 
-        $stmt = $pdo->prepare("
-            INSERT IGNORE INTO flight_occupied_seats
-                (flight_id, flight_date, seat_number)
-            VALUES
-                (:flight_id, :flight_date, :seat_number)
-        ");
-        $stmt->execute([
-            ':flight_id' => $flightData['flight_id'],
-            ':flight_date' => $flightData['flight_date'],
-            ':seat_number' => $newSeat
-        ]);
-
+            if ($stmt->rowCount() === 0) {
+                throw new RuntimeException('Wybrane miejsce jest już zajęte.');
+            }
+}
         $stmt = $pdo->prepare("
             UPDATE reservation_flights
             SET ticket_type = :ticket_type,
@@ -218,7 +225,7 @@ try {
         $pdo->rollBack();
     }
 
-    $error = 'Błąd podczas zapisu: ' . $e->getMessage();
+    $error = 'Wystąpił błąd podczas zapisu zmian. Spróbuj ponownie później.';
 }
 ?>
 

@@ -19,8 +19,10 @@ $orderCode = $upgradeData['order_code'];
 $reservationId = (int)$upgradeData['reservation_id'];
 $flightDirection = $upgradeData['flight_direction'];
 
-require_once __DIR__ . '/config/db.php';
-$pdo = getDb();
+if (!isset($pdo)) {
+    require_once __DIR__ . '/config/db.php';
+    $pdo = getDb();
+}
 
 $stmt = $pdo->prepare("
     SELECT 

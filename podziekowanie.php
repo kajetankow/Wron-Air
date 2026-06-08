@@ -1,8 +1,10 @@
 <?php
-require_once __DIR__ . '/config/db.php';
 if (!defined('APP_ACCESS')) exit('Brak dostępu');
 
-$pdo = getDb();
+if (!isset($pdo)) {
+    require_once __DIR__ . '/config/db.php';
+    $pdo = getDb();
+}
 
 $reservationId = $_SESSION['saved_reservation_id'] ?? null;
 $reservationCode = $_SESSION['reservation_code'] ?? null;
@@ -46,9 +48,6 @@ if (!$reservation) {
 $reservationCode = $reservation['reservation_code'] ?? 'unknown';
 $email = $reservation['contact_email'] ?? 'unknown';
 ?>
-
-<link rel="stylesheet" href="style/style_upgrade_end.css" />
-<link rel="stylesheet" href="style/style_headfoot.css" />
 
 <main>
     <div class="text-linia">

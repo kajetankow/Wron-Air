@@ -1,7 +1,14 @@
 <?php
-require_once __DIR__ . '/config/db.php';
+if (!defined('APP_ACCESS')) {
+    exit('Brak dostępu');
+}
+
 require_once __DIR__ . '/includes/flight_search.php';
-if (!defined('APP_ACCESS')) exit('Brak dostępu');
+
+if (!isset($pdo)) {
+    require_once __DIR__ . '/config/db.php';
+    $pdo = getDb();
+}
 $search = $_SESSION['flight_search'] ?? null;
 
 if (!$search) {

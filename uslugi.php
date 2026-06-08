@@ -1,6 +1,6 @@
-<link rel="stylesheet" href="style/style_uslugi.css" />
-<link rel="stylesheet" href="style/style_headfoot.css" />
-
+<?php
+if (!defined('APP_ACCESS')) exit('Brak dostępu');
+?>
 <main>
     <section class="service-section">
         <h1 class="service-title">Wybierz szukaną usługę</h1>

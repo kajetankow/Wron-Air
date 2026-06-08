@@ -2,75 +2,162 @@
 ob_start();
 session_start();
 define('APP_ACCESS', true);
-if ((isset($_GET['action']) && $_GET['action'] === 'logout') || (isset($_GET['view']) && $_GET['view'] === 'logout')) {
-    unset($_SESSION['user_id']);
-    unset($_SESSION['user_name']);
-    header('Location: home');
-    exit;
-}
 
 require_once __DIR__ . '/config/db.php';
 $pdo = getDb();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'cancel_reservation') {
-    if (isset($_SESSION['user_id']) && !empty($_POST['cancel_id'])) {
-        $stmt = $pdo->prepare("DELETE FROM reservations WHERE id = :id AND user_id = :user_id");
-        $stmt->execute([
-            ':id' => $_POST['cancel_id'],
-            ':user_id' => $_SESSION['user_id']
-        ]);
-    }
-    header('Location: konto');
+$errors = [];
+$authErrors = [];
+$authSuccess = '';
+$pageStyle2 = null;
+
+// ------------------------------
+// Funkcje pomocnicze
+// ------------------------------
+function redirectTo(string $view): void
+{
+    header('Location: ' . $view);
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'auto_checkin') {
-    $code = $_POST['reservation_code'] ?? '';
-    
-    $stmt = $pdo->prepare("SELECT * FROM reservations WHERE reservation_code = :code LIMIT 1");
-    $stmt->execute([':code' => $code]);
-    $reservation = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($reservation) {
-        $stmt = $pdo->prepare("SELECT * FROM reservation_flights WHERE reservation_id = :rid ORDER BY flight_direction ASC");
-        $stmt->execute([':rid' => $reservation['id']]);
-        $flights = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        $stmt = $pdo->prepare("SELECT * FROM reservation_passengers WHERE reservation_id = :rid ORDER BY passenger_index ASC");
-        $stmt->execute([':rid' => $reservation['id']]);
-        $passengers = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        $_SESSION['check_in_data'] = [
-            'reservation' => $reservation,
-            'flights' => $flights,
-            'passengers' => $passengers
-        ];
-
-        header('Location: weryfikacja');
-        exit;
-    } else {
-        header('Location: konto');
-        exit;
-    }
+function postActionIs(string $action): bool
+{
+    return $_SERVER['REQUEST_METHOD'] === 'POST'
+        && isset($_POST['action'])
+        && $_POST['action'] === $action;
 }
 
-if (isset($_GET['view']) && $_GET['view'] === 'upgrade' &&
-    $_SERVER['REQUEST_METHOD'] === 'POST' &&
-    isset($_POST['upgrade_submit'])) {
+function generateReservationCode(int $length = 10): string
+{
+    $characters = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    $code = '';
 
+    for ($i = 0; $i < $length; $i++) {
+        $code .= $characters[random_int(0, strlen($characters) - 1)];
+    }
+
+    return $code;
+}
+
+function parsePrice(mixed $value): float
+{
+    return (float)str_replace([' ', ','], ['', '.'], (string)$value);
+}
+
+function safeDateOrNull(string $date): ?string
+{
+    return $date !== '' ? $date : null;
+}
+
+function loadReservationData(PDO $pdo, int $reservationId): array
+{
+    $stmt = $pdo->prepare("SELECT * FROM reservation_flights WHERE reservation_id = :rid ORDER BY flight_direction ASC");
+    $stmt->execute([':rid' => $reservationId]);
+    $flights = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $stmt = $pdo->prepare("SELECT * FROM reservation_passengers WHERE reservation_id = :rid ORDER BY passenger_index ASC");
+    $stmt->execute([':rid' => $reservationId]);
+    $passengers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return [
+        'flights' => $flights,
+        'passengers' => $passengers
+    ];
+}
+
+// ------------------------------
+// Wylogowanie
+// ------------------------------
+if (
+    (isset($_GET['action']) && $_GET['action'] === 'logout') ||
+    (isset($_GET['view']) && $_GET['view'] === 'logout')
+) {
+    unset($_SESSION['user_id'], $_SESSION['user_name']);
+    redirectTo('home');
+}
+
+// ------------------------------
+// Anulowanie rezerwacji
+// ------------------------------
+if (postActionIs('cancel_reservation')) {
+    if (isset($_SESSION['user_id']) && !empty($_POST['cancel_id'])) {
+        $reservationId = (int)$_POST['cancel_id'];
+        $userId = (int)$_SESSION['user_id'];
+
+        try {
+            $pdo->beginTransaction();
+
+            $stmt = $pdo->prepare("SELECT id FROM reservations WHERE id = :id AND user_id = :user_id LIMIT 1");
+            $stmt->execute([
+                ':id' => $reservationId,
+                ':user_id' => $userId
+            ]);
+
+            if ($stmt->fetch()) {
+                // Usuwamy powiązane dane przed rezerwacją. Przy ON DELETE CASCADE też nie szkodzi.
+                $stmt = $pdo->prepare("DELETE FROM reservation_passengers WHERE reservation_id = :id");
+                $stmt->execute([':id' => $reservationId]);
+
+                $stmt = $pdo->prepare("DELETE FROM reservation_flights WHERE reservation_id = :id");
+                $stmt->execute([':id' => $reservationId]);
+
+                $stmt = $pdo->prepare("DELETE FROM reservations WHERE id = :id AND user_id = :user_id");
+                $stmt->execute([
+                    ':id' => $reservationId,
+                    ':user_id' => $userId
+                ]);
+            }
+
+            $pdo->commit();
+        } catch (Throwable $e) {
+            $pdo->rollBack();
+        }
+    }
+
+    redirectTo('konto');
+}
+
+// ------------------------------
+// Odprawa po kodzie rezerwacji
+// ------------------------------
+if (postActionIs('auto_checkin')) {
+    $code = strtoupper(trim($_POST['reservation_code'] ?? ''));
+
+    if ($code !== '') {
+        $stmt = $pdo->prepare("SELECT * FROM reservations WHERE reservation_code = :code LIMIT 1");
+        $stmt->execute([':code' => $code]);
+        $reservation = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($reservation) {
+            $reservationData = loadReservationData($pdo, (int)$reservation['id']);
+
+            $_SESSION['check_in_data'] = [
+                'reservation' => $reservation,
+                'flights' => $reservationData['flights'],
+                'passengers' => $reservationData['passengers']
+            ];
+
+            redirectTo('weryfikacja');
+        }
+    }
+
+    redirectTo('konto');
+}
+
+// ------------------------------
+// Start procesu upgrade po kodzie rezerwacji
+// ------------------------------
+if (
+    isset($_GET['view']) &&
+    $_GET['view'] === 'upgrade' &&
+    $_SERVER['REQUEST_METHOD'] === 'POST' &&
+    isset($_POST['upgrade_submit'])
+) {
     $orderCode = strtoupper(trim($_POST['orderCode'] ?? ''));
 
     if (strlen($orderCode) === 10) {
-        $stmt = $pdo->prepare("
-            SELECT id, reservation_code
-            FROM reservations
-            WHERE reservation_code = :code
-            LIMIT 1
-        ");
-        $stmt->execute([
-            ':code' => $orderCode
-        ]);
-
+        $stmt = $pdo->prepare("SELECT id, reservation_code FROM reservations WHERE reservation_code = :code LIMIT 1");
+        $stmt->execute([':code' => $orderCode]);
         $reservation = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($reservation) {
@@ -80,12 +167,14 @@ if (isset($_GET['view']) && $_GET['view'] === 'upgrade' &&
                 'flight_direction' => 'departure'
             ];
 
-            header('Location: upgrade_flight');
-            exit;
+            redirectTo('upgrade_flight');
         }
     }
 }
 
+// ------------------------------
+// Reset danych formularza po wejściu na stronę główną
+// ------------------------------
 if (isset($_GET['view']) && $_GET['view'] === 'home') {
     unset(
         $_SESSION['flight_search'],
@@ -103,6 +192,9 @@ if (isset($_GET['view']) && $_GET['view'] === 'home') {
     $_SESSION['current_view'] = 'home';
 }
 
+// ------------------------------
+// Dane lotnisk do walidacji wyszukiwarki
+// ------------------------------
 $stmt = $pdo->query("
     SELECT display_name
     FROM airports
@@ -112,51 +204,49 @@ $stmt = $pdo->query("
 ");
 $airports = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
-$errors = [];
-
-function generateReservationCode(int $length = 10): string
-{
-    $characters = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-    $code = '';
-    for ($i = 0; $i < $length; $i++) {
-        $code .= $characters[random_int(0, strlen($characters) - 1)];
-    }
-    return $code;
-}
-
+// ------------------------------
+// Wyszukiwanie lotu
+// ------------------------------
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['flight_search'])) {
-    $tripType     = trim($_POST['trip_type'] ?? '');
-    $passengers   = trim($_POST['passengers'] ?? '');
-    $from         = trim($_POST['from'] ?? '');
-    $to           = trim($_POST['to'] ?? '');
+    $tripType = trim($_POST['trip_type'] ?? '');
+    $passengers = trim($_POST['passengers'] ?? '');
+    $from = trim($_POST['from'] ?? '');
+    $to = trim($_POST['to'] ?? '');
     $departureDate = trim($_POST['departure_date'] ?? '');
-    $returnDate   = trim($_POST['return_date'] ?? '');
+    $returnDate = trim($_POST['return_date'] ?? '');
 
     if ($tripType !== 'round-trip' && $tripType !== 'one-way') {
         $errors[] = 'Nieprawidłowy typ podróży.';
     }
+
     if ($passengers === '' || !ctype_digit($passengers) || (int)$passengers < 1 || (int)$passengers > 4) {
         $errors[] = 'Podaj poprawną liczbę pasażerów.';
     }
+
     if ($from === '') {
         $errors[] = 'Pole „Skąd" jest wymagane.';
     } elseif (!in_array($from, $airports, true)) {
         $errors[] = 'Pole „Skąd" musi zawierać lotnisko z listy.';
     }
+
     if ($to === '') {
         $errors[] = 'Pole „Dokąd" jest wymagane.';
     } elseif (!in_array($to, $airports, true)) {
         $errors[] = 'Pole „Dokąd" musi zawierać lotnisko z listy.';
     }
+
     if ($from !== '' && $to !== '' && $from === $to) {
         $errors[] = 'Miejsce wylotu i przylotu nie mogą być takie same.';
     }
+
     if ($departureDate === '') {
         $errors[] = 'Data wylotu jest wymagana.';
     }
+
     if ($tripType === 'round-trip' && $returnDate === '') {
         $errors[] = 'Data powrotu jest wymagana dla lotu w obie strony.';
     }
+
     if ($tripType === 'round-trip' && $departureDate !== '' && $returnDate !== '') {
         if (strtotime($returnDate) < strtotime($departureDate)) {
             $errors[] = 'Data powrotu nie może być wcześniejsza niż data wylotu.';
@@ -166,12 +256,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['flight_search'])) {
     if (empty($errors)) {
         $_SESSION['reservation_code'] = generateReservationCode();
         $_SESSION['flight_search'] = [
-            'trip_type'      => $tripType,
-            'passengers'     => (int)$passengers,
-            'from'           => $from,
-            'to'             => $to,
+            'trip_type' => $tripType,
+            'passengers' => (int)$passengers,
+            'from' => $from,
+            'to' => $to,
             'departure_date' => $departureDate,
-            'return_date'    => $tripType === 'one-way' ? '' : $returnDate
+            'return_date' => $tripType === 'one-way' ? '' : $returnDate
         ];
         $_SESSION['current_view'] = 'departure';
 
@@ -185,27 +275,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['flight_search'])) {
             $_SESSION['edit_mode']
         );
 
-        header('Location: departure');
-        exit;
+        redirectTo('departure');
     }
 }
 
+// ------------------------------
+// Wybór lotu wylotowego
+// ------------------------------
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['departure_choice'])) {
     if (empty($_SESSION['flight_search'])) {
-        header('Location: home');
-        exit;
+        redirectTo('home');
     }
 
     $_SESSION['departure_choice'] = [
-        'flight_id'     => $_POST['departure_flight_id'] ?? '',
-        'ticket_type'   => $_POST['departure_ticket_type'] ?? '',
-        'price'         => $_POST['departure_price'] ?? '0.00',
-        'duration'      => $_POST['departure_duration'] ?? '',
-        'departure_time'=> $_POST['departure_time'] ?? '',
-        'arrival_time'  => $_POST['departure_arrival_time'] ?? '',
-        'flight_code'   => $_POST['departure_flight_code'] ?? '',
-        'operator_name' => $_POST['departure_operator_name'] ?? ''
+        'flight_id' => (int)($_POST['departure_flight_id'] ?? 0),
+        'ticket_type' => trim($_POST['departure_ticket_type'] ?? ''),
+        'price' => trim($_POST['departure_price'] ?? '0.00'),
+        'duration' => trim($_POST['departure_duration'] ?? ''),
+        'departure_time' => trim($_POST['departure_time'] ?? ''),
+        'arrival_time' => trim($_POST['departure_arrival_time'] ?? ''),
+        'flight_code' => trim($_POST['departure_flight_code'] ?? ''),
+        'operator_name' => trim($_POST['departure_operator_name'] ?? '')
     ];
+
     unset($_SESSION['seat_selection']);
 
     $tripType = $_SESSION['flight_search']['trip_type'] ?? 'round-trip';
@@ -215,45 +307,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['departure_choice'])) 
         $_SESSION['booking_total_price'] = $_SESSION['departure_choice']['price'];
         unset($_SESSION['return_choice']);
 
-        header('Location: passenger_data');
-        exit;
+        redirectTo('passenger_data');
     }
 
     $_SESSION['current_view'] = 'return';
-
-    header('Location: return');
-    exit;
+    redirectTo('return');
 }
 
+// ------------------------------
+// Wybór lotu powrotnego
+// ------------------------------
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['return_choice'])) {
     if (empty($_SESSION['flight_search']) || empty($_SESSION['departure_choice'])) {
-        header('Location: home');
-        exit;
+        redirectTo('home');
     }
 
     $_SESSION['return_choice'] = [
-        'flight_id'     => $_POST['return_flight_id'] ?? '',
-        'ticket_type'   => $_POST['return_ticket_type'] ?? '',
-        'price'         => $_POST['return_price'] ?? '0.00',
-        'duration'      => $_POST['return_duration'] ?? '',
-        'departure_time'=> $_POST['return_departure_time'] ?? '',
-        'arrival_time'  => $_POST['return_arrival_time'] ?? '',
-        'flight_code'   => $_POST['return_flight_code'] ?? '',
-        'operator_name' => $_POST['return_operator_name'] ?? ''
+        'flight_id' => (int)($_POST['return_flight_id'] ?? 0),
+        'ticket_type' => trim($_POST['return_ticket_type'] ?? ''),
+        'price' => trim($_POST['return_price'] ?? '0.00'),
+        'duration' => trim($_POST['return_duration'] ?? ''),
+        'departure_time' => trim($_POST['return_departure_time'] ?? ''),
+        'arrival_time' => trim($_POST['return_arrival_time'] ?? ''),
+        'flight_code' => trim($_POST['return_flight_code'] ?? ''),
+        'operator_name' => trim($_POST['return_operator_name'] ?? '')
     ];
+
     unset($_SESSION['seat_selection']);
 
-    $_SESSION['booking_total_price'] = $_POST['total_price'] ?? '0.00';
+    $_SESSION['booking_total_price'] = trim($_POST['total_price'] ?? '0.00');
     $_SESSION['current_view'] = 'passenger_data';
 
-    header('Location: passenger_data');
-    exit;
+    redirectTo('passenger_data');
 }
 
+// ------------------------------
+// Dane pasażerów
+// ------------------------------
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['passenger_data_submit'])) {
     if (empty($_SESSION['flight_search']) || empty($_SESSION['departure_choice'])) {
-        header('Location: home');
-        exit;
+        redirectTo('home');
     }
 
     $passengerCount = max(1, min(4, (int)($_POST['passenger_count'] ?? 1)));
@@ -262,48 +355,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['passenger_data_submit
     for ($i = 1; $i <= $passengerCount; $i++) {
         $passengersData[] = [
             'passenger_type' => trim($_POST["passengerType{$i}"] ?? ''),
-            'title'          => trim($_POST["title{$i}"] ?? ''),
-            'first_name'     => trim($_POST["firstName{$i}"] ?? ''),
-            'middle_name'    => trim($_POST["middleName{$i}"] ?? ''),
-            'last_name'      => trim($_POST["lastName{$i}"] ?? ''),
-            'birth_date'     => trim($_POST["birthDate{$i}"] ?? ''),
-            'gender'         => trim($_POST["gender{$i}"] ?? '')
+            'title' => trim($_POST["title{$i}"] ?? ''),
+            'first_name' => trim($_POST["firstName{$i}"] ?? ''),
+            'middle_name' => trim($_POST["middleName{$i}"] ?? ''),
+            'last_name' => trim($_POST["lastName{$i}"] ?? ''),
+            'birth_date' => trim($_POST["birthDate{$i}"] ?? ''),
+            'gender' => trim($_POST["gender{$i}"] ?? '')
         ];
     }
 
     $_SESSION['passenger_data'] = [
         'contact' => [
-            'email'      => trim($_POST['email'] ?? ''),
-            'country'    => trim($_POST['countryCode'] ?? ''),
-            'phone'      => trim($_POST['phoneNumber'] ?? ''),
+            'email' => trim($_POST['email'] ?? ''),
+            'country' => trim($_POST['countryCode'] ?? ''),
+            'phone' => trim($_POST['phoneNumber'] ?? ''),
             'newsletter' => isset($_POST['newsletter']),
-            'confirm'    => isset($_POST['confirm'])
+            'confirm' => isset($_POST['confirm'])
         ],
         'passenger_count' => $passengerCount,
-        'passengers'      => $passengersData
+        'passengers' => $passengersData
     ];
 
-    $_SESSION['booking_total_price'] = $_POST['total_price'] ?? ($_SESSION['booking_total_price'] ?? '0.00');
+    $_SESSION['booking_total_price'] = trim($_POST['total_price'] ?? ($_SESSION['booking_total_price'] ?? '0.00'));
     $_SESSION['current_view'] = 'seat_selection';
 
-    header('Location: seat_selection');
-    exit;
+    redirectTo('seat_selection');
 }
 
+// ------------------------------
+// Wybór miejsc i bagażu
+// ------------------------------
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['seat_selection_submit'])) {
     if (
         empty($_SESSION['flight_search']) ||
         empty($_SESSION['departure_choice']) ||
         empty($_SESSION['passenger_data'])
     ) {
-        header('Location: home');
-        exit;
+        redirectTo('home');
     }
 
     $seatAssignmentsRaw = trim($_POST['seat_assignments'] ?? '');
-    $selectedSeatsRaw   = trim($_POST['selected_seats'] ?? '');
-    $baggageCountsRaw   = trim($_POST['baggage_counts'] ?? '');
-    $finalPrice         = trim($_POST['final_price'] ?? '0.00');
+    $selectedSeatsRaw = trim($_POST['selected_seats'] ?? '');
+    $baggageCountsRaw = trim($_POST['baggage_counts'] ?? '');
+    $finalPrice = trim($_POST['final_price'] ?? '0.00');
 
     $seatAssignments = [];
     if ($seatAssignmentsRaw !== '') {
@@ -325,26 +419,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['seat_selection_submit
 
     $_SESSION['seat_selection'] = [
         'seat_assignments' => $seatAssignments,
-        'selected_seats'   => $selectedSeats,
-        'baggage_counts'   => $baggageCounts
+        'selected_seats' => $selectedSeats,
+        'baggage_counts' => $baggageCounts
     ];
     $_SESSION['booking_total_price'] = $finalPrice;
     $_SESSION['current_view'] = 'summary';
 
-    header('Location: summary');
-    exit;
+    redirectTo('summary');
 }
 
+// ------------------------------
+// Powrót do edycji rezerwacji
+// ------------------------------
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_reservation'])) {
     if (!empty($_SESSION['flight_search'])) {
         $_SESSION['current_view'] = 'departure';
         $_SESSION['edit_mode'] = true;
     }
 
-    header('Location: departure');
-    exit;
+    redirectTo('departure');
 }
 
+// ------------------------------
+// Zapis rezerwacji
+// ------------------------------
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_reservation'])) {
     if (
         empty($_SESSION['flight_search']) ||
@@ -353,22 +451,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_reservation']
         empty($_SESSION['seat_selection']) ||
         empty($_SESSION['reservation_code'])
     ) {
-        header('Location: home');
-        exit;
+        redirectTo('home');
     }
 
     $pdo->beginTransaction();
 
     try {
-        $search          = $_SESSION['flight_search'];
+        $search = $_SESSION['flight_search'];
         $departureChoice = $_SESSION['departure_choice'];
-        $returnChoice    = $_SESSION['return_choice'] ?? null;
-        $passengerData   = $_SESSION['passenger_data'];
-        $seatSelection   = $_SESSION['seat_selection'];
-        $contact         = $passengerData['contact'] ?? [];
-        
-        $totalPrice = (float)str_replace([' ', ','], ['', '.'], $_SESSION['booking_total_price'] ?? 0);
-        $depPrice   = (float)str_replace([' ', ','], ['', '.'], $departureChoice['price'] ?? 0);
+        $returnChoice = $_SESSION['return_choice'] ?? null;
+        $passengerData = $_SESSION['passenger_data'];
+        $seatSelection = $_SESSION['seat_selection'];
+        $contact = $passengerData['contact'] ?? [];
+
+        $totalPrice = parsePrice($_SESSION['booking_total_price'] ?? 0);
+        $depPrice = parsePrice($departureChoice['price'] ?? 0);
         $depFlightId = (int)($departureChoice['flight_id'] ?? 0);
 
         $stmt = $pdo->prepare("
@@ -378,13 +475,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_reservation']
                 (:user_id, :reservation_code, :trip_type, :contact_email, :contact_country, :contact_phone, :total_price)
         ");
         $stmt->execute([
-            ':user_id'          => $_SESSION['user_id'] ?? null,
+            ':user_id' => $_SESSION['user_id'] ?? null,
             ':reservation_code' => $_SESSION['reservation_code'],
-            ':trip_type'        => $search['trip_type'],
-            ':contact_email'    => $contact['email'] ?? '',
-            ':contact_country'  => $contact['country'] ?? '',
-            ':contact_phone'    => $contact['phone'] ?? '',
-            ':total_price'      => $totalPrice
+            ':trip_type' => $search['trip_type'],
+            ':contact_email' => $contact['email'] ?? '',
+            ':contact_country' => $contact['country'] ?? '',
+            ':contact_phone' => $contact['phone'] ?? '',
+            ':total_price' => $totalPrice
         ]);
         $reservationId = (int)$pdo->lastInsertId();
 
@@ -395,30 +492,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_reservation']
                 (:reservation_id, :flight_direction, :flight_id, :ticket_type, :price, :flight_date)
         ");
         $stmt->execute([
-            ':reservation_id'   => $reservationId,
+            ':reservation_id' => $reservationId,
             ':flight_direction' => 'departure',
-            ':flight_id'        => $depFlightId,
-            ':ticket_type'      => $departureChoice['ticket_type'] ?? '',
-            ':price'            => $depPrice,
-            ':flight_date'      => $search['departure_date']
+            ':flight_id' => $depFlightId,
+            ':ticket_type' => $departureChoice['ticket_type'] ?? '',
+            ':price' => $depPrice,
+            ':flight_date' => $search['departure_date']
         ]);
 
         if ($search['trip_type'] === 'round-trip' && $returnChoice) {
-            $retPrice = (float)str_replace([' ', ','], ['', '.'], $returnChoice['price'] ?? 0);
+            $retPrice = parsePrice($returnChoice['price'] ?? 0);
             $retFlightId = (int)($returnChoice['flight_id'] ?? 0);
 
             $stmt->execute([
-                ':reservation_id'   => $reservationId,
+                ':reservation_id' => $reservationId,
                 ':flight_direction' => 'return',
-                ':flight_id'        => $retFlightId,
-                ':ticket_type'      => $returnChoice['ticket_type'] ?? '',
-                ':price'            => $retPrice,
-                ':flight_date'      => $search['return_date']
+                ':flight_id' => $retFlightId,
+                ':ticket_type' => $returnChoice['ticket_type'] ?? '',
+                ':price' => $retPrice,
+                ':flight_date' => $search['return_date']
             ]);
         }
 
         $seatAssignments = $seatSelection['seat_assignments'] ?? [];
-        $baggageCounts   = $seatSelection['baggage_counts'] ?? [];
+        $baggageCounts = $seatSelection['baggage_counts'] ?? [];
 
         $stmt = $pdo->prepare("
             INSERT INTO reservation_passengers
@@ -434,17 +531,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_reservation']
             $seatNo = !empty($rawSeat) ? $rawSeat : null;
 
             $stmt->execute([
-                ':reservation_id'   => $reservationId,
-                ':passenger_index'  => $index + 1,
-                ':passenger_type'   => $passenger['passenger_type'] ?? '',
-                ':title'            => $passenger['title'] ?? '',
-                ':first_name'       => $passenger['first_name'] ?? '',
-                ':middle_name'      => $passenger['middle_name'] ?? '',
-                ':last_name'        => $passenger['last_name'] ?? '',
-                ':birth_date'       => !empty($passenger['birth_date']) ? $passenger['birth_date'] : null,
-                ':gender'           => $passenger['gender'] ?? '',
-                ':seat_number'      => $seatNo,
-                ':baggage_count'    => (int)($baggageCounts[$index] ?? 0)
+                ':reservation_id' => $reservationId,
+                ':passenger_index' => $index + 1,
+                ':passenger_type' => $passenger['passenger_type'] ?? '',
+                ':title' => $passenger['title'] ?? '',
+                ':first_name' => $passenger['first_name'] ?? '',
+                ':middle_name' => $passenger['middle_name'] ?? '',
+                ':last_name' => $passenger['last_name'] ?? '',
+                ':birth_date' => safeDateOrNull($passenger['birth_date'] ?? ''),
+                ':gender' => $passenger['gender'] ?? '',
+                ':seat_number' => $seatNo,
+                ':baggage_count' => (int)($baggageCounts[$index] ?? 0)
             ]);
         }
 
@@ -452,21 +549,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_reservation']
         $_SESSION['saved_reservation_id'] = $reservationId;
         $_SESSION['current_view'] = 'thank_you';
         unset($_SESSION['edit_mode']);
-        header('Location: thank_you');
-exit;
 
+        redirectTo('thank_you');
     } catch (Throwable $e) {
         $pdo->rollBack();
         require 'includes/header.php';
-        echo '<main class="content"><h1 style="color:#C50914;">Błąd zapisu: ' . $e->getMessage() . '</h1></main>';
+        echo '<main class="content"><h1 style="color:#C50914;">Wystąpił błąd podczas zapisu rezerwacji.</h1></main>';
         require 'includes/footer.php';
         exit;
     }
 }
 
-$authErrors = [];
-$authSuccess = '';
-
+// ------------------------------
+// Rejestracja i logowanie
+// ------------------------------
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     if ($_POST['action'] === 'register') {
         $firstName = trim($_POST['first_name'] ?? '');
@@ -475,7 +571,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         $password = $_POST['password'] ?? '';
         $passwordConfirm = $_POST['password_confirm'] ?? '';
 
-        if (empty($firstName) || empty($lastName) || empty($email) || empty($password)) {
+        if ($firstName === '' || $lastName === '' || $email === '' || $password === '') {
             $authErrors[] = 'Wypełnij wszystkie pola.';
         } elseif ($password !== $passwordConfirm) {
             $authErrors[] = 'Hasła nie są identyczne.';
@@ -484,11 +580,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         } else {
             $stmt = $pdo->prepare("SELECT id FROM users WHERE email = :email LIMIT 1");
             $stmt->execute([':email' => $email]);
+
             if ($stmt->fetch()) {
                 $authErrors[] = 'Konto z tym adresem e-mail już istnieje.';
             } else {
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-                $stmt = $pdo->prepare("INSERT INTO users (email, password, first_name, last_name) VALUES (:email, :password, :first_name, :last_name)");
+                $stmt = $pdo->prepare("
+                    INSERT INTO users (email, password, first_name, last_name)
+                    VALUES (:email, :password, :first_name, :last_name)
+                ");
+
                 if ($stmt->execute([
                     ':email' => $email,
                     ':password' => $hashedPassword,
@@ -505,29 +606,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         $email = trim($_POST['email'] ?? '');
         $password = $_POST['password'] ?? '';
 
-        if (empty($email) || empty($password)) {
+        if ($email === '' || $password === '') {
             $authErrors[] = 'Podaj e-mail i hasło.';
         } else {
             $stmt = $pdo->prepare("SELECT id, password, first_name FROM users WHERE email = :email LIMIT 1");
             $stmt->execute([':email' => $email]);
-            $user = $stmt->fetch();
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($user && password_verify($password, $user['password'])) {
-                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['user_id'] = (int)$user['id'];
                 $_SESSION['user_name'] = $user['first_name'];
-                header('Location: home');
-                exit;
-            } else {
-                $authErrors[] = 'Błędny e-mail lub hasło.';
+                redirectTo('home');
             }
+
+            $authErrors[] = 'Błędny e-mail lub hasło.';
         }
     }
 }
 
+// ------------------------------
+// Aktualny widok
+// ------------------------------
 if (isset($_GET['view'])) {
     $_SESSION['current_view'] = $_GET['view'];
 }
 
+// ------------------------------
+// Proces upgrade
+// ------------------------------
 if (
     $_SERVER['REQUEST_METHOD'] === 'POST' &&
     isset($_POST['upgrade_action']) &&
@@ -545,197 +651,134 @@ if (
         $_SESSION['upgrade_data']['flight_direction'] = $flightDirection;
         unset($_SESSION['upgrade_data']['passenger_id']);
 
-        header('Location: upgrade_choice');
-        exit;
+        redirectTo('upgrade_choice');
     }
 
     if ($upgradeAction === 'choose_luggage' || $upgradeAction === 'choose_seat') {
         $passengerId = (int)($_POST['passenger_id'] ?? 0);
 
         if ($passengerId <= 0) {
-            header('Location: upgrade_choice');
-            exit;
+            redirectTo('upgrade_choice');
         }
 
         $_SESSION['upgrade_data']['passenger_id'] = $passengerId;
 
         if ($upgradeAction === 'choose_luggage') {
-            header('Location: upgrade_choice_luggage');
-            exit;
+            redirectTo('upgrade_choice_luggage');
         }
 
-        if ($upgradeAction === 'choose_seat') {
-            header('Location: upgrade_choice_seat');
-            exit;
-        }
+        redirectTo('upgrade_choice_seat');
     }
 
     if ($upgradeAction === 'confirm_luggage') {
         $_SESSION['upgrade_data']['upgrade_choice'] = 'luggage';
-        $_SESSION['upgrade_data']['luggage_type'] = $_POST['luggage_type'] ?? '';
+        $_SESSION['upgrade_data']['luggage_type'] = trim($_POST['luggage_type'] ?? '');
         $_SESSION['upgrade_data']['luggage_count'] = (float)($_POST['luggage_count'] ?? 0);
         $_SESSION['upgrade_data']['luggage_price_diff'] = (float)($_POST['luggage_price_diff'] ?? 0);
 
-        header('Location: upgrade_end');
-        exit;
+        redirectTo('upgrade_end');
     }
 
     if ($upgradeAction === 'confirm_seat') {
         $_SESSION['upgrade_data']['upgrade_choice'] = 'seat';
-        $_SESSION['upgrade_data']['new_class'] = $_POST['new_class'] ?? '';
-        $_SESSION['upgrade_data']['new_seat'] = $_POST['new_seat'] ?? '';
+        $_SESSION['upgrade_data']['new_class'] = trim($_POST['new_class'] ?? '');
+        $_SESSION['upgrade_data']['new_seat'] = trim($_POST['new_seat'] ?? '');
         $_SESSION['upgrade_data']['seat_price'] = (float)($_POST['seat_price'] ?? 0);
 
-        header('Location: upgrade_end');
-        exit;
+        redirectTo('upgrade_end');
     }
 
-    header('Location: upgrade_flight');
-    exit;
+    redirectTo('upgrade_flight');
 }
+
+// ------------------------------
+// Konfiguracja tytułów, styli i plików widoków
+// ------------------------------
+$viewConfig = [
+    'home' => ['title' => 'WronAir', 'style' => 'style/style.css', 'file' => 'home.php'],
+    'uslugi' => ['title' => 'WronAir | Usługi', 'style' => 'style/style_uslugi.css', 'file' => 'uslugi.php'],
+    'internet' => ['title' => 'WronAir | Internet', 'style' => 'style/style_internet.css', 'file' => 'internet.php'],
+    'kontakt' => ['title' => 'WronAir | Kontakt', 'style' => 'style/style_kontakt.css', 'file' => 'kontakt.php'],
+    'logowanie' => ['title' => 'WronAir | Logowanie i Rejestracja', 'style' => 'style/style_logowanie.css', 'file' => 'logowanie.php'],
+    'rozrywka' => ['title' => 'WronAir | Rozrywka', 'style' => 'style/oferty_style.css', 'file' => 'rozrywka.php'],
+    'o_nas' => ['title' => 'WronAir | O Nas', 'style' => 'style/style_o_nas.css', 'file' => 'o_nas.php'],
+    'upgrade_flight' => ['title' => 'WronAir | Wybierz lot', 'style' => 'style/style_upgrade_choice.css', 'style2' => 'style/style_upgrade_flight.css', 'file' => 'upgrade_flight.php'],
+    'posilki' => ['title' => 'WronAir | Posiłki', 'style' => 'style/oferty_style.css', 'file' => 'posilki.php'],
+    'duty_free' => ['title' => 'WronAir | Duty-Free', 'style' => 'style/oferty_style.css', 'file' => 'duty_free.php'],
+    'faq' => ['title' => 'WronAir | FAQ', 'style' => 'style/style_faq.css', 'file' => 'faq.php'],
+    'upgrade' => ['title' => 'WronAir | Upgrade', 'style' => 'style/style_upgrade.css', 'file' => 'upgrade.php'],
+    'upgrade_choice' => ['title' => 'WronAir | Wybór upgrade', 'style' => 'style/style_upgrade_choice.css', 'file' => 'upgrade_choice.php'],
+    'upgrade_choice_luggage' => ['title' => 'WronAir | Upgrade - Bagaż', 'style' => 'style/style_upgrade_choice.css', 'file' => 'upgrade_choice_luggage.php'],
+    'upgrade_choice_seat' => ['title' => 'WronAir | Upgrade - Siedzenie', 'style' => 'style/style_upgrade_choice.css', 'style2' => 'style/style_wybor_miejsca.css', 'file' => 'upgrade_choice_seat.php'],
+    'upgrade_end' => ['title' => 'WronAir | Upgrade - Podsumowanie', 'style' => 'style/style_upgrade_end.css', 'file' => 'upgrade_end.php'],
+    'flota' => ['title' => 'WronAir | Flota', 'style' => 'style/style_flota.css', 'file' => 'flota.php'],
+    'odprawa' => ['title' => 'WronAir | Odprawa', 'style' => 'style/style_odprawa.css', 'file' => 'odprawa.php'],
+    'weryfikacja' => ['title' => 'WronAir | Weryfikacja odprawy', 'style' => 'style/style_potwierdz_dane.css', 'file' => 'weryfikacja.php'],
+    'edycja_odprawy' => ['title' => 'WronAir | Edycja danych', 'style' => 'style/style_wprowadz_dane.css', 'file' => 'edycja_odprawy.php'],
+    'wybor_miejsca_odprawa' => ['title' => 'WronAir | Wybór miejsca', 'style' => 'style/style_wybor_miejsca.css', 'file' => 'wybor_miejsca_odprawa.php'],
+    'boarding_pass' => ['title' => 'WronAir | Boarding Pass', 'style' => 'style/style_boarding_pass.css', 'file' => 'boarding_pass.php'],
+    'konto' => ['title' => 'WronAir | Moje Konto', 'style' => 'style/style_konto.css', 'file' => 'konto.php'],
+    'departure' => [
+        'title' => 'WronAir | Wybór lotu',
+        'style' => 'style/style_departure.css',
+        'file' => 'departure.php',
+        'requires_search' => true
+    ],
+
+    'return' => [
+        'title' => 'WronAir | Lot powrotny',
+        'style' => 'style/style_departure.css',
+        'file' => 'return.php',
+        'requires_search' => true
+    ],
+
+    'passenger_data' => [
+        'title' => 'WronAir | Dane pasażerów',
+        'style' => 'style/style_wprowadz_dane.css',
+        'file' => 'wprowadz_dane.php',
+        'requires_search' => true
+    ],
+
+    'seat_selection' => [
+        'title' => 'WronAir | Wybór miejsca',
+        'style' => 'style/style_wybor_miejsca.css',
+        'file' => 'wybor_miejsca.php',
+        'requires_search' => true
+    ],
+
+    'summary' => [
+        'title' => 'WronAir | Podsumowanie',
+        'style' => 'style/style_podsumowanie.css',
+        'file' => 'podsumowanie.php',
+        'requires_search' => true
+    ],
+
+    'thank_you' => [
+        'title' => 'WronAir | Dziękujemy',
+        'style' => 'style/style_podziekowanie.css',
+        'file' => 'podziekowanie.php',
+        'requires_search' => true
+    ]
+];
 
 $currentView = $_SESSION['current_view'] ?? 'home';
-$pageTitle   = 'WronAir';
-$pageStyle   = 'style/style.css';
+$config = $viewConfig[$currentView] ?? $viewConfig['home'];
 
-if ($currentView === 'uslugi') {
-    $pageTitle = 'WronAir | Usługi';
-    $pageStyle = 'style/style_uslugi.css';
-} elseif ($currentView === 'internet') {
-    $pageTitle = 'WronAir | Internet';
-    $pageStyle = 'style/style_internet.css';
-} elseif ($currentView === 'kontakt') {
-    $pageTitle = 'WronAir | Kontakt';
-    $pageStyle = 'style/style_kontakt.css';
-} elseif ($currentView === 'logowanie') {
-    $pageTitle = 'WronAir | Logowanie i Rejestracja';
-    $pageStyle = 'style/style_logowanie.css';
-} elseif ($currentView === 'rozrywka') {
-    $pageTitle = 'WronAir | Rozrywka';
-    $pageStyle = 'style/oferty_style.css';
-} elseif ($currentView === 'o_nas') {
-    $pageTitle = 'WronAir | O Nas';
-    $pageStyle = 'style/style_o_nas.css';
-} elseif ($currentView === 'upgrade_flight') {
-    $pageTitle = 'WronAir | Wybierz lot';
-    $pageStyle = 'style/style_upgrade_choice.css';
-    $pageStyle2 = 'style/style_upgrade_flight.css';
-} elseif ($currentView === 'posilki') {
-    $pageTitle = 'WronAir | Posiłki';
-    $pageStyle = 'style/oferty_style.css';
-} elseif ($currentView === 'duty_free') {
-    $pageTitle = 'WronAir | Duty-Free';
-    $pageStyle = 'style/oferty_style.css';
-} elseif ($currentView === 'faq') {
-    $pageTitle = 'WronAir | FAQ';
-    $pageStyle = 'style/style_faq.css';
-} elseif ($currentView === 'upgrade') {
-    $pageTitle = 'WronAir | Upgrade';
-    $pageStyle = 'style/style_upgrade.css';
-} elseif ($currentView === 'upgrade_choice') {
-    $pageTitle = 'WronAir | Wybór upgrade';
-    $pageStyle = 'style/style_upgrade_choice.css';
-} elseif ($currentView === 'upgrade_choice_luggage') {
-    $pageTitle = 'WronAir | Upgrade - Bagaż';
-    $pageStyle = 'style/style_upgrade_choice.css';
-} elseif ($currentView === 'upgrade_choice_seat') {
-    $pageTitle  = 'WronAir | Upgrade - Siedzenie';
-    $pageStyle  = 'style/style_upgrade_choice.css';
-    $pageStyle2 = 'style/style_wybor_miejsca.css';
-} elseif ($currentView === 'upgrade_end') {
-    $pageTitle = 'WronAir | Upgrade - Podsumowanie';
-    $pageStyle = 'style/style_upgrade_end.css';
-} elseif ($currentView === 'flota') {
-    $pageTitle = 'WronAir | Flota';
-    $pageStyle = 'style/style_flota.css';
-} elseif ($currentView === 'odprawa') {
-    $pageTitle = 'WronAir | Odprawa';
-    $pageStyle = 'style/style_odprawa.css';
-} elseif ($currentView === 'weryfikacja') {
-    $pageTitle = 'WronAir | Weryfikacja odprawy';
-    $pageStyle = 'style/style_potwierdz_dane.css';
-} elseif ($currentView === 'edycja_odprawy') {
-    $pageTitle = 'WronAir | Edycja danych';
-    $pageStyle = 'style/style_wprowadz_dane.css';
-} elseif ($currentView === 'wybor_miejsca_odprawa') {
-    $pageTitle = 'WronAir | Wybór miejsca';
-    $pageStyle = 'style/style_wybor_miejsca.css';
-} elseif ($currentView === 'boarding_pass') {
-    $pageTitle = 'WronAir | Boarding Pass';
-    $pageStyle = 'style/style_boarding_pass.css';
-} elseif ($currentView === 'konto') {
-    $pageTitle = 'WronAir | Moje Konto';
-    $pageStyle = 'style/style_konto.css';
-}
+$pageTitle = $config['title'];
+$pageStyle = $config['style'];
+$pageStyle2 = $config['style2'] ?? null;
 
 require 'includes/header.php';
 
 $currentView = $_SESSION['current_view'] ?? 'home';
+$config = $viewConfig[$currentView] ?? $viewConfig['home'];
 
 if (!empty($errors)) {
     require 'home.php';
-} elseif ($currentView === 'home') {
+} elseif (!empty($config['requires_search']) && empty($_SESSION['flight_search'])) {
     require 'home.php';
-} elseif ($currentView === 'uslugi') {
-    require 'uslugi.php';
-} elseif ($currentView === 'internet') {
-    require 'internet.php';
-} elseif ($currentView === 'kontakt') {
-    require 'kontakt.php';
-} elseif ($currentView === 'rozrywka') {
-    require 'rozrywka.php';
-} elseif ($currentView === 'o_nas') {
-    require 'o_nas.php';
-} elseif ($currentView === 'upgrade_flight') {
-    require 'upgrade_flight.php';
-} elseif ($currentView === 'posilki') {
-    require 'posilki.php';
-} elseif ($currentView === 'duty_free') {
-    require 'duty_free.php';
-} elseif ($currentView === 'faq') {
-    require 'faq.php';
-} elseif ($currentView === 'flota') {
-    require 'flota.php';
-} elseif ($currentView === 'upgrade') {
-    require 'upgrade.php';
-} elseif ($currentView === 'logowanie') {
-    require 'logowanie.php';
-} elseif ($currentView === 'upgrade_choice') {
-    require 'upgrade_choice.php';
-} elseif ($currentView === 'upgrade_choice_luggage') {
-    require 'upgrade_choice_luggage.php';
-} elseif ($currentView === 'upgrade_choice_seat') {
-    require 'upgrade_choice_seat.php';
-} elseif ($currentView === 'upgrade_end') {
-    require 'upgrade_end.php';
-} elseif ($currentView === 'odprawa') {
-    require 'odprawa.php';
-} elseif ($currentView === 'weryfikacja') {
-    require 'weryfikacja.php';
-} elseif ($currentView === 'edycja_odprawy') {
-    require 'edycja_odprawy.php';
-} elseif ($currentView === 'wybor_miejsca_odprawa') {
-    require 'wybor_miejsca_odprawa.php';
-} elseif ($currentView === 'boarding_pass') {
-    require 'boarding_pass.php';
-} elseif ($currentView === 'konto') {
-    require 'konto.php';
-} elseif (!empty($_SESSION['flight_search'])) {
-    if ($currentView === 'departure') {
-        require 'departure.php';
-    } elseif ($currentView === 'return') {
-        require 'return.php';
-    } elseif ($currentView === 'passenger_data') {
-        require 'wprowadz_dane.php';
-    } elseif ($currentView === 'seat_selection') {
-        require 'wybor_miejsca.php';
-    } elseif ($currentView === 'summary') {
-        require 'podsumowanie.php';
-    } elseif ($currentView === 'thank_you') {
-        require 'podziekowanie.php';
-    }
 } else {
-    require 'home.php';
+    require $config['file'];
 }
 
 require 'includes/footer.php';

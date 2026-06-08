@@ -1,5 +1,10 @@
 <?php
-require_once __DIR__ . '/config/db.php';
+if (!defined('APP_ACCESS')) exit('Brak dostępu');
+
+if (!isset($pdo)) {
+    require_once __DIR__ . '/config/db.php';
+    $pdo = getDb();
+}
 
 $search = $_SESSION['flight_search'] ?? null;
 $departureChoice = $_SESSION['departure_choice'] ?? null;
@@ -9,8 +14,6 @@ if (!$search || !$departureChoice) {
     echo '<main class="content"><h1>Brak danych rezerwacji.</h1></main>';
     return;
 }
-
-$pdo = getDb();
 
 $stmt = $pdo->query("
     SELECT name
@@ -85,9 +88,6 @@ function oldChecked(array $oldContact, string $key): string
     return !empty($oldContact[$key]) ? 'checked' : '';
 }
 ?>
-
-<link rel="stylesheet" href="style/style_wprowadz_dane.css" />
-<link rel="stylesheet" href="style/style_headfoot.css" />
 
 <main class="content">
     <div class="line-container">

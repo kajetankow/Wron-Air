@@ -1,10 +1,6 @@
 <?php
 if (!defined('APP_ACCESS')) exit('Brak dostępu');
 ?>
-
-<link rel="stylesheet" href="style/oferty_style.css" />
-<link rel="stylesheet" href="style/style_headfoot.css" />
-
 <main>
     <h1 class="main-title">Sklep Duty-Free</h1>
     
@@ -78,7 +74,6 @@ document.querySelectorAll('.carousel-container').forEach(container => {
     const carousel = container.querySelector('.carousel');
     const originalTiles = Array.from(carousel.querySelectorAll('.tile'));
     
-    // Sklonuj kafelki żeby pętla działała
     [1, 2, 3].forEach(() => {
     originalTiles.forEach(tile => {
         carousel.appendChild(tile.cloneNode(true));

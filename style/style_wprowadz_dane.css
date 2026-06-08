@@ -1,5 +1,5 @@
 /* --------------------------------------------------
-   WPROWADZANIE DANYCH - LIQUID GLASS
+   WPROWADZANIE DANYCH
 -------------------------------------------------- */
 
 :root {
@@ -132,7 +132,7 @@ main.content #reservationForm .part-container p {
 }
 
 /* --------------------------------------------------
-   DANE KONTAKTOWE - JEDNA LINIA
+   DANE KONTAKTOWE
 -------------------------------------------------- */
 
 main.content #reservationForm .form-group.contact {
@@ -150,7 +150,6 @@ main.content #reservationForm .form-group.contact > div {
 
 /* --------------------------------------------------
    PASAŻER
-   Układ: typ pasażera po lewej, dane po prawej bez kreski
 -------------------------------------------------- */
 
 main.content #reservationForm .passenger {
@@ -201,7 +200,7 @@ main.content #reservationForm .passenger-right .form-group > div {
 
 
 /* --------------------------------------------------
-   POLA FORMULARZA - tylko formularz rezerwacji
+   POLA FORMULARZA
 -------------------------------------------------- */
 
 main.content #reservationForm input[type="text"],
@@ -323,7 +322,6 @@ main.content #reservationForm select::-ms-expand {
     display: none;
 }
 
-/* date ma własną ikonę przeglądarki, więc nie dajemy mu sztucznej strzałki */
 main.content #reservationForm input[type="date"] {
     padding-right: 16px;
     color: #222222;

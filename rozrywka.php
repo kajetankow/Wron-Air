@@ -2,8 +2,6 @@
 if (!defined('APP_ACCESS')) exit('Brak dostępu');
 ?>
 
-<link rel="stylesheet" href="style/oferty_style.css" />
-<link rel="stylesheet" href="style/style_headfoot.css" />
 <main>
     <h1 class="main-title">Rozrywka</h1>
     <p class="main-description">
