@@ -718,47 +718,12 @@ $viewConfig = [
     'wybor_miejsca_odprawa' => ['title' => 'WronAir | Wybór miejsca', 'style' => 'style/style_wybor_miejsca.css', 'file' => 'wybor_miejsca_odprawa.php'],
     'boarding_pass' => ['title' => 'WronAir | Boarding Pass', 'style' => 'style/style_boarding_pass.css', 'file' => 'boarding_pass.php'],
     'konto' => ['title' => 'WronAir | Moje Konto', 'style' => 'style/style_konto.css', 'file' => 'konto.php'],
-    'departure' => [
-        'title' => 'WronAir | Wybór lotu',
-        'style' => 'style/style_departure.css',
-        'file' => 'departure.php',
-        'requires_search' => true
-    ],
-
-    'return' => [
-        'title' => 'WronAir | Lot powrotny',
-        'style' => 'style/style_departure.css',
-        'file' => 'return.php',
-        'requires_search' => true
-    ],
-
-    'passenger_data' => [
-        'title' => 'WronAir | Dane pasażerów',
-        'style' => 'style/style_wprowadz_dane.css',
-        'file' => 'wprowadz_dane.php',
-        'requires_search' => true
-    ],
-
-    'seat_selection' => [
-        'title' => 'WronAir | Wybór miejsca',
-        'style' => 'style/style_wybor_miejsca.css',
-        'file' => 'wybor_miejsca.php',
-        'requires_search' => true
-    ],
-
-    'summary' => [
-        'title' => 'WronAir | Podsumowanie',
-        'style' => 'style/style_podsumowanie.css',
-        'file' => 'podsumowanie.php',
-        'requires_search' => true
-    ],
-
-    'thank_you' => [
-        'title' => 'WronAir | Dziękujemy',
-        'style' => 'style/style_podziekowanie.css',
-        'file' => 'podziekowanie.php',
-        'requires_search' => true
-    ]
+    'departure' => ['title' => 'WronAir | Wybór lotu', 'style' => 'style/style_departure.css', 'file' => 'departure.php', 'requires_search' => true],
+    'return' => [ 'title' => 'WronAir | Lot powrotny', 'style' => 'style/style_departure.css', 'file' => 'return.php', 'requires_search' => true],
+    'passenger_data' => ['title' => 'WronAir | Dane pasażerów', 'style' => 'style/style_wprowadz_dane.css', 'file' => 'wprowadz_dane.php', 'requires_search' => true],
+    'seat_selection' => ['title' => 'WronAir | Wybór miejsca', 'style' => 'style/style_wybor_miejsca.css', 'file' => 'wybor_miejsca.php', 'requires_search' => true],
+    'summary' => ['title' => 'WronAir | Podsumowanie', 'style' => 'style/style_podsumowanie.css', 'file' => 'podsumowanie.php', 'requires_search' => true],
+    'thank_you' => ['title' => 'WronAir | Dziękujemy', 'style' => 'style/style_podziekowanie.css', 'file' => 'podziekowanie.php', 'requires_search' => true]
 ];
 
 $currentView = $_SESSION['current_view'] ?? 'home';
