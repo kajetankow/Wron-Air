@@ -94,7 +94,7 @@ if (postActionIs('cancel_reservation')) {
             ]);
 
             if ($stmt->fetch()) {
-                // Usuwamy powiązane dane przed rezerwacją. Przy ON DELETE CASCADE też nie szkodzi.
+                // Usuwamy powiązane dane przed rezerwacją.
                 $stmt = $pdo->prepare("DELETE FROM reservation_passengers WHERE reservation_id = :id");
                 $stmt->execute([':id' => $reservationId]);
 
