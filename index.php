@@ -571,12 +571,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         $password = $_POST['password'] ?? '';
         $passwordConfirm = $_POST['password_confirm'] ?? '';
 
-        if ($firstName === '' || $lastName === '' || $email === '' || $password === '') {
+        $registerOld = [
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            'email' => $email
+        ];
+
+        if ($firstName === '' || $lastName === '' || $email === '' || $password === '' || $passwordConfirm === '') {
             $authErrors[] = 'Wypełnij wszystkie pola.';
-        } elseif ($password !== $passwordConfirm) {
-            $authErrors[] = 'Hasła nie są identyczne.';
         } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $authErrors[] = 'Niepoprawny adres e-mail.';
+        } elseif ($password !== $passwordConfirm) {
+            $authErrors[] = 'Hasła nie są identyczne.';
         } else {
             $stmt = $pdo->prepare("SELECT id FROM users WHERE email = :email LIMIT 1");
             $stmt->execute([':email' => $email]);
@@ -597,6 +603,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                     ':last_name' => $lastName
                 ])) {
                     $authSuccess = 'Rejestracja zakończona sukcesem. Możesz się zalogować.';
+                    $registerOld = [
+                        'first_name' => '',
+                        'last_name' => '',
+                        'email' => ''
+                    ];
                 } else {
                     $authErrors[] = 'Błąd podczas rejestracji.';
                 }
